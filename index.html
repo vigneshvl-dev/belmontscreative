@@ -422,6 +422,151 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* Cinematic Profile Animations */
+        @keyframes cinematic-fade-in {
+            from {
+                opacity: 0;
+                filter: blur(10px);
+            }
+
+            to {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        @keyframes cinematic-slide-down {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes cinematic-scale-up {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes cinematic-slide-left {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes cinematic-slide-right {
+            from {
+                transform: translateX(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glitch-intro {
+            0% {
+                clip-path: inset(50% 0 30% 0);
+                transform: translate(-5px, 0);
+            }
+
+            20% {
+                clip-path: inset(10% 0 80% 0);
+                transform: translate(5px, 0);
+            }
+
+            40% {
+                clip-path: inset(40% 0 40% 0);
+                transform: translate(-5px, 0);
+            }
+
+            60% {
+                clip-path: inset(80% 0 5% 0);
+                transform: translate(5px, 0);
+            }
+
+            80% {
+                clip-path: inset(20% 0 60% 0);
+                transform: translate(-5px, 0);
+            }
+
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0, 0);
+            }
+        }
+
+        .cinematic-header {
+            animation: cinematic-slide-down 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .cinematic-img {
+            animation: cinematic-scale-up 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+        .cinematic-bio {
+            animation: cinematic-slide-left 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .cinematic-badges {
+            animation: cinematic-fade-in 1s ease-out 0.9s forwards;
+            opacity: 0;
+        }
+
+        .cinematic-log {
+            animation: cinematic-slide-right 1s ease-out 1.2s forwards;
+            opacity: 0;
+        }
+
+        .cinematic-status {
+            animation: cinematic-fade-in 1.5s ease-out 1.5s forwards;
+            opacity: 0;
+        }
+
+        .cinematic-btn {
+            animation: cinematic-fade-in 1s ease-out 1.8s forwards;
+            opacity: 0;
+        }
+
+        .profile-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 162, 255, 0.05), transparent);
+            pointer-events: none;
+            animation: scanline 4s linear infinite;
+        }
     </style>
 </head>
 
@@ -462,17 +607,17 @@
 
 
     <div id="clan-profile-screen"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
         <div class="profile-card">
-            <div class="profile-header">Belmonts CB // Clan Command</div>
-            <img src="https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png" class="profile-img"
+            <div class="profile-header cinematic-header">Belmonts CB // Clan Command</div>
+            <img src="https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png" class="profile-img cinematic-img"
                 alt="Geo Nithin">
-            <div class="journey-bio">
+            <div class="journey-bio cinematic-bio">
                 <b>GEO NITHIN</b><br>
                 <span style="font-size: 14px; opacity: 0.8;">2nd Year, Computer Science Engineering</span>
             </div>
 
-            <div
+            <div class="cinematic-badges"
                 style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
                 <div
                     style="border: 1px solid rgba(0, 255, 136, 0.3); padding: 5px 10px; border-radius: 4px; color: #00ff88;">
@@ -482,7 +627,7 @@
                     ROLE: CB OF BELMONTS</div>
             </div>
 
-            <div class="journey-info"
+            <div class="journey-info cinematic-log"
                 style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #00ff88;">
                 <div
                     style="color: #00ff88; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
@@ -494,25 +639,25 @@
                 </div>
             </div>
 
-            <div
+            <div class="cinematic-status"
                 style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #00a2ff; letter-spacing: 2px;">
                 STATUS: ENCRYPTED // CONNECTION ACTIVE
             </div>
-            <button class="next-btn" onclick="goToAdhithya()">Squad Command // NEXT</button>
+            <button class="next-btn cinematic-btn" onclick="goToAdhithya()">Squad Command // NEXT</button>
         </div>
     </div>
 
     <div id="adhithya-profile-screen"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
         <div class="profile-card">
-            <div class="profile-header">Belmonts CB // Squad Command</div>
-            <div style="font-size: 80px; margin-bottom: 20px;">👩‍💻</div>
-            <div class="journey-bio">
+            <div class="profile-header cinematic-header">Belmonts CB // Squad Command</div>
+            <div class="cinematic-img" style="font-size: 80px; margin-bottom: 20px;">👩‍💻</div>
+            <div class="journey-bio cinematic-bio">
                 <b>ADHITHYA MAHESH</b><br>
                 <span style="font-size: 14px; opacity: 0.8;">CB OF BELMONTS</span>
             </div>
 
-            <div
+            <div class="cinematic-badges"
                 style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
                 <div
                     style="border: 1px solid rgba(255, 0, 136, 0.3); padding: 5px 10px; border-radius: 4px; color: #ff0088;">
@@ -522,7 +667,7 @@
                     DEV: GAME DEVELOPER</div>
             </div>
 
-            <div class="journey-info"
+            <div class="journey-info cinematic-log"
                 style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #ff0088;">
                 <div
                     style="color: #ff0088; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
@@ -534,26 +679,26 @@
                 </div>
             </div>
 
-            <div
+            <div class="cinematic-status"
                 style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ff0088; letter-spacing: 2px;">
                 STATUS: ACTIVE // SQUAD LEADER
             </div>
-            <button class="next-btn" onclick="goToSando()">Event Command // NEXT</button>
+            <button class="next-btn cinematic-btn" onclick="goToSando()">Event Command // NEXT</button>
         </div>
     </div>
 
     <div id="sando-profile-screen"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
         <div class="profile-card">
-            <div class="profile-header">Lumina Clan // Event Command</div>
-            <img src="https://i.postimg.cc/NjMvhT4J/79fe4bad-bab5-43d2-b938-33d24454d5fa.jpg" class="profile-img"
-                alt="Sando Fali">
-            <div class="journey-bio">
+            <div class="profile-header cinematic-header">Lumina Clan // Event Command</div>
+            <img src="https://i.postimg.cc/NjMvhT4J/79fe4bad-bab5-43d2-b938-33d24454d5fa.jpg"
+                class="profile-img cinematic-img" alt="Sando Fali">
+            <div class="journey-bio cinematic-bio">
                 <b>SANDO FALI</b><br>
                 <span style="font-size: 14px; opacity: 0.8;">LEAD ORGANIZER</span>
             </div>
 
-            <div
+            <div class="cinematic-badges"
                 style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
                 <div
                     style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
@@ -563,7 +708,7 @@
                     VIBE: FUNNY GUY</div>
             </div>
 
-            <div class="journey-info"
+            <div class="journey-info cinematic-log"
                 style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #ffaa00;">
                 <div
                     style="color: #ffaa00; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
@@ -575,11 +720,11 @@
                 </div>
             </div>
 
-            <div
+            <div class="cinematic-status"
                 style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ffaa00; letter-spacing: 2px;">
                 STATUS: ACTIVE // MISSION ORGANIZER
             </div>
-            <button class="next-btn" onclick="goToRoadmap()">Access Roadmap // NEXT</button>
+            <button class="next-btn cinematic-btn" onclick="goToRoadmap()">Access Roadmap // NEXT</button>
         </div>
     </div>
     <div id="roadmap-screen">
