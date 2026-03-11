@@ -17,6 +17,7 @@
         #canvas-container {
             width: 100vw;
             height: 100vh;
+            transition: opacity 2s ease;
         }
 
         .ui-overlay {
@@ -33,6 +34,7 @@
             box-sizing: border-box;
             color: rgba(255, 255, 255, 0.7);
             z-index: 10;
+            transition: opacity 2s ease;
         }
 
         .header {
@@ -163,12 +165,371 @@
             letter-spacing: 2px;
         }
 
+        #journey-screen,
+        #profile-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 150;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .journey-card,
+        .profile-card {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            backdrop-filter: blur(20px);
+            padding: 60px;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 162, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .journey-card::before,
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00a2ff, transparent);
+            animation: scanline 3s linear infinite;
+        }
+
+        .journey-header,
+        .profile-header {
+            font-size: 14px;
+            color: #00a2ff;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .journey-bio {
+            font-size: 24px;
+            color: #fff;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .journey-bio b {
+            color: #00ff88;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .journey-info {
+            font-family: monospace;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .journey-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #00a2ff;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.5);
+            object-fit: cover;
+            background: #111;
+        }
+
+        #roadmap-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 150;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .roadmap-container {
+            position: relative;
+            width: 80%;
+            height: 60%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .roadmap-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            /* Ensure the SVG is centered if needed */
+        }
+
+        .roadmap-line {
+            fill: none;
+            stroke: #00a2ff;
+            stroke-width: 3;
+            stroke-dasharray: 10, 15;
+            filter: drop-shadow(0 0 8px #00a2ff);
+            opacity: 0.8;
+            stroke-linecap: round;
+        }
+
+        .next-btn {
+            margin-top: 30px;
+            background: transparent;
+            border: 1px solid rgba(0, 255, 136, 0.5);
+            color: #00ff88;
+            padding: 8px 20px;
+            font-family: monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .next-btn:hover {
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .roadmap-node {
+            width: 120px;
+            height: 120px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 2px solid #00a2ff;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.2);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .roadmap-node b {
+            font-size: 14px;
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .roadmap-node.active {
+            border-color: #00ff88;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.4);
+            transform: scale(1.1);
+        }
+
+        .roadmap-node::after {
+            content: '';
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            border: 1px solid rgba(0, 162, 255, 0.1);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .btn-link {
+            color: #00a2ff;
+            text-decoration: none;
+            font-family: monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(0, 162, 255, 0.5);
+            padding: 10px 25px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-link:hover {
+            background: rgba(0, 162, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
             }
 
             100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #fingerprint-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0a111a 0%, #000 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 150;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .fingerprint-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .fingerprint-icon {
+            width: 120px;
+            height: 120px;
+            fill: #00a2ff;
+            filter: drop-shadow(0 0 15px rgba(0, 162, 255, 0.5));
+            transition: all 0.3s ease;
+        }
+
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #00ff88;
+            box-shadow: 0 0 20px #00ff88;
+            opacity: 0;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        .scanning .scan-line {
+            animation: scan-vertical 2s linear infinite;
+            opacity: 1;
+        }
+
+        .auth-status {
+            margin-top: 30px;
+            font-family: monospace;
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #00a2ff;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .auth-status.success {
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        @keyframes scan-vertical {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(200px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .scanner-ring {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 2px solid rgba(0, 162, 255, 0.2);
+            border-radius: 50%;
+            animation: rotate-ring 10s linear infinite;
+        }
+
+        .scanner-ring::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: #00a2ff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #00a2ff;
+        }
+
+        @keyframes rotate-ring {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
                 transform: rotate(360deg);
             }
         }
@@ -180,8 +541,197 @@
         <button class="start-btn" id="start-btn">Initiate Connection</button>
         <div class="start-hint">AUDIO ENABLED // CINEMATIC MODE</div>
     </div>
-    <div id="loading-screen">
-        <div class="loader"></div>
+
+    <div id="journey-screen">
+        <div class="journey-card">
+            <div class="journey-header">Journey Logs</div>
+            <div class="journey-bio">
+                Hey Bashers. Welcome to creative tasks.
+            </div>
+            <div class="journey-info">
+                Operation started: 01/22/2026<br>
+                Current Phase: Creative Tasks
+            </div>
+            <button class="next-btn" onclick="goToProfile()">Secure Identity // NEXT</button>
+        </div>
+    </div>
+
+    <div id="profile-screen">
+        <div class="profile-card">
+            <div class="profile-header">Identity Verified</div>
+            <img src="https://i.postimg.cc/CLxbVQpf/217740612.jpg" class="profile-img" alt="Profile Image">
+            <div class="journey-bio">
+                <b>V.L.VIGNESH</b><br>
+                (1st year, CSE A)
+            </div>
+            <div class="journey-links">
+                <a href="mailto:vigneshvelappan73051@gmail.com" class="btn-link">vigneshvelappan73051@gmail.com</a>
+            </div>
+            <button class="next-btn" onclick="goToFingerprint()">Biometric Auth // NEXT</button>
+        </div>
+    </div>
+
+    <div id="fingerprint-screen">
+        <div class="profile-card">
+            <div class="profile-header">Biometric Security</div>
+            <div class="fingerprint-container" id="fp-container" onclick="startFingerprintScan()">
+                <div class="scanner-ring"></div>
+                <svg class="fingerprint-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.81 4.47c-.08 0-.16-.02-.23-.06C15.66 3.42 14 3 12.01 3c-1.98 0-3.86.44-5.57 1.41-.24.13-.54.06-.68-.18-.13-.24-.06-.55.18-.68C7.74 2.12 9.79 1.62 12.01 1.62c2.18 0 4.16.5 5.97 1.68.24.15.31.47.16.71-.08.11-.21.46-.33.46zM4.03 9.62c.08.13.07.29-.02.41L2.47 12.1c-.14.18-.36.25-.57.17-.22-.07-.37-.25-.4-.47L1.03 8.35c0-.06 0-.11.03-.16C2.17 5.25 4.3 2.97 7.07 1.84c.12-.05.25-.03.35.05.1.08.16.2.14.33-.04.42-.06.84-.06 1.25 0 .27-.22.49-.49.49.1 0 .21.03.31.08 1.14.59 2.08 1.5 2.76 2.67.14.24.06.55-.18.68-.24.14-.55.06-.68-.18-.54-.94-1.28-1.68-2.18-2.15l.08.17c-.12-.24-.02-.53.21-.63C5.17 4.54 3.51 6.39 2.5 8.79l.4-.04c.26-.03.5.15.53.42l.6 1.15c.03.04.05.08.06.13-.02-.27.15-.5.41-.56l.4.15.01-.11c.02-.27.24-.48.51-.48h.02c.26.01.48.23.48.49l-.02.39c-.01.3-.26.54-.56.53h-.02c-.25-.02-.45-.2-.5-.45h-.26l-.42.8zM12 11c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6.13 4.11c-.11 0-.22-.04-.31-.11C3.39 13.3 2 10.96 2 8c0-2.45 1.03-4.73 2.89-6.41.2-.18.52-.16.7.04.18.2.16.52-.04.7a7.614 7.614 0 00-2.55 5.67c0 2.61 1.23 4.68 3.19 6.22.21.17.25.48.08.69-.09.11-.23.17-.37.17zm15.49-3.01l.8-.2c.26-.06.52.1.59.35.07.26-.1.52-.35.59l-.8.2c-.26.06-.52-.1-.59-.35-.07-.26.1-.52.35-.59zm-3.08 1.22l.8.2c.26.06.44.33.37.59-.05.23-.26.38-.48.38-.04 0-.08 0-.11-.01l-.8-.2c-.26-.06-.44-.33-.37-.59.06-.26.33-.44.59-.37zm-3.83 1.17c-.22 0-.42-.15-.47-.38-.07-.26.1-.52.35-.59l.8-.2c.26-.06.52.1.59.35.07.26-.1.52-.35.59l-.8.2c-.04.02-.08.03-.12.03zM18 13c0 3.31-2.69 6-6 6s-6-2.69-6-6c0-2.8 1.91-5.16 4.5-5.83.26-.07.53.08.6.34.07.26-.08.53-.34.6C8.26 8.71 7 10.7 7 13c0 2.76 2.24 5 5 5s5-2.24 5-5c0-1.03-.31-2.02-.91-2.86-.16-.22-.1-.53.11-.69.22-.16.53-.1.69.11.72 1 1.11 2.19 1.11 3.44z" />
+                </svg>
+                <div class="scan-line"></div>
+            </div>
+            <div class="auth-status" id="auth-status">Touch to Authorize</div>
+            <button class="next-btn" id="fp-next-btn" style="display: none;" onclick="goToClanProfileInner()">Enter
+                Command Center</button>
+        </div>
+    </div>
+
+    <div id="clan-profile-screen"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        <div class="profile-card">
+            <div class="profile-header">Belmonts CB // Clan Command</div>
+            <img src="https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png" class="profile-img"
+                alt="Geo Nithin">
+            <div class="journey-bio">
+                <b>GEO NITHIN</b><br>
+                <span style="font-size: 14px; opacity: 0.8;">2nd Year, Computer Science Engineering</span>
+            </div>
+
+            <div
+                style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
+                <div
+                    style="border: 1px solid rgba(0, 255, 136, 0.3); padding: 5px 10px; border-radius: 4px; color: #00ff88;">
+                    RANK: THE BASHER</div>
+                <div
+                    style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
+                    ROLE: CB OF BELMONTS</div>
+            </div>
+
+            <div class="journey-info"
+                style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #00ff88;">
+                <div
+                    style="color: #00ff88; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
+                    COMMANDER LOG:</div>
+                <div style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                    • Open-source communicator & deep-logic architect.<br>
+                    • Midnight debugger: Active for technical support 24/7.<br>
+                    • Master of open dialogue and clan stability.
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #00a2ff; letter-spacing: 2px;">
+                STATUS: ENCRYPTED // CONNECTION ACTIVE
+            </div>
+            <button class="next-btn" onclick="goToAdhithya()">Squad Command // NEXT</button>
+        </div>
+    </div>
+
+    <div id="adhithya-profile-screen"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        <div class="profile-card">
+            <div class="profile-header">Belmonts CB // Squad Command</div>
+            <div style="font-size: 80px; margin-bottom: 20px;">👩‍💻</div>
+            <div class="journey-bio">
+                <b>ADHITHYA MAHESH</b><br>
+                <span style="font-size: 14px; opacity: 0.8;">CB OF BELMONTS</span>
+            </div>
+
+            <div
+                style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
+                <div
+                    style="border: 1px solid rgba(255, 0, 136, 0.3); padding: 5px 10px; border-radius: 4px; color: #ff0088;">
+                    RANK: HARDWORKER</div>
+                <div
+                    style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
+                    DEV: GAME DEVELOPER</div>
+            </div>
+
+            <div class="journey-info"
+                style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #ff0088;">
+                <div
+                    style="color: #ff0088; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
+                    COMMANDER LOG:</div>
+                <div style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                    • Hardworker of the Belmonts clan.<br>
+                    • Expert at clarifying complex technical doubts.<br>
+                    • Personal motivator and core sister-pillar.
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ff0088; letter-spacing: 2px;">
+                STATUS: ACTIVE // SQUAD LEADER
+            </div>
+            <button class="next-btn" onclick="goToSando()">Event Command // NEXT</button>
+        </div>
+    </div>
+
+    <div id="sando-profile-screen"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        <div class="profile-card">
+            <div class="profile-header">Lumina Clan // Event Command</div>
+            <img src="https://i.postimg.cc/NjMvhT4J/79fe4bad-bab5-43d2-b938-33d24454d5fa.jpg" class="profile-img"
+                alt="Sando Fali">
+            <div class="journey-bio">
+                <b>SANDO FALI</b><br>
+                <span style="font-size: 14px; opacity: 0.8;">LEAD ORGANIZER</span>
+            </div>
+
+            <div
+                style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
+                <div
+                    style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
+                    RANK: BEST LEAD</div>
+                <div
+                    style="border: 1px solid rgba(255, 170, 0, 0.3); padding: 5px 10px; border-radius: 4px; color: #ffaa00;">
+                    VIBE: FUNNY GUY</div>
+            </div>
+
+            <div class="journey-info"
+                style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #ffaa00;">
+                <div
+                    style="color: #ffaa00; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
+                    COMMANDER LOG:</div>
+                <div style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                    • Best lead organizer in the circuit.<br>
+                    • First encountered at a Hackathon mission.<br>
+                    • Presence detected in multiple high-level events.
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ffaa00; letter-spacing: 2px;">
+                STATUS: ACTIVE // MISSION ORGANIZER
+            </div>
+            <button class="next-btn" onclick="goToRoadmap()">Access Roadmap // NEXT</button>
+        </div>
+    </div>
+    <div id="roadmap-screen">
+        <div class="roadmap-container">
+            <!-- Responsive SVG Connector -->
+            <svg class="roadmap-svg" viewBox="0 0 1000 400" preserveAspectRatio="none">
+                <path id="roadmap-path" class="roadmap-line" d="M 100,200 C 250,50 400,350 500,200 S 750,50 900,200" />
+            </svg>
+            <div class="roadmap-node active">
+                <b>W-01</b>
+                <span>Basic Code</span>
+            </div>
+            <div class="roadmap-node">
+                <b>W-02</b>
+                <span>3D Assets</span>
+            </div>
+            <div class="roadmap-node">
+                <b>W-03</b>
+                <span>Cinematic</span>
+            </div>
+            <div class="roadmap-node">
+                <b>W-04</b>
+                <span>Deployment</span>
+            </div>
+        </div>
     </div>
 
     <div class="ui-overlay">
@@ -219,9 +769,10 @@
 
         // --- Configuration ---
         const CONFIG = {
-            logoUrl: 'https://i.postimg.cc/tRdBgWxq/belogo.jpg',
-            audioUrl: 'https://cdn.pixabay.com/download/audio/2022/03/24/audio_7314798670.mp3?filename=cinematic-epic-11111.mp3',
-            zoomSfxUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_8e7090885e.mp3?filename=whoosh-cinematic-impact-9698.mp3',
+            logoUrl: 'https://i.postimg.cc/fy7LtXt6/24741862-1e43-44e7-b24c-d6df79c6a071-removebg-preview.png',
+            // Using extremely reliable Wikimedia Commons links
+            audioUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Toreador_song_cleaned.ogg', // Classical backup to test loading
+            zoomSfxUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/34/Sound_Effect_-_Impact.ogg',
             colors: {
                 blue: 0x00a2ff,
                 gold: 0xffd700,
@@ -236,106 +787,10 @@
         let sound, zoomSfx; // Audio objects
         let cameraState = {
             zoomingIntro: false,
-            phase: 0, // 0: wide, 1: snap to macro, 2: steady
+            phase: 0,
             timer: 0
         };
 
-        function init() {
-            // Scene & Camera
-            scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(CONFIG.colors.bg, 0.05);
-
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 5, 25); // Start wide and slightly above
-
-            // Renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit for performance
-            renderer.toneMapping = THREE.ReinhardToneMapping;
-            renderer.toneMappingExposure = 2.0; // High contrast
-            document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-            // Audio Setup
-            const listener = new THREE.AudioListener();
-            camera.add(listener);
-            sound = new THREE.Audio(listener);
-            zoomSfx = new THREE.Audio(listener);
-
-            const audioLoader = new THREE.AudioLoader();
-            audioLoader.load(CONFIG.audioUrl, (buffer) => {
-                sound.setBuffer(buffer);
-                sound.setLoop(true);
-                sound.setVolume(0.5);
-            });
-            audioLoader.load(CONFIG.zoomSfxUrl, (buffer) => {
-                zoomSfx.setBuffer(buffer);
-                zoomSfx.setVolume(1.0);
-            });
-
-            // Post-processing
-            const renderScene = new RenderPass(scene, camera);
-            const bloomPass = new UnrealBloomPass(
-                new THREE.Vector2(window.innerWidth, window.innerHeight),
-                2.5, // High strength for cinematic punch
-                0.3, // Sharp radius
-                0.2  // Low threshold for intense glow
-            );
-            composer = new EffectComposer(renderer);
-            composer.addPass(renderScene);
-            composer.addPass(bloomPass);
-
-            // Controls
-            controls = new OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.autoRotate = false;
-            controls.enableZoom = false;
-            controls.enablePan = false;
-
-            // Lights
-            scene.add(new THREE.AmbientLight(0xffffff, 0.05));
-
-            const blueLight = new THREE.PointLight(0x00a2ff, 15, 30);
-            blueLight.position.set(5, 5, 10);
-            scene.add(blueLight);
-
-            const goldLight = new THREE.PointLight(0xffaa00, 10, 30);
-            goldLight.position.set(-10, -5, -10);
-            scene.add(goldLight);
-
-            clock = new THREE.Clock();
-
-            createCrest();
-            createDataStreams();
-            createBackgroundAssets();
-
-            window.addEventListener('resize', onWindowResize);
-
-            // Intro Orchestration (Triggered by user interaction for audio)
-            const startBtn = document.getElementById('start-btn');
-            startBtn.addEventListener('click', () => {
-                // Fade out start overlay
-                document.getElementById('start-overlay').style.opacity = '0';
-
-                // Play background music
-                if (sound && sound.buffer) sound.play();
-
-                setTimeout(() => {
-                    document.getElementById('start-overlay').style.display = 'none';
-
-                    // Fade out loader
-                    document.getElementById('loading-screen').style.opacity = '0';
-                    setTimeout(() => {
-                        document.getElementById('loading-screen').style.display = 'none';
-                        cameraState.zoomingIntro = true;
-                    }, 1000);
-                }, 800);
-            });
-
-            animate();
-        }
-
-        // --- Assets & Textures ---
         const BASH_COMMANDS = [
             'sudo apt update', 'git push origin main', 'docker-compose up -d',
             'npm run build', 'kubectl get pods', 'ssh belmonts@cloud',
@@ -343,10 +798,23 @@
             'systemctl restart nginx', 'aws s3 sync . s3://belmonts', 'terraform apply'
         ];
 
+        function playSyntheticBeep(ctx) {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(440, ctx.currentTime);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.5);
+        }
+
         function createTextTexture(text) {
             const canvas = document.createElement('canvas');
             canvas.width = 512;
-            canvas.height = 128; // Increased height for better aspect ratio
+            canvas.height = 128;
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = 'rgba(0,0,0,0)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -354,134 +822,298 @@
             ctx.fillStyle = '#00a2ff';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            // Neon glow
             ctx.shadowColor = '#00a2ff';
             ctx.shadowBlur = 15;
             ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-
             const texture = new THREE.CanvasTexture(canvas);
             texture.needsUpdate = true;
             return texture;
         }
 
+        // --- GLOBAL TRANSITION HELPERS ---
+        window.goToProfile = function () {
+            const journey = document.getElementById('journey-screen');
+            const profile = document.getElementById('profile-screen');
+            if (journey.style.opacity === '0') return; // Prevent double trigger
+            journey.style.opacity = '0';
+            setTimeout(() => {
+                journey.style.display = 'none';
+                profile.style.display = 'flex';
+                setTimeout(() => profile.style.opacity = '1', 50);
+            }, 1000);
+        };
+
+        window.goToFingerprint = function () {
+            const profile = document.getElementById('profile-screen');
+            const fingerprint = document.getElementById('fingerprint-screen');
+            if (profile.style.opacity === '0') return;
+            profile.style.opacity = '0';
+            setTimeout(() => {
+                profile.style.display = 'none';
+                fingerprint.style.display = 'flex';
+                setTimeout(() => fingerprint.style.opacity = '1', 50);
+            }, 1000);
+        };
+
+        window.startFingerprintScan = function () {
+            const container = document.getElementById('fp-container');
+            const status = document.getElementById('auth-status');
+            const nextBtn = document.getElementById('fp-next-btn');
+
+            if (container.classList.contains('scanning') || container.classList.contains('authorized')) return;
+
+            container.classList.add('scanning');
+            status.innerText = "Scanning Biometrics...";
+
+            // Play synthetic beep if context exists
+            if (window.audioCtx) playSyntheticBeep(window.audioCtx);
+
+            setTimeout(() => {
+                container.classList.remove('scanning');
+                container.classList.add('authorized');
+                status.innerText = "Identity Confirmed // Access Granted";
+                status.classList.add('success');
+                nextBtn.style.display = 'block';
+                setTimeout(() => nextBtn.style.opacity = '1', 50);
+
+                // Trigger transition automatically after a short delay
+                setTimeout(() => {
+                    goToClanProfileInner();
+                }, 1500);
+            }, 3000);
+        };
+
+        window.goToClanProfileInner = function () {
+            const fingerprint = document.getElementById('fingerprint-screen');
+            const clanProfile = document.getElementById('clan-profile-screen');
+            if (fingerprint.style.opacity === '0') return;
+            fingerprint.style.opacity = '0';
+            setTimeout(() => {
+                fingerprint.style.display = 'none';
+                clanProfile.style.display = 'flex';
+                setTimeout(() => clanProfile.style.opacity = '1', 50);
+            }, 1000);
+        };
+
+        window.goToClanProfile = function () {
+            // This function is now redirected to goToFingerprint from the UI
+            goToFingerprint();
+        };
+
+        window.goToAdhithya = function () {
+            const clanProfile = document.getElementById('clan-profile-screen');
+            const adhithyaProfile = document.getElementById('adhithya-profile-screen');
+            if (clanProfile.style.opacity === '0') return;
+            clanProfile.style.opacity = '0';
+            setTimeout(() => {
+                clanProfile.style.display = 'none';
+                adhithyaProfile.style.display = 'flex';
+                setTimeout(() => adhithyaProfile.style.opacity = '1', 50);
+            }, 1000);
+        };
+
+        window.goToSando = function () {
+            const adhithyaProfile = document.getElementById('adhithya-profile-screen');
+            const sandoProfile = document.getElementById('sando-profile-screen');
+            if (adhithyaProfile.style.opacity === '0') return;
+            adhithyaProfile.style.opacity = '0';
+            setTimeout(() => {
+                adhithyaProfile.style.display = 'none';
+                sandoProfile.style.display = 'flex';
+                setTimeout(() => sandoProfile.style.opacity = '1', 50);
+            }, 1000);
+        };
+
+        window.goToRoadmap = function () {
+            const sandoProfile = document.getElementById('sando-profile-screen');
+            const adhithyaProfile = document.getElementById('adhithya-profile-screen');
+            const clanProfile = document.getElementById('clan-profile-screen');
+            const fingerprint = document.getElementById('fingerprint-screen');
+            const profile = document.getElementById('profile-screen');
+            const roadmap = document.getElementById('roadmap-screen');
+            const canvas = document.getElementById('canvas-container');
+
+            // Handle transition from whichever profile is currently visible
+            let activeProfile;
+            if (sandoProfile.style.display === 'flex') activeProfile = sandoProfile;
+            else if (adhithyaProfile.style.display === 'flex') activeProfile = adhithyaProfile;
+            else if (clanProfile.style.display === 'flex') activeProfile = clanProfile;
+            else if (fingerprint.style.display === 'flex') activeProfile = fingerprint;
+            else activeProfile = profile;
+
+            if (activeProfile.style.opacity === '0') return;
+            activeProfile.style.opacity = '0';
+            setTimeout(() => {
+                activeProfile.style.display = 'none';
+                canvas.classList.remove('fade-out');
+                canvas.style.opacity = '0.5';
+                roadmap.style.display = 'flex';
+                setTimeout(() => roadmap.style.opacity = '1', 50);
+            }, 1000);
+        };
+
+        function init() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(CONFIG.colors.bg, 0.05);
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 5, 25);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.toneMapping = THREE.ReinhardToneMapping;
+            renderer.toneMappingExposure = 2.0;
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            const listener = new THREE.AudioListener();
+            camera.add(listener);
+            sound = new THREE.Audio(listener);
+            zoomSfx = new THREE.Audio(listener);
+
+            const startBtn = document.getElementById('start-btn');
+            const audioLoader = new THREE.AudioLoader();
+            let loadedCount = 0;
+            function checkReady() {
+                loadedCount++;
+                if (loadedCount === 2) {
+                    startBtn.innerText = "Initiate Connection";
+                    startBtn.style.borderColor = "#00ff88";
+                    startBtn.style.color = "#00ff88";
+                }
+            }
+
+            audioLoader.load(CONFIG.audioUrl, (buffer) => {
+                sound.setBuffer(buffer);
+                sound.setLoop(true);
+                sound.setVolume(0.5);
+                checkReady();
+            });
+            audioLoader.load(CONFIG.zoomSfxUrl, (buffer) => {
+                zoomSfx.setBuffer(buffer);
+                zoomSfx.setVolume(1.0);
+                checkReady();
+            });
+
+            composer = new EffectComposer(renderer);
+            composer.addPass(new RenderPass(scene, camera));
+            composer.addPass(new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 2.5, 0.3, 0.2));
+
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.autoRotate = false;
+            controls.enableZoom = false;
+            controls.enablePan = false;
+
+            scene.add(new THREE.AmbientLight(0xffffff, 0.05));
+            const blueLight = new THREE.PointLight(0x00a2ff, 15, 30);
+            blueLight.position.set(5, 5, 10);
+            scene.add(blueLight);
+
+            clock = new THREE.Clock();
+            createCrest();
+            createDataStreams();
+            createBackgroundAssets();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                composer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            startBtn.addEventListener('click', () => {
+                if (listener.context.state === 'suspended') listener.context.resume();
+                playSyntheticBeep(listener.context);
+                document.getElementById('start-overlay').style.opacity = '0';
+                if (sound && sound.buffer) sound.play();
+
+                setTimeout(() => {
+                    document.getElementById('start-overlay').style.display = 'none';
+                    // Fade out loader if it still exists
+                    const loader = document.getElementById('loading-screen');
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.style.display = 'none', 1000);
+                    }
+                    cameraState.zoomingIntro = true;
+
+                    // --- AUTOMATIC CINEMATIC PROGRESSION (Fallbacks) ---
+                    setTimeout(() => {
+                        document.getElementById('canvas-container').classList.add('fade-out');
+                        document.querySelector('.ui-overlay').classList.add('fade-out');
+                        setTimeout(() => {
+                            const journey = document.getElementById('journey-screen');
+                            journey.style.display = 'flex';
+                            setTimeout(() => journey.style.opacity = '1', 50);
+
+                            // AUTO-NEXT TO PROFILE (8s)
+                            setTimeout(() => { if (window.goToProfile) window.goToProfile(); }, 8000);
+
+                            // AUTO-NEXT TO CLAN PROFILE (16s)
+                            setTimeout(() => { if (window.goToClanProfile) window.goToClanProfile(); }, 16000);
+
+                            // AUTO-NEXT TO ADHITHYA PROFILE (24s)
+                            setTimeout(() => { if (window.goToAdhithya) window.goToAdhithya(); }, 24000);
+
+                            // AUTO-NEXT TO SANDO PROFILE (32s)
+                            setTimeout(() => { if (window.goToSando) window.goToSando(); }, 32000);
+
+                            // AUTO-NEXT TO ROADMAP DISABLED (User requested manual only for these personal command pages)
+                            // setTimeout(() => { if (window.goToRoadmap) window.goToRoadmap(); }, 40000);
+                        }, 2000);
+                    }, 10000); // Intro duration (10s)
+                }, 800);
+            });
+
+            animate();
+        }
+
         function createCrest() {
             const textureLoader = new THREE.TextureLoader();
             const logoTexture = textureLoader.load(CONFIG.logoUrl);
-
-            // 1. Chrome Hexagonal Base
             const shape = new THREE.Shape();
-            const sides = 6;
-            const size = 1.25;
+            const sides = 6, size = 1.25;
             for (let i = 0; i < sides; i++) {
                 const angle = (i / sides) * Math.PI * 2;
                 if (i === 0) shape.moveTo(size * Math.cos(angle), size * Math.sin(angle));
                 else shape.lineTo(size * Math.cos(angle), size * Math.sin(angle));
             }
             shape.closePath();
-
-            const geometry = new THREE.ExtrudeGeometry(shape, {
-                depth: 0.2,
-                bevelEnabled: true,
-                bevelThickness: 0.1,
-                bevelSize: 0.1,
-                bevelOffset: 0,
-                bevelSegments: 5
-            });
+            const geometry = new THREE.ExtrudeGeometry(shape, { depth: 0.2, bevelEnabled: true, bevelThickness: 0.1, bevelSize: 0.1 });
             geometry.center();
-
-            // Advanced Metallic Chrome Material
-            const chromeMaterial = new THREE.MeshStandardMaterial({
-                color: 0xcccccc,
-                metalness: 1.0,
-                roughness: 0.05,
-                emissive: 0x111111,
-                envMapIntensity: 2.5
-            });
-
-            crest = new THREE.Mesh(geometry, chromeMaterial);
+            crest = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xcccccc, metalness: 1.0, roughness: 0.05 }));
             scene.add(crest);
 
-            // 2. Logo Overlay
             const logoGeo = new THREE.PlaneGeometry(1.6, 1.6);
-            const logoMat = new THREE.MeshStandardMaterial({
-                map: logoTexture,
-                transparent: true,
-                emissive: 0x444444,
-                emissiveIntensity: 0.5,
-                emissiveMap: logoTexture
-            });
-
+            const logoMat = new THREE.MeshStandardMaterial({ map: logoTexture, transparent: true, emissive: 0x444444, emissiveIntensity: 0.5, emissiveMap: logoTexture });
             const logoFront = new THREE.Mesh(logoGeo, logoMat);
             logoFront.position.z = 0.21;
             crest.add(logoFront);
-
-            const logoBack = new THREE.Mesh(logoGeo, logoMat);
+            const logoBack = logoFront.clone();
             logoBack.position.z = -0.21;
             logoBack.rotation.y = Math.PI;
             crest.add(logoBack);
 
-            // 3. Electric Blue LED Edges (Bevel highlight)
             const ringGeo = new THREE.TorusGeometry(1.4, 0.04, 16, 100);
-            const ringMat = new THREE.MeshStandardMaterial({
-                color: 0x00a2ff,
-                emissive: 0x00a2ff,
-                emissiveIntensity: 10.0,
-                transparent: true,
-                opacity: 0.8
-            });
-            const ledRingFront = new THREE.Mesh(ringGeo, ringMat);
-            ledRingFront.position.z = 0.15;
-            crest.add(ledRingFront);
-
-            const ledRingBack = ledRingFront.clone();
+            const ringMat = new THREE.MeshStandardMaterial({ color: 0x00a2ff, emissive: 0x00a2ff, emissiveIntensity: 10.0, transparent: true, opacity: 0.8 });
+            const ledRing = new THREE.Mesh(ringGeo, ringMat);
+            ledRing.position.z = 0.15;
+            crest.add(ledRing);
+            const ledRingBack = ledRing.clone();
             ledRingBack.position.z = -0.15;
             crest.add(ledRingBack);
-
-            // 4. Outer Gold Ring
-            const outerRingGeo = new THREE.TorusGeometry(1.9, 0.015, 16, 100);
-            const outerRingMat = new THREE.MeshBasicMaterial({ color: CONFIG.colors.gold });
-            const outerRing = new THREE.Mesh(outerRingGeo, outerRingMat);
-            crest.add(outerRing);
         }
 
         function createDataStreams() {
-            // Using individual plane meshes for text clarity instead of Points
-            const particleCount = 100; // Fewer but high-quality text planes
             particles = new THREE.Group();
-
-            for (let i = 0; i < particleCount; i++) {
+            for (let i = 0; i < 60; i++) {
                 const cmd = BASH_COMMANDS[Math.floor(Math.random() * BASH_COMMANDS.length)];
-                const texture = createTextTexture(cmd);
-                const mat = new THREE.MeshBasicMaterial({
-                    map: texture,
-                    transparent: true,
-                    blending: THREE.AdditiveBlending,
-                    side: THREE.DoubleSide,
-                    opacity: 0.8
-                });
-
-                const geo = new THREE.PlaneGeometry(1.2, 0.3);
-                const p = new THREE.Mesh(geo, mat);
-
-                // Random starting positions in a tornado swirl
-                const angle = Math.random() * Math.PI * 2;
-                const radius = 3 + Math.random() * 5;
-                const height = (Math.random() - 0.5) * 20;
-
-                p.position.set(
-                    Math.cos(angle) * radius,
-                    height,
-                    Math.sin(angle) * radius
-                );
-
+                const mat = new THREE.MeshBasicMaterial({ map: createTextTexture(cmd), transparent: true, blending: THREE.AdditiveBlending, opacity: 0.8 });
+                const p = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.3), mat);
+                const angle = Math.random() * Math.PI * 2, radius = 3 + Math.random() * 5, height = (Math.random() - 0.5) * 20;
+                p.position.set(Math.cos(angle) * radius, height, Math.sin(angle) * radius);
                 p.rotation.y = -angle + Math.PI / 2;
-                p.userData = {
-                    speed: 0.02 + Math.random() * 0.05,
-                    radius: radius,
-                    angle: angle,
-                    vSpeed: (Math.random() - 0.5) * 0.01
-                };
-
+                p.userData = { speed: 0.02 + Math.random() * 0.05, radius, angle };
                 particles.add(p);
             }
             scene.add(particles);
@@ -489,132 +1121,44 @@
 
         function createBackgroundAssets() {
             const serverGroup = new THREE.Group();
-            const count = 20;
-
-            for (let i = 0; i < count; i++) {
-                const h = 5 + Math.random() * 5;
-                const geo = new THREE.BoxGeometry(2, h, 2);
-                const wireframe = new THREE.EdgesGeometry(geo);
-                const mat = new THREE.LineBasicMaterial({
-                    color: 0xffaa00,
-                    transparent: true,
-                    opacity: 0.1
-                });
-
-                const rack = new THREE.LineSegments(wireframe, mat);
-
-                const angle = (i / count) * Math.PI * 2;
-                const dist = 15 + Math.random() * 5;
-                rack.position.set(
-                    Math.cos(angle) * dist,
-                    -2,
-                    Math.sin(angle) * dist
-                );
-
-                // Individual rack pulse speed
+            for (let i = 0; i < 20; i++) {
+                const geo = new THREE.BoxGeometry(2, 5 + Math.random() * 5, 2);
+                const rack = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: 0xffaa00, transparent: true, opacity: 0.1 }));
+                const angle = (i / 20) * Math.PI * 2, dist = 15 + Math.random() * 5;
+                rack.position.set(Math.cos(angle) * dist, -2, Math.sin(angle) * dist);
                 rack.userData = { pulseOffset: Math.random() * Math.PI * 2 };
-
                 serverGroup.add(rack);
             }
             scene.add(serverGroup);
         }
 
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            composer.setSize(window.innerWidth, window.innerHeight);
-        }
-
         function animate() {
             requestAnimationFrame(animate);
-
             const elapsed = clock.getElapsedTime();
-            const delta = clock.getDelta();
-
-            // 1. Camera Orchestration (Snap-Zoom)
             if (cameraState.zoomingIntro) {
-                cameraState.timer += 0.016; // approx delta
-
+                cameraState.timer += 0.016;
                 if (cameraState.phase === 0) {
-                    // Slow approach
                     camera.position.z -= 0.05;
-                    if (cameraState.timer > 2.0) {
-                        cameraState.phase = 1; // Snap!
-                        cameraState.timer = 0;
-                    }
+                    if (cameraState.timer > 2.0) { cameraState.phase = 1; cameraState.timer = 0; zoomSfx.play(); }
                 } else if (cameraState.phase === 1) {
-                    // Violent Snap-Zoom
-                    const t = Math.min(cameraState.timer * 4.0, 1.0); // 0.25s snap
+                    const t = Math.min(cameraState.timer * 4.0, 1.0);
                     camera.position.lerpVectors(new THREE.Vector3(0, 5, 20), new THREE.Vector3(0, 0, 4), t);
-
-                    // Add violent camera shake
-                    camera.position.x += (Math.random() - 0.5) * 0.2 * (1.0 - t);
-                    camera.position.y += (Math.random() - 0.5) * 0.2 * (1.0 - t);
-
-                    if (t >= 1.0) {
-                        cameraState.phase = 2;
-                        controls.autoRotate = true;
-                        controls.autoRotateSpeed = 2.0;
-                    }
+                    if (t >= 1.0) { cameraState.phase = 2; controls.autoRotate = true; controls.autoRotateSpeed = 2.0; }
                 }
             }
-
-            // 2. Crest animation
             if (crest) {
                 crest.position.y = Math.sin(elapsed * 0.5) * 0.15;
                 crest.rotation.y += 0.01;
-                crest.rotation.z = Math.sin(elapsed * 0.5) * 0.1;
-
-                // Pulsate the logo and LED edges
                 const pulse = 0.5 + Math.sin(elapsed * 4.0) * 0.5;
-                crest.children.forEach(child => {
-                    if (child.material) {
-                        if (child.material.emissiveMap) {
-                            // Toned down logo glow for visibility
-                            child.material.emissiveIntensity = 0.2 + pulse * 0.4;
-                        } else if (child.material.emissive) {
-                            // Keep LED edges bright
-                            child.material.emissiveIntensity = 5.0 + Math.sin(elapsed * 10.0) * 2.0;
-                        }
-                    }
-                });
+                crest.children.forEach(c => { if (c.material && c.material.emissiveIntensity !== undefined) c.material.emissiveIntensity = c.material.emissiveMap ? 0.2 + pulse * 0.4 : 5.0; });
             }
-
-            // 3. Bash Code Tornado Animation
-            if (particles && particles.children) {
-                particles.children.forEach((p, i) => {
-                    const data = p.userData;
-                    data.angle += data.speed;
-
-                    // Tornado swirl logic
-                    p.position.x = Math.cos(data.angle) * data.radius;
-                    p.position.z = Math.sin(data.angle) * data.radius;
-                    p.position.y += Math.sin(elapsed + i) * 0.02; // Float up/down
-
-                    // Look at center
-                    p.rotation.y = -data.angle + Math.PI / 2;
-
-                    // Occasional high-speed vertical dash
-                    if (Math.random() > 0.99) {
-                        p.position.y += (Math.random() - 0.5) * 2;
-                    }
-                });
-            }
-
-            // 4. Background Server Rack Pulse
-            scene.traverse(node => {
-                if (node.userData && node.userData.pulseOffset !== undefined) {
-                    const p = 0.05 + Math.sin(elapsed * 2.0 + node.userData.pulseOffset) * 0.05;
-                    node.material.opacity = p;
-                }
-            });
-
+            if (particles) particles.children.forEach(p => { p.userData.angle += p.userData.speed; p.position.x = Math.cos(p.userData.angle) * p.userData.radius; p.position.z = Math.sin(p.userData.angle) * p.userData.radius; p.rotation.y = -p.userData.angle + Math.PI / 2; });
             controls.update();
             composer.render();
         }
 
         init();
+        animate();
     </script>
 </body>
 
