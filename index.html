@@ -2465,7 +2465,7 @@
                 { name: 'MAXEL RUBERT', role: '[EX LO]', imgSrc: 'https://i.postimg.cc/rFbjygYt/1723720496043.jpg', color: '#ffd700' },
                 { name: 'GEO NITHIN', role: '[CB]', imgSrc: 'https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png', color: '#00a2ff' },
                 { name: 'MICHAEL NITHISH', role: '[IT ORGANISER]', imgSrc: 'https://i.postimg.cc/N0FrCzmf/IMG-6671.jpg', color: '#ffaa00' },
-                { name: 'AADHITYA MAHESH', role: '[CB]', imgSrc: 'https://i.postimg.cc/R0wzmMcp/IMG-6567.avif', color: '#ff0088' },
+                { name: 'AADHITYA MAHESH', role: '[CB]', imgSrc: 'https://i.postimg.cc/R0wzmMcp/IMG-6567.jpg', color: '#ff0088' },
                 { name: 'HARSHINI', role: '[EX CB]', imgSrc: 'https://i.postimg.cc/2SMzmcg8/IMG-6660.jpg', color: '#00ff88' },
                 { name: 'ANCY', role: '[BASHER]', imgSrc: 'https://i.postimg.cc/0y26rBtd/IMG-6666.jpg', color: '#ff6b6b' },
                 { name: 'SOWMIYA', role: '[BASHER]', imgSrc: 'https://i.postimg.cc/MZ7X5SNb/IMG-6662.jpg', color: '#9b59b6' },
@@ -2480,7 +2480,6 @@
             let imagesLoaded = 0;
             bashers.forEach(b => {
                 b.img = new Image();
-                b.img.crossOrigin = 'anonymous';
                 b.img.onload = () => imagesLoaded++;
                 b.img.onerror = () => imagesLoaded++;
                 if (b.imgSrc) {
