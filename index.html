@@ -1446,7 +1446,7 @@
                 </div>
 
                 <div class="journey-links" style="margin-top: 15px;">
-                    <button class="next-btn cinematic-btn" onclick="goToCICD()" style="margin-top: 0;">Initialize Pipeline // NEXT</button>
+                    <button class="next-btn cinematic-btn" onclick="goToExperience()" style="margin-top: 0;">Experience Log // NEXT</button>
                     <!-- <a href="mailto:vigneshvelappan73051@gmail.com" class="btn-link" style="font-size: 10px; padding: 5px 15px; margin-top: 5px;">vigneshvelappan73051@gmail.com</a> -->
                 </div>
             </div>
@@ -1475,113 +1475,6 @@
                         <b>STAGE 5</b><span>CI/CD Flow</span>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CI/CD PIPELINE SCREEN -->
-    <div id="cicd-pipeline-screen">
-        <div class="cicd-header">// CI/CD PIPELINE // AUTOMATED DEPLOYMENT</div>
-        <div class="cicd-subheader">DEVOPS COMMAND CENTER &gt;&gt; PIPELINE ACTIVE</div>
-
-        <div class="pipeline-wrapper">
-            <!-- Horizontal Stage Row -->
-            <div class="pipeline-phases">
-
-                <!-- Stage 1: Source -->
-                <div class="pipeline-stage" id="ps-1">
-                    <div class="stage-box">
-                        <div class="stage-icon" style="color:#9664ff;">⬡</div>
-                        <div class="stage-label">STAGE 01</div>
-                        <div class="stage-title">Source</div>
-                        <div class="stage-desc">git push<br>origin main</div>
-                        <div class="stage-status status-done">✔ COMMITTED</div>
-                    </div>
-                </div>
-
-                <div class="pipeline-connector"><div class="connector-line"></div></div>
-
-                <!-- Stage 2: Build -->
-                <div class="pipeline-stage" id="ps-2">
-                    <div class="stage-box">
-                        <div class="stage-icon" style="color:#00a2ff;">⬡</div>
-                        <div class="stage-label">STAGE 02</div>
-                        <div class="stage-title">Build</div>
-                        <div class="stage-desc">Jenkins<br>docker build</div>
-                        <div class="stage-status status-done">✔ PASSED</div>
-                    </div>
-                </div>
-
-                <div class="pipeline-connector"><div class="connector-line"></div></div>
-
-                <!-- Stage 3: Test -->
-                <div class="pipeline-stage" id="ps-3">
-                    <div class="stage-box">
-                        <div class="stage-icon" style="color:#ffaa00;">⬡</div>
-                        <div class="stage-label">STAGE 03</div>
-                        <div class="stage-title">Test</div>
-                        <div class="stage-desc">Unit &amp; Scan<br>SonarQube</div>
-                        <div class="stage-status status-active">▶ RUNNING</div>
-                    </div>
-                </div>
-
-                <div class="pipeline-connector"><div class="connector-line"></div></div>
-
-                <!-- Stage 4: Deploy -->
-                <div class="pipeline-stage" id="ps-4">
-                    <div class="stage-box">
-                        <div class="stage-icon" style="color:#00ff88;">⬡</div>
-                        <div class="stage-label">STAGE 04</div>
-                        <div class="stage-title">Deploy</div>
-                        <div class="stage-desc">Docker Push<br>to Registry</div>
-                        <div class="stage-status status-queue">◷ QUEUED</div>
-                    </div>
-                </div>
-
-                <div class="pipeline-connector"><div class="connector-line"></div></div>
-
-                <!-- Stage 5: Monitor -->
-                <div class="pipeline-stage" id="ps-5">
-                    <div class="stage-box">
-                        <div class="stage-icon" style="color:#ff0088;">⬡</div>
-                        <div class="stage-label">STAGE 05</div>
-                        <div class="stage-title">Monitor</div>
-                        <div class="stage-desc">Grafana<br>Live Metrics</div>
-                        <div class="stage-status status-queue">◷ PENDING</div>
-                    </div>
-                </div>
-
-            </div><!-- /pipeline-phases -->
-
-            <!-- Roadmap End Panel -->
-            <div class="pipeline-roadmap" id="ps-roadmap" style="opacity:0;transition:opacity 0.8s ease;">
-                <div class="roadmap-label">PIPELINE ROADMAP // HOW TO START &rarr; CONTINUE &rarr; END</div>
-                <div style="display:flex; flex-direction:column; gap:8px;">
-                    <div class="roadmap-row">
-                        <div class="roadmap-dot dot-done"></div>
-                        <div class="roadmap-row-text"><b>START:</b> Developer pushes code &rarr; GitHub webhook fires &rarr; Jenkins picks up job</div>
-                    </div>
-                    <div class="roadmap-row">
-                        <div class="roadmap-dot dot-done"></div>
-                        <div class="roadmap-row-text"><b>BUILD:</b> Jenkins pulls repo &rarr; Docker image is compiled &rarr; Artifacts stored</div>
-                    </div>
-                    <div class="roadmap-row">
-                        <div class="roadmap-dot dot-current"></div>
-                        <div class="roadmap-row-text"><b>TEST &amp; SCAN:</b> Unit tests run &rarr; SonarQube static analysis &rarr; Quality gate checked</div>
-                    </div>
-                    <div class="roadmap-row">
-                        <div class="roadmap-dot dot-future"></div>
-                        <div class="roadmap-row-text dim"><b>DEPLOY:</b> Image pushed to registry &rarr; Server pulls &rarr; Nginx reverse proxy live</div>
-                    </div>
-                    <div class="roadmap-row">
-                        <div class="roadmap-dot dot-future"></div>
-                        <div class="roadmap-row-text dim"><b>END / MONITOR:</b> Grafana dashboards &rarr; Health checks &rarr; Feedback loop to Stage 01</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cicd-footer-btns">
-                <button class="next-btn cinematic-btn" onclick="goToExperienceFromCICD()" style="margin-top:0;">Experience Log // NEXT</button>
             </div>
         </div>
     </div>
