@@ -1593,57 +1593,182 @@
     </div>
 
     <div id="experience-screen"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
-        <div class="profile-card" style="max-width: 800px; padding: 40px 60px; text-align: left;">
-            <div class="noise-overlay"></div>
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #050d1a 0%, #000 100%); display: none; justify-content: center; align-items: flex-start; z-index: 100; opacity: 0; transition: opacity 1.5s ease; overflow-y: auto; padding: 30px 20px;">
+
+        <div style="width: 100%; max-width: 1100px; display: flex; flex-direction: column; gap: 0;">
+
+            <!-- Header -->
             <div class="profile-header cinematic-header" id="experience-header"
                 data-text="Experience Log // The Journey"
-                style="font-size: 16px; margin-bottom: 25px; text-align: center;">Experience Log // The Journey</div>
+                style="font-size: 15px; margin-bottom: 30px; text-align: center; flex-shrink: 0;">
+                Experience Log // The Journey
+            </div>
 
-            <div class="journey-bio cinematic-log"
-                style="font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.85); font-family: 'Inter', sans-serif;">
-                "Hi I am Vignesh from computer science and engineering department first year .Forty-five days ago, I
-                stepped into the unknown as a complete rookie... but today, I stand rebuilt by the discipline and
-                brotherhood of the Bashers.<br><br>
+            <!-- Split layout -->
+            <div style="display: flex; flex-direction: row; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
 
-                My journey was set in motion by <b
-                    style="color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.4);">Maxwell Rubert</b>, who first
-                spoke the name of this tribe into my life and gave me a map to my own potential. Upon arriving at
-                Belmonts, the very first person I met was <b
-                    style="color: #00ff88; text-shadow: 0 0 10px rgba(0,255,136,0.4);">Harshini</b>, whose presence
-                immediately set the standard for the dedication I would soon adopt as my own.<br><br>
+                <!-- LEFT: Personal Journey Story -->
+                <div style="flex: 1; min-width: 280px; background: rgba(0,0,0,0.35); border: 1px solid rgba(0,162,255,0.15); border-radius: 14px; padding: 28px 26px; position: relative; overflow: hidden;">
+                    <div class="noise-overlay"></div>
+                    <div style="color: #00a2ff; font-family: monospace; font-size: 10px; letter-spacing: 3px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid rgba(0,162,255,0.2); padding-bottom: 8px;">
+                        OPERATIVE LOG // PERSONAL JOURNEY
+                    </div>
+                    <div style="font-size: 13px; line-height: 1.85; color: rgba(255,255,255,0.82); font-family: 'Inter', sans-serif;">
+                        "Hi, I am Vignesh from the Computer Science &amp; Engineering department, first year. Forty-five days ago,
+                        I stepped into the unknown as a complete rookie... but today, I stand rebuilt by the discipline and brotherhood of the Bashers.<br><br>
 
-                As I began carving out my path in the DevOps domain, <b
-                    style="color: #9b59b6; text-shadow: 0 0 10px rgba(155,89,182,0.4);">Sowmiya Sister</b> became a
-                vital guide, sharing her expertise in our shared field and helping me navigate the complexities of the
-                tech world. Alongside her, <b style="color: #ffaa00; text-shadow: 0 0 10px rgba(255,170,0,0.4);">Michael
-                    Nithish Bro</b> poured his energy into my growth, helping me more and more until my rookie doubts
-                were replaced by professional confidence.<br><br>
+                        My journey was set in motion by <b style="color: #ffd700;">Maxwell Rubert</b>, who first spoke the name of this tribe into my life.
+                        Upon arriving at Belmonts, the very first person I met was <b style="color: #00ff88;">Harshini</b>, whose presence immediately set the standard for the dedication I would soon adopt.<br><br>
 
-                This trek has been about finding a true family in <b
-                    style="color: #00a2ff; text-shadow: 0 0 10px rgba(0,162,255,0.4);">Geo Nithin Bro</b> and <b
-                    style="color: #ff0088; text-shadow: 0 0 10px rgba(255,0,136,0.4);">Aditya Mahesh sister</b>. They
-                are not just my seniors; they are my brother and sister who have guided me with unbreakable strength and
-                grace.<br><br>
+                        As I carved out my path in DevOps, <b style="color: #9b59b6;">Sowmiya Sister</b> became a vital guide, and alongside her,
+                        <b style="color: #ffaa00;">Michael Nithish Bro</b> poured energy into my growth until rookie doubts became professional confidence.<br><br>
 
-                <div
-                    style="border-left: 3px solid #00a2ff; padding-left: 15px; margin-top: 25px; font-style: italic; color: #fff; font-size: 15px; font-weight: 500;">
-                    I am no longer the person who started in mid-January. I have been dismantled and reconstructed by
-                    the wisdom of my mentors. To my brothers and sisters who saw the warrior in a rookie: thank you for
-                    pushing me toward the summit. My journey has only just begun... and I am ready to conquer everything
-                    that lies ahead. so next we move to about belmont bashers"
+                        This trek has been about finding family in <b style="color: #00a2ff;">Geo Nithin Bro</b> and <b style="color: #ff0088;">Aditya Mahesh Sister</b> — my brother and sister who guided me with unbreakable strength and grace.
+                    </div>
+                    <div style="border-left: 3px solid #00a2ff; padding-left: 14px; margin-top: 22px; font-style: italic; color: rgba(255,255,255,0.9); font-size: 13px; line-height: 1.7;">
+                        I am no longer who I was in mid-January. I have been rebuilt by the wisdom of my mentors.
+                        My journey has only just begun — and I am ready to conquer everything ahead."
+                    </div>
+
+                    <!-- Voice button -->
+                    <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="next-btn cinematic-btn" onclick="window.replayStory()"
+                            style="margin-top: 0; border-color: #ffd700; color: #ffd700; font-size: 11px; padding: 8px 18px;">
+                            ▶ Play Story Voice
+                        </button>
+                        <button class="next-btn cinematic-btn" onclick="stopExperienceVoice()"
+                            style="margin-top: 0; border-color: #ff4444; color: #ff4444; font-size: 11px; padding: 8px 18px;">
+                            ■ Stop Voice
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RIGHT: CI/CD Project Showcase -->
+                <div style="flex: 1.3; min-width: 290px; display: flex; flex-direction: column; gap: 16px;">
+
+                    <!-- Project Title Card -->
+                    <div style="background: rgba(0,162,255,0.06); border: 1px solid rgba(0,162,255,0.3); border-radius: 14px; padding: 22px 24px; position: relative; overflow: hidden;">
+                        <div class="noise-overlay"></div>
+                        <div style="color: #00a2ff; font-family: monospace; font-size: 10px; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px;">
+                            PROJECT LOG // FEATURED DEPLOYMENT
+                        </div>
+                        <div style="font-size: 16px; font-weight: 700; color: #fff; font-family: 'Inter', sans-serif; line-height: 1.4; margin-bottom: 6px; text-shadow: 0 0 20px rgba(0,162,255,0.4);">
+                            Automated Web App Deployment
+                        </div>
+                        <div style="font-size: 11px; color: #00ff88; font-family: monospace; letter-spacing: 2px; margin-bottom: 14px;">
+                            CI/CD PIPELINE // DEVOPS PROJECT
+                        </div>
+                        <div style="font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.78); font-family: 'Inter', sans-serif;">
+                            Designed and implemented a fully automated Continuous Integration and Continuous Deployment pipeline
+                            for a web application. The pipeline automates code integration, testing, containerization, and
+                            deployment — eliminating manual processes and enabling faster, more reliable releases.
+                        </div>
+                        <!-- Voice button for project -->
+                        <button class="next-btn cinematic-btn" onclick="playProjectVoice()"
+                            style="margin-top: 16px; border-color: #00ff88; color: #00ff88; font-size: 11px; padding: 8px 18px;">
+                            ▶ Play Project Voice
+                        </button>
+                    </div>
+
+                    <!-- Tools Grid -->
+                    <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(0,255,136,0.15); border-radius: 12px; padding: 18px 20px;">
+                        <div style="color: #00ff88; font-family: monospace; font-size: 10px; letter-spacing: 3px; margin-bottom: 12px;">
+                            TECH STACK // TOOLS USED
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span style="background: rgba(255,80,0,0.12); color: #ff6030; border: 1px solid rgba(255,80,0,0.3); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: monospace;">Git &amp; GitHub</span>
+                            <span style="background: rgba(0,162,255,0.1); color: #00a2ff; border: 1px solid rgba(0,162,255,0.3); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: monospace;">Jenkins</span>
+                            <span style="background: rgba(0,180,255,0.1); color: #0db7ed; border: 1px solid rgba(0,180,255,0.3); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: monospace;">Docker</span>
+                            <span style="background: rgba(150,100,255,0.1); color: #9664ff; border: 1px solid rgba(150,100,255,0.3); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: monospace;">Linux/Bash</span>
+                            <span style="background: rgba(0,255,136,0.08); color: #00ff88; border: 1px solid rgba(0,255,136,0.3); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: monospace;">Nginx</span>
+                            <span style="background: rgba(255,204,0,0.1); color: #ffcc00; border: 1px solid rgba(255,204,0,0.3); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: monospace;">SonarQube</span>
+                            <span style="background: rgba(255,100,0,0.1); color: #ff8c00; border: 1px solid rgba(255,100,0,0.3); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: monospace;">Grafana</span>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Phase Progress Bars -->
+                    <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,170,0,0.15); border-radius: 12px; padding: 18px 20px;">
+                        <div style="color: #ffaa00; font-family: monospace; font-size: 10px; letter-spacing: 3px; margin-bottom: 14px;">
+                            PIPELINE PHASES // COMPLETION STATUS
+                        </div>
+                        <!-- Phase bars -->
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 10px; font-family: monospace; margin-bottom: 4px;">
+                                    <span style="color: #9664ff;">01 · SOURCE CONTROL</span>
+                                    <span style="color: #00ff88;">100%</span>
+                                </div>
+                                <div style="height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;">
+                                    <div style="height: 100%; width: 100%; background: linear-gradient(90deg, #9664ff, #00a2ff); border-radius: 2px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 10px; font-family: monospace; margin-bottom: 4px;">
+                                    <span style="color: #00a2ff;">02 · BUILD &amp; COMPILE</span>
+                                    <span style="color: #00ff88;">100%</span>
+                                </div>
+                                <div style="height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;">
+                                    <div style="height: 100%; width: 100%; background: linear-gradient(90deg, #00a2ff, #00ff88); border-radius: 2px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 10px; font-family: monospace; margin-bottom: 4px;">
+                                    <span style="color: #ffaa00;">03 · TEST &amp; SCAN</span>
+                                    <span style="color: #ffaa00;">72%</span>
+                                </div>
+                                <div style="height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden;">
+                                    <div style="height: 100%; width: 72%; background: linear-gradient(90deg, #ffaa00, #ffd700); border-radius: 2px; animation: pulseBar 1.5s ease infinite;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 10px; font-family: monospace; margin-bottom: 4px;">
+                                    <span style="color: rgba(255,255,255,0.35);">04 · DEPLOY TO PROD</span>
+                                    <span style="color: rgba(255,255,255,0.35);">QUEUED</span>
+                                </div>
+                                <div style="height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px;"></div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; font-size: 10px; font-family: monospace; margin-bottom: 4px;">
+                                    <span style="color: rgba(255,255,255,0.35);">05 · MONITOR &amp; ALERT</span>
+                                    <span style="color: rgba(255,255,255,0.35);">PENDING</span>
+                                </div>
+                                <div style="height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Learnings -->
+                    <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(150,100,255,0.2); border-radius: 12px; padding: 18px 20px;">
+                        <div style="color: #9664ff; font-family: monospace; font-size: 10px; letter-spacing: 3px; margin-bottom: 12px;">
+                            KEY LEARNINGS // OPERATIVE GAINED
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 7px; font-size: 12px; color: rgba(255,255,255,0.78); font-family: 'Inter', sans-serif; line-height: 1.5;">
+                            <div>✦ Configured Jenkins pipelines with automated webhook triggers from GitHub</div>
+                            <div>✦ Built and pushed Docker images to a container registry via scripted pipeline</div>
+                            <div>✦ Integrated SonarQube for static code analysis and quality gate enforcement</div>
+                            <div>✦ Deployed Dockerized app behind an Nginx reverse proxy on a Linux server</div>
+                            <div>✦ Monitored live application metrics using Grafana dashboards</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div
-                style="text-align: center; margin-top: 35px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                <button class="next-btn cinematic-btn" onclick="window.replayStory()"
-                    style="margin-top: 0; border-color: #ffd700; color: #ffd700;">▶ Play Story Voice</button>
-                <button class="next-btn cinematic-btn" onclick="goToBashersIntro()" style="margin-top: 0;">Meet The
-                    Bashers // NEXT</button>
+            <!-- Footer Buttons -->
+            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; padding-bottom: 20px;">
+                <button class="next-btn cinematic-btn" onclick="goToBashersIntro()" style="margin-top: 0;">
+                    Meet The Bashers // NEXT
+                </button>
             </div>
         </div>
     </div>
+
+    <style>
+        @keyframes pulseBar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
 
     <!-- BASHERS INTRO ANIMATION SCREEN -->
     <div id="bashers-intro-screen"
@@ -3183,6 +3308,57 @@
             setTimeout(function() {
                 if (roadmap) roadmap.style.opacity = '1';
             }, stages.length * 300 + 700);
+        }
+
+        // ========== Voice Functions for Experience Screen ==========
+        var _expSynth = window.speechSynthesis;
+
+        window.stopExperienceVoice = function() {
+            if (_expSynth) _expSynth.cancel();
+        };
+
+        window.playProjectVoice = function() {
+            if (!_expSynth) return;
+            _expSynth.cancel();
+            var text = "Project: Automated Web App Deployment using a CI/CD Pipeline. " +
+                "I designed and implemented a fully automated Continuous Integration and Continuous Deployment pipeline " +
+                "for a web application. " +
+                "Starting with Stage One: when I push code to GitHub, a webhook automatically triggers Jenkins. " +
+                "Stage Two: Jenkins pulls the repository and builds a Docker image through a scripted pipeline. " +
+                "Stage Three: SonarQube performs static code analysis n quality gate checks to ensure code quality. " +
+                "Stage Four: the Docker image is pushed to a container registry and deployed on a Linux server behind an Nginx reverse proxy. " +
+                "Stage Five: Grafana dashboards monitor live application metrics, closing the feedback loop back to Stage One. " +
+                "Key tools used: Git, GitHub, Jenkins, Docker, Linux, Nginx, SonarQube, and Grafana. " +
+                "This project taught me end-to-end DevOps practices and gave me hands-on experience with automation, containerization, and monitoring.";
+            var utt = new SpeechSynthesisUtterance(text);
+            utt.rate = 0.92;
+            utt.pitch = 1.0;
+            utt.volume = 1.0;
+            _expSynth.speak(utt);
+        };
+
+        // Override replayStory if not yet defined to use Web Speech API
+        if (!window.replayStory) {
+            window.replayStory = function() {
+                if (!_expSynth) return;
+                _expSynth.cancel();
+                var text = "Hi, I am Vignesh from the Computer Science and Engineering department, first year. " +
+                    "Forty-five days ago, I stepped into the unknown as a complete rookie. " +
+                    "But today, I stand rebuilt by the discipline and brotherhood of the Bashers. " +
+                    "My journey was set in motion by Maxwell Rubert, who first spoke the name of this tribe into my life. " +
+                    "Upon arriving at Belmonts, the very first person I met was Harshini. " +
+                    "As I carved out my path in DevOps, Sowmiya Sister became a vital guide, " +
+                    "and alongside her, Michael Nithish Bro poured energy into my growth. " +
+                    "This trek has been about finding family in Geo Nithin Bro and Aditya Mahesh Sister. " +
+                    "I am no longer who I was in mid-January. " +
+                    "I have been rebuilt by the wisdom of my mentors. " +
+                    "My journey has only just begun. And I am ready to conquer everything ahead.";
+                var utt = new SpeechSynthesisUtterance(text);
+                utt.rate = 0.9;
+                utt.pitch = 1.05;
+                utt.volume = 1.0;
+                _expSynth.speak(utt);
+            };
         }
     </script>
 </body>
