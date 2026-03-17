@@ -1362,23 +1362,15 @@
                     CLAN COMMANDER DATA LOG:</div>
                 <div id="clan-narrative-box"
                     style="font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.9); font-family: 'Inter', sans-serif; height: 350px; overflow-y: auto; padding-right: 15px; text-align: justify;">
-                    Geo Nithin stands as the cornerstone of the Belmonts clan, bringing unparalleled technical depth and
-                    leadership. As a key CB within our alliance, he has dedicated himself to the pursuit of open-source
-                    excellence and architectural perfection. Every line of logic he oversees is treated with the
-                    precision of a master craftsman. He is not merely a senior member but a vital pillar of support for
-                    every rookie who enters our arena. His ability to handle deep-logic challenges makes him an
-                    indispensable asset during high-stakes missions. Whether it is a midnight debugging session or a
-                    complex system migration, his presence ensures mission success. He maintains an unbreakable
-                    connection with the clan's core values, fostering an environment of transparent communication. Geo
-                    Nithin's expertise in computer science engineering manifests in every project we initiate. He
-                    effectively bridges the gap between abstract concepts and functional, scalable infrastructure. His
-                    commitment to the brotherhood of Bashers is evident in the countless hours he spends mentoring
-                    others. He handles every technical hurdle with a calm, analytical mindset that inspires confidence
-                    in his teammates. Through his leadership, the Belmonts have reached new summits of technological
-                    achievement. We recognize him as a guardian of our digital fortress and a visionary for our future
-                    expansions. His journey is a testament to the strength found in discipline, wisdom, and unyielding
-                    clan loyalty. This log serves as a record of his permanent and honored status within the Belmonts
-                    leadership hierarchy.
+                Geo Nithin bro from the Belmonts clan combines deep technical mastery with strong leadership, standing as a key CB who drives open-source 
+                excellence and upholds the highest standards of architecture. 
+                He treats every line of logic with the precision of a master craftsman, proving himself to 
+                be more than just a senior member—he is a dependable pillar who guides and supports every newcomer.
+                His ability to solve complex,high-stakes challenges makes him indispensable to the clan, and whether it’s late-night debugging or large-scale system migrations, 
+                his presence guarantees success. Deeply connected to the clan’s core values, he fosters transparency and unity while bridging the gap between abstract theory and 
+                scalable, real-world systems. Through mentorship and calm, analytical problem-solving, he inspires confidence and growth across the team.
+                 Geo Nithin ultimately stands as a guardian, visionary, and enduring symbol of strength, loyalty, and excellence within the Belmonts.
+
                 </div>
                 <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: flex-end;">
                     <button class="next-btn cinematic-btn" onclick="window.replayClanSpeech()"
@@ -1393,52 +1385,59 @@
 
     <div id="aditya-profile-screen"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
-        <div class="profile-card">
+        <div class="profile-card split-layout" style="max-width: 950px; display: flex; flex-direction: row; gap: 40px; padding: 40px; align-items: stretch;">
             <div class="noise-overlay"></div>
-            <div class="profile-header cinematic-header" id="aditya-header" data-text="Belmonts CB // Squad Command">
-                Belmonts CB // Squad Command</div>
-            <div style="position: relative; display: flex; justify-content: center; align-items: center;">
-                <div class="hologram-rings">
-                    <div class="hologram-ring"></div>
-                    <div class="hologram-ring"></div>
-                    <div class="hologram-ring"></div>
+            
+            <!-- Left Side: Identity -->
+            <div class="profile-left"
+                style="flex: 1; border-right: 1px solid rgba(255, 0, 136, 0.2); padding-right: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="profile-header cinematic-header" id="aditya-header" data-text="Belmonts CB // Squad Command"
+                    style="width: 100%; text-align: center;">
+                    Belmonts CB // Squad Command</div>
+                <div style="position: relative; display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                    <div class="hologram-rings">
+                        <div class="hologram-ring"></div>
+                        <div class="hologram-ring" style="border-color: rgba(255, 0, 136, 0.3);"></div>
+                        <div class="hologram-ring" style="border-color: rgba(255, 170, 0, 0.3);"></div>
+                    </div>
+                    <img src="https://i.postimg.cc/8P6S95Hz/aditya-mahesh.jpg" class="profile-img cinematic-img" alt="Aditya Mahesh" style="border-color: #ff0088; box-shadow: 0 0 20px rgba(255, 0, 136, 0.5);">
                 </div>
-                <div class="cinematic-img"
-                    style="font-size: 80px; margin-bottom: 20px; position: relative; z-index: 2;">👩‍💻</div>
-            </div>
-            <div class="journey-bio cinematic-bio">
-                <b class="glitch-chrome" id="aditya-name" data-text="ADITYA MAHESH">ADITYA MAHESH</b><br>
-                <span style="font-size: 14px; opacity: 0.8;">CB OF BELMONTS</span>
+                <div class="journey-bio cinematic-bio" style="text-align: center; margin-top: 20px;">
+                    <b class="glitch-chrome" id="aditya-name" data-text="ADITYA MAHESH" style="color: #ff0088; text-shadow: 0 0 10px rgba(255, 0, 136, 0.5);">ADITYA MAHESH</b><br>
+                    <span style="font-size: 14px; opacity: 0.8;">CB OF BELMONTS</span>
+                </div>
+                <div class="cinematic-badges"
+                    style="display: flex; gap: 10px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 11px; flex-wrap: wrap;">
+                    <div
+                        style="border: 1px solid rgba(255, 0, 136, 0.3); padding: 4px 8px; border-radius: 4px; color: #ff0088;">
+                        RANK: HARDWORKER</div>
+                    <div
+                        style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 4px 8px; border-radius: 4px; color: #00a2ff;">
+                        ROLE: GAME DEVELOPER</div>
+                </div>
+                <div class="cinematic-status"
+                    style="font-family: monospace; font-size: 11px; color: #ff0088; letter-spacing: 2px;">STATUS: ACTIVE
+                    // SQUAD LEADER</div>
             </div>
 
-            <div class="cinematic-badges"
-                style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
+            <!-- Right Side: The Data Log -->
+            <div class="profile-right"
+                style="flex: 1.5; padding-left: 10px; display: flex; flex-direction: column; justify-content: center;">
                 <div
-                    style="border: 1px solid rgba(255, 0, 136, 0.3); padding: 5px 10px; border-radius: 4px; color: #ff0088;">
-                    RANK: HARDWORKER</div>
-                <div
-                    style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
-                    DEV: GAME DEVELOPER</div>
-            </div>
-
-            <div class="journey-info cinematic-log"
-                style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #ff0088;">
-                <div
-                    style="color: #ff0088; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
-                    COMMANDER LOG:</div>
-                <div style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.9);">
-                    • Hardworker of the Belmonts clan.<br>
-                    • Expert at clarifying complex technical doubts.<br>
-                    • Personal motivator and core sister-pillar.
+                    style="color: #ff0088; margin-bottom: 15px; font-weight: bold; letter-spacing: 2px; font-size: 14px; border-bottom: 1px solid #ff0088; padding-bottom: 5px; font-family: monospace;">
+                    SQUAD COMMANDER DATA LOG:</div>
+                <div id="aditya-narrative-box"
+                    style="font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.9); font-family: 'Inter', sans-serif; height: 350px; overflow-y: auto; padding-right: 15px; text-align: justify;">
+                    Aditya Mahesh stands as a cornerstone of the Belmonts clan, serving as a dedicated CB and an expert Game Developer. Known for her immense hard work and unwavering commitment, she is the primary point of contact for clarifying complex technical doubts within our arena. Every challenge she encounters is met with the precision and expertise of a master developer. Beyond her technical brilliance, she serves as a vital motivational force, inspiring every member to push beyond their limits. She is cherished as a core sister-pillar within the clan, providing guidance, strength, and grace to all Bashers. Her ability to handle high-stakes situations makes her an indispensable asset to our command center. Whether it is a deep-logic hurdle or a strategic mission, her presence ensures clarity and success. She fosters an environment of discipline and mutual support, embodying the true spirit of the Belmonts. Her journey is a testament to the power of dedication and technical excellence in the gaming domain. We recognize her as a guardian of our digital fortress and a visionary leader for our future squads. This log serves as a permanent record of her honored status and leadership within the Belmonts hierarchy. She remains not just a commander, but a sister to us all, guiding the clan with unbreakable loyalty.
+                </div>
+                <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: flex-end;">
+                    <button class="next-btn cinematic-btn" onclick="window.replayAdityaSpeech()"
+                        style="margin-top: 0; border-color: #ff0088; color: #ff0088; font-size: 12px;">▶ Play
+                        Log</button>
+                    <button class="next-btn cinematic-btn" onclick="goToSando()"
+                        style="margin-top: 0; font-size: 12px;">Event Command // NEXT</button>
                 </div>
             </div>
-
-            <div class="cinematic-status"
-                style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ff0088; letter-spacing: 2px;">
-                STATUS: ACTIVE // SQUAD LEADER
-            </div>
-            <button class="next-btn cinematic-btn" onclick="goToSando()" style="margin-top: 20px;">Event Command //
-                NEXT</button>
         </div>
     </div>
 
@@ -2465,6 +2464,22 @@
                     adityaProfile.style.opacity = '1';
                     scrambleText(document.getElementById('aditya-header'), "Belmonts CB // Squad Command");
                     scrambleText(document.getElementById('aditya-name'), "ADITYA MAHESH");
+
+                    // --- Aditya Voice Engine ---
+                    const adityaBio = "Aditya Mahesh stands as a cornerstone of the Belmonts clan, serving as a dedicated CB and an expert Game Developer. Known for her immense hard work and unwavering commitment, she is the primary point of contact for clarifying complex technical doubts within our arena. Every challenge she encounters is met with the precision and expertise of a master developer. Beyond her technical brilliance, she serves as a vital motivational force, inspiring every member to push beyond their limits. She is cherished as a core sister-pillar within the clan, providing guidance, strength, and grace to all Bashers. Her ability to handle high-stakes situations makes her an indispensable asset to our command center. Whether it is a deep-logic hurdle or a strategic mission, her presence ensures clarity and success. She fosters an environment of discipline and mutual support, embodying the true spirit of the Belmonts. Her journey is a testament to the power of dedication and technical excellence in the gaming domain. We recognize her as a guardian of our digital fortress and a visionary leader for our future squads. This log serves as a permanent record of her honored status and leadership within the Belmonts hierarchy. She remains not just a commander, but a sister to us all, guiding the clan with unbreakable loyalty.";
+
+                    function playAdityaSpeech() {
+                        window.speechSynthesis.cancel();
+                        const utterance = new SpeechSynthesisUtterance(adityaBio);
+                        utterance.rate = 0.95; // Slightly faster but still deliberate
+                        utterance.pitch = 1.1; // Slightly higher pitch for female voice
+                        const voices = window.speechSynthesis.getVoices();
+                        utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Female')) ||
+                            voices.find(v => v.name.includes('Google UK English Female')) || voices[0];
+                        window.speechSynthesis.speak(utterance);
+                    }
+                    window.replayAdityaSpeech = playAdityaSpeech;
+                    playAdityaSpeech();
                 }, 50);
             }, 1000);
         };
