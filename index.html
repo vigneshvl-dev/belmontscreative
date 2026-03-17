@@ -1552,9 +1552,10 @@
                             CI/CD PIPELINE // DEVOPS PROJECT
                         </div>
                         <div style="font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.78); font-family: 'Inter', sans-serif;">
-                            Designed and implemented a fully automated Continuous Integration and Continuous Deployment pipeline
-                            for a web application. The pipeline automates code integration, testing, containerization, and
-                            deployment — eliminating manual processes and enabling faster, more reliable releases.
+                            This CI/CD pipeline project was a massive learning curve for me. Starting with HTML and CSS, I 
+                            progressed through Linux, AWS, Docker, and Kubernetes before tackling this automated deployment flow. 
+                            Figuring out how to connect GitHub hooks to Jenkins and push Docker images to registries gave me 
+                            firsthand experience of how real-world DevOps teams eliminate manual work and accelerate release cycles.
                         </div>
                         <!-- Voice button for project -->
                         <button class="next-btn cinematic-btn" onclick="playProjectVoice()"
@@ -3214,15 +3215,12 @@
             if (!_expSynth) return;
             _expSynth.cancel();
             var text = "Project: Automated Web App Deployment using a CI/CD Pipeline. " +
-                "I designed and implemented a fully automated Continuous Integration and Continuous Deployment pipeline " +
-                "for a web application. " +
-                "Starting with Stage One: when I push code to GitHub, a webhook automatically triggers Jenkins. " +
-                "Stage Two: Jenkins pulls the repository and builds a Docker image through a scripted pipeline. " +
-                "Stage Three: SonarQube performs static code analysis n quality gate checks to ensure code quality. " +
-                "Stage Four: the Docker image is pushed to a container registry and deployed on a Linux server behind an Nginx reverse proxy. " +
-                "Stage Five: Grafana dashboards monitor live application metrics, closing the feedback loop back to Stage One. " +
-                "Key tools used: Git, GitHub, Jenkins, Docker, Linux, Nginx, SonarQube, and Grafana. " +
-                "This project taught me end-to-end DevOps practices and gave me hands-on experience with automation, containerization, and monitoring.";
+                "This CI/CD pipeline project was a massive learning curve for me. " +
+                "Starting with HTML and CSS, I progressed through Linux, AWS, Docker, and Kubernetes " +
+                "before tackling this automated deployment flow. " +
+                "Figuring out how to connect GitHub hooks to Jenkins and push Docker images to registries " +
+                "gave me firsthand experience of how real-world DevOps teams eliminate manual work and accelerate release cycles. " +
+                "Key tools used include Git, GitHub, Jenkins, Docker, Linux, Nginx, SonarQube, and Grafana.";
             var utt = new SpeechSynthesisUtterance(text);
             utt.rate = 0.92;
             utt.pitch = 1.0;
