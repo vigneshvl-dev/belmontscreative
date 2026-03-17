@@ -524,6 +524,151 @@
         .cinematic-img {
             animation: cinematic-scale-up 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
             opacity: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Advanced Futuristic Effects */
+        .hologram-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hologram-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(0, 162, 255, 0.5);
+            border-radius: 50%;
+            animation: holo-pulse 4s ease-out infinite;
+            opacity: 0;
+        }
+
+        .hologram-ring:nth-child(2) {
+            animation-delay: 1s;
+            border-color: rgba(0, 255, 136, 0.3);
+        }
+
+        .hologram-ring:nth-child(3) {
+            animation-delay: 2s;
+            border-color: rgba(255, 0, 136, 0.3);
+        }
+
+        @keyframes holo-pulse {
+            0% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                width: 250px;
+                height: 250px;
+                opacity: 0;
+            }
+        }
+
+        .glitch-chrome {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-chrome::before,
+        .glitch-chrome::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch-chrome::before {
+            color: #ff0088;
+            z-index: -1;
+            animation: glitch-chrome-1 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        }
+
+        .glitch-chrome::after {
+            color: #00ff88;
+            z-index: -2;
+            animation: glitch-chrome-2 0.3s cubic-bezier(.25, .46, .45, .94) reverse both infinite;
+        }
+
+        @keyframes glitch-chrome-1 {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes glitch-chrome-2 {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(2px, -2px);
+            }
+
+            40% {
+                transform: translate(2px, 2px);
+            }
+
+            60% {
+                transform: translate(-2px, -2px);
+            }
+
+            80% {
+                transform: translate(-2px, 2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 5;
         }
 
         .cinematic-bio {
@@ -567,12 +712,428 @@
             pointer-events: none;
             animation: scanline 4s linear infinite;
         }
+
+        /* === CLAN LOGOS ANIMATION SCREEN === */
+        #clan-logos-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 180;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            overflow: hidden;
+        }
+
+        #clan-logos-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .clan-logos-title {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: monospace;
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: rgba(0, 162, 255, 0.6);
+            text-transform: uppercase;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        #clan-logos-flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+            transition: opacity 0.15s ease;
+        }
+
+        /* === CORE BASHERS ORBITAL SCREEN === */
+        #core-bashers-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 185;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            overflow: hidden;
+        }
+
+        #core-bashers-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .core-bashers-title {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: monospace;
+            font-size: 13px;
+            letter-spacing: 8px;
+            color: #00ff88;
+            text-transform: uppercase;
+            pointer-events: none;
+            z-index: 2;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .profile-card.split-layout {
+            max-width: 900px;
+            width: 95%;
+            display: flex;
+            flex-direction: row;
+            padding: 40px;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .profile-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid rgba(0, 162, 255, 0.3);
+            padding-right: 20px;
+        }
+
+        .profile-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .profile-card.split-layout {
+                flex-direction: column;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .profile-left {
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 162, 255, 0.3);
+                padding-right: 0;
+                padding-bottom: 20px;
+            }
+
+            .profile-right {
+                padding-left: 0;
+                padding-top: 20px;
+            }
+        }
+
+        .v-roadmap-container {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            min-height: 400px;
+            margin-top: 20px;
+        }
+
+        .v-roadmap-line-bg {
+            position: absolute;
+            left: 50%;
+            top: 5%;
+            bottom: 5%;
+            width: 4px;
+            background: rgba(0, 162, 255, 0.2);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .v-roadmap-line-active {
+            position: absolute;
+            left: 50%;
+            top: 5%;
+            width: 4px;
+            background: #00ff88;
+            box-shadow: 0 0 15px #00ff88;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            animation: growLine 6s linear infinite;
+        }
+
+        @keyframes growLine {
+            0% {
+                height: 0%;
+                opacity: 1;
+            }
+
+            70% {
+                height: 90%;
+                opacity: 1;
+            }
+
+            90% {
+                height: 90%;
+                opacity: 0;
+            }
+
+            100% {
+                height: 0%;
+                opacity: 0;
+            }
+        }
+
+        .roadmap-traveler {
+            position: absolute;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ffd700, 0 0 30px #ffd700;
+            transform: translateX(-50%);
+            animation: moveTraveler 6s linear infinite;
+            z-index: 5;
+        }
+
+        @keyframes moveTraveler {
+            0% {
+                top: 5%;
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            70% {
+                top: 95%;
+                opacity: 1;
+            }
+
+            80% {
+                top: 95%;
+                opacity: 0;
+            }
+
+            100% {
+                top: 5%;
+                opacity: 0;
+            }
+        }
+
+        .v-roadmap-node {
+            position: absolute;
+            background: rgba(5, 5, 10, 0.9);
+            border: 1px solid #00a2ff;
+            padding: 10px;
+            border-radius: 6px;
+            color: #fff;
+            font-family: monospace;
+            font-size: 10px;
+            width: 100px;
+            box-shadow: 0 0 10px rgba(0, 162, 255, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .v-roadmap-node.left-side {
+            right: calc(50% + 25px);
+            animation: slideInLeft 0.5s forwards;
+            text-align: right;
+        }
+
+        .v-roadmap-node.right-side {
+            left: calc(50% + 25px);
+            animation: slideInRight 0.5s forwards;
+            text-align: left;
+        }
+
+        .v-roadmap-node b {
+            display: block;
+            color: #00a2ff;
+            font-size: 12px;
+            margin-bottom: 3px;
+            letter-spacing: 1px;
+        }
+
+        .node-1 {
+            animation-delay: 1.0s;
+            top: 10%;
+        }
+
+        .node-2 {
+            animation-delay: 2.0s;
+            top: 30%;
+        }
+
+        .node-3 {
+            animation-delay: 3.0s;
+            top: 50%;
+        }
+
+        .node-4 {
+            animation-delay: 4.0s;
+            top: 70%;
+        }
+
+        .node-5 {
+            animation-delay: 5.0s;
+            top: 90%;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+                border-color: #00a2ff;
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(0);
+                border-color: #00ff88;
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+                border-color: #00a2ff;
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(20px);
+                border-color: #00a2ff;
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(0);
+                border-color: #00ff88;
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+                border-color: #00a2ff;
+            }
+        }
+
+        /* Bashers Intro Animation Classes */
+        @keyframes bashersReveal {
+            0% {
+                letter-spacing: -20px;
+                opacity: 0;
+                transform: scale(0.5);
+                text-shadow: 0 0 0 transparent;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            80% {
+                letter-spacing: 20px;
+                opacity: 1;
+                transform: scale(1.1);
+                text-shadow: 0 0 40px #ff0088, 0 0 80px #00a2ff;
+            }
+
+            100% {
+                letter-spacing: 15px;
+                opacity: 1;
+                transform: scale(1);
+                text-shadow: 0 0 20px #ff0088, 0 0 40px #00a2ff;
+            }
+        }
+
+        @keyframes scanline {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .bashers-intro-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 8vw;
+            color: #fff;
+            text-transform: uppercase;
+            animation: bashersReveal 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bashers-scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 0, 136, 0.5);
+            box-shadow: 0 0 20px rgba(255, 0, 136, 1);
+            animation: scanline 3s linear infinite;
+            z-index: 3;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .v-roadmap-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 25px;
+            height: 2px;
+            background: #00a2ff;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+
+        .v-roadmap-node.left-side::after {
+            right: -25px;
+        }
+
+        .v-roadmap-node.right-side::after {
+            left: -25px;
+        }
     </style>
 </head>
 
 <body>
     <div id="start-overlay">
-        <button class="start-btn" id="start-btn">Initiate Connection</button>
+        <button class="start-btn" id="start-btn">Start Journey</button>
         <div class="start-hint">AUDIO ENABLED // CINEMATIC MODE</div>
     </div>
 
@@ -586,74 +1147,267 @@
                 Operation started: 01/22/2026<br>
                 Current Phase: Creative Tasks
             </div>
-            <button class="next-btn" onclick="goToProfile()">Secure Identity // NEXT</button>
+            <button class="next-btn" onclick="goToClanLogos()">Enter the Arena // NEXT</button>
         </div>
+    </div>
+
+    <!-- CLAN LOGOS ANIMATION SCREEN -->
+    <div id="clan-logos-screen">
+        <div class="clan-logos-title">ALLIANCE NETWORK // AUTHENTICATED</div>
+        <canvas id="clan-logos-canvas"></canvas>
+        <div id="clan-logos-flash"></div>
     </div>
 
     <div id="profile-screen">
-        <div class="profile-card">
-            <div class="profile-header">Identity Verified</div>
-            <img src="https://i.postimg.cc/CLxbVQpf/217740612.jpg" class="profile-img" alt="Profile Image">
-            <div class="journey-bio">
-                <b>V.L.VIGNESH</b><br>
-                (1st year, CSE A)
-            </div>
-            <div class="journey-links">
-                <a href="mailto:vigneshvelappan73051@gmail.com" class="btn-link">vigneshvelappan73051@gmail.com</a>
-            </div>
-            <button class="next-btn" onclick="goToClanProfile()">Clan Command // NEXT</button>
-        </div>
-    </div>
+        <div class="profile-card split-layout">
+            <div class="profile-left">
+                <div class="profile-header cinematic-header" data-text="Identity Verified">Identity Verified</div>
+                <img src="https://i.postimg.cc/CLxbVQpf/217740612.jpg" class="profile-img cinematic-img"
+                    alt="Profile Image">
+                <div class="journey-bio cinematic-bio">
+                    <b class="glitch-chrome" data-text="V.L.VIGNESH">V.L.VIGNESH</b><br>
+                    <span style="font-size: 14px; opacity: 0.8;">1st Year, CSE - Section A</span>
+                </div>
 
+                <div class="cinematic-badges"
+                    style="display: flex; gap: 15px; margin: 15px 0; justify-content: center; font-family: monospace; font-size: 12px; flex-wrap: wrap;">
+                    <div
+                        style="border: 1px solid rgba(0, 255, 136, 0.3); padding: 5px 10px; border-radius: 4px; color: #00ff88;">
+                        RANK: INITIATE</div>
+                    <div
+                        style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
+                        ROLE: DEVELOPER</div>
+                    <div
+                        style="border: 1px solid rgba(255, 170, 0, 0.3); padding: 5px 10px; border-radius: 4px; color: #ffaa00;">
+                        TRACK: DEVOPS</div>
+                </div>
 
-    <div id="clan-profile-screen"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
-        <div class="profile-card">
-            <div class="profile-header cinematic-header">Belmonts CB // Clan Command</div>
-            <img src="https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png" class="profile-img cinematic-img"
-                alt="Geo Nithin">
-            <div class="journey-bio cinematic-bio">
-                <b>GEO NITHIN</b><br>
-                <span style="font-size: 14px; opacity: 0.8;">2nd Year, Computer Science Engineering</span>
-            </div>
+                <div class="journey-info cinematic-log"
+                    style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #00a2ff; margin: 15px 0;">
+                    <div
+                        style="color: #00a2ff; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
+                        OPERATIVE LOG:</div>
+                    <div style="font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                        • Aspiring DevOps Engineer with a passion for automation.<br>
+                        • Currently mastering CI/CD pipelines & cloud infrastructure.<br>
+                        • Enthusiastic learner diving into Docker, Kubernetes, and Linux.
+                    </div>
+                </div>
 
-            <div class="cinematic-badges"
-                style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
-                <div
-                    style="border: 1px solid rgba(0, 255, 136, 0.3); padding: 5px 10px; border-radius: 4px; color: #00ff88;">
-                    RANK: THE BASHER</div>
-                <div
-                    style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
-                    ROLE: CB OF BELMONTS</div>
-            </div>
+                <div style="display: flex; gap: 10px; justify-content: center; margin: 10px 0; flex-wrap: wrap;"
+                    class="cinematic-status">
+                    <span
+                        style="background: rgba(0, 162, 255, 0.15); color: #00a2ff; padding: 4px 12px; border-radius: 15px; font-size: 11px; font-family: monospace;">Python</span>
+                    <span
+                        style="background: rgba(0, 255, 136, 0.15); color: #00ff88; padding: 4px 12px; border-radius: 15px; font-size: 11px; font-family: monospace;">Linux</span>
+                    <span
+                        style="background: rgba(255, 170, 0, 0.15); color: #ffaa00; padding: 4px 12px; border-radius: 15px; font-size: 11px; font-family: monospace;">Docker</span>
+                    <span
+                        style="background: rgba(150, 100, 255, 0.15); color: #9664ff; padding: 4px 12px; border-radius: 15px; font-size: 11px; font-family: monospace;">Git</span>
+                </div>
 
-            <div class="journey-info cinematic-log"
-                style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #00ff88;">
-                <div
-                    style="color: #00ff88; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
-                    COMMANDER LOG:</div>
-                <div style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.9);">
-                    • Open-source communicator & deep-logic architect.<br>
-                    • Midnight debugger: Active for technical support 24/7.<br>
-                    • Master of open dialogue and clan stability.
+                <div class="cinematic-status"
+                    style="margin-top: 15px; font-family: monospace; font-size: 12px; color: #00ff88; letter-spacing: 2px;">
+                    STATUS: ACTIVE // LEARNING IN PROGRESS
+                </div>
+
+                <div class="journey-links" style="margin-top: 15px;">
+                    <button class="next-btn cinematic-btn" onclick="goToExperience()" style="margin-top: 0;">Experience
+                        Log // NEXT</button>
+                    <!-- <a href="mailto:vigneshvelappan73051@gmail.com" class="btn-link" style="font-size: 10px; padding: 5px 15px; margin-top: 5px;">vigneshvelappan73051@gmail.com</a> -->
                 </div>
             </div>
 
-            <div class="cinematic-status"
-                style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #00a2ff; letter-spacing: 2px;">
-                STATUS: ENCRYPTED // CONNECTION ACTIVE
+            <div class="profile-right">
+                <div class="profile-header cinematic-header" style="color: #00ff88; font-size: 14px;">DevOps Journey
+                    Roadmap</div>
+                <div class="v-roadmap-container">
+                    <div class="v-roadmap-line-bg"></div>
+                    <div class="v-roadmap-line-active"></div>
+                    <div class="roadmap-traveler"></div>
+
+                    <div class="v-roadmap-node left-side node-1">
+                        <b>STAGE 1</b><span>HTML & CSS</span>
+                    </div>
+                    <div class="v-roadmap-node right-side node-2">
+                        <b>STAGE 2</b><span>Linux/Bash</span>
+                    </div>
+                    <div class="v-roadmap-node left-side node-3">
+                        <b>STAGE 3</b><span>AWS/Cloud</span>
+                    </div>
+                    <div class="v-roadmap-node right-side node-4">
+                        <b>STAGE 4</b><span>Docker/K8s</span>
+                    </div>
+                    <div class="v-roadmap-node left-side node-5">
+                        <b>STAGE 5</b><span>CI/CD Flow</span>
+                    </div>
+                </div>
             </div>
-            <button class="next-btn cinematic-btn" onclick="goToAdhithya()">Squad Command // NEXT</button>
         </div>
     </div>
 
-    <div id="adhithya-profile-screen"
+    <!-- CORE BASHERS ORBITAL SCREEN -->
+    <div id="core-bashers-screen">
+        <div class="core-bashers-title">BELMONTS // CORE BASHERS</div>
+        <canvas id="core-bashers-canvas"></canvas>
+    </div>
+
+    <div id="experience-screen"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        <div class="profile-card" style="max-width: 800px; padding: 40px 60px; text-align: left;">
+            <div class="noise-overlay"></div>
+            <div class="profile-header cinematic-header" id="experience-header"
+                data-text="Experience Log // The Journey"
+                style="font-size: 16px; margin-bottom: 25px; text-align: center;">Experience Log // The Journey</div>
+
+            <div class="journey-bio cinematic-log"
+                style="font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.85); font-family: 'Inter', sans-serif;">
+                "Hi I am Vignesh from computer science and engineering department first year .Forty-five days ago, I
+                stepped into the unknown as a complete rookie... but today, I stand rebuilt by the discipline and
+                brotherhood of the Bashers.<br><br>
+
+                My journey was set in motion by <b
+                    style="color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.4);">Maxwell Rubert</b>, who first
+                spoke the name of this tribe into my life and gave me a map to my own potential. Upon arriving at
+                Belmonts, the very first person I met was <b
+                    style="color: #00ff88; text-shadow: 0 0 10px rgba(0,255,136,0.4);">Harshini</b>, whose presence
+                immediately set the standard for the dedication I would soon adopt as my own.<br><br>
+
+                As I began carving out my path in the DevOps domain, <b
+                    style="color: #9b59b6; text-shadow: 0 0 10px rgba(155,89,182,0.4);">Sowmiya Sister</b> became a
+                vital guide, sharing her expertise in our shared field and helping me navigate the complexities of the
+                tech world. Alongside her, <b style="color: #ffaa00; text-shadow: 0 0 10px rgba(255,170,0,0.4);">Michael
+                    Nithish Bro</b> poured his energy into my growth, helping me more and more until my rookie doubts
+                were replaced by professional confidence.<br><br>
+
+                This trek has been about finding a true family in <b
+                    style="color: #00a2ff; text-shadow: 0 0 10px rgba(0,162,255,0.4);">Geo Nithin Bro</b> and <b
+                    style="color: #ff0088; text-shadow: 0 0 10px rgba(255,0,136,0.4);">Aditya Mahesh sister</b>. They
+                are not just my seniors; they are my brother and sister who have guided me with unbreakable strength and
+                grace.<br><br>
+
+                <div
+                    style="border-left: 3px solid #00a2ff; padding-left: 15px; margin-top: 25px; font-style: italic; color: #fff; font-size: 15px; font-weight: 500;">
+                    I am no longer the person who started in mid-January. I have been dismantled and reconstructed by
+                    the wisdom of my mentors. To my brothers and sisters who saw the warrior in a rookie: thank you for
+                    pushing me toward the summit. My journey has only just begun... and I am ready to conquer everything
+                    that lies ahead. so next we move to about belmont bashers"
+                </div>
+            </div>
+
+            <div
+                style="text-align: center; margin-top: 35px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                <button class="next-btn cinematic-btn" onclick="window.replayStory()"
+                    style="margin-top: 0; border-color: #ffd700; color: #ffd700;">▶ Play Story Voice</button>
+                <button class="next-btn cinematic-btn" onclick="goToBashersIntro()" style="margin-top: 0;">Meet The
+                    Bashers // NEXT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BASHERS INTRO ANIMATION SCREEN -->
+    <div id="bashers-intro-screen"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #020202; display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease; overflow: hidden;">
+        <div class="bashers-scanline"></div>
+        <div class="noise-overlay" style="opacity: 0.1;"></div>
+        <div id="bashers-text-container" class="bashers-intro-text">
+            BASHERS
+        </div>
+    </div>
+
+    <div id="clan-profile-screen"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
+        <div class="profile-card split-layout"
+            style="max-width: 950px; display: flex; flex-direction: row; gap: 40px; padding: 40px; align-items: stretch;">
+            <div class="noise-overlay"></div>
+            <!-- Left Side: Identity -->
+            <div class="profile-left"
+                style="flex: 1; border-right: 1px solid rgba(0, 255, 136, 0.2); padding-right: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div class="profile-header cinematic-header" id="clan-header" data-text="Belmonts CB // Clan Command"
+                    style="width: 100%; text-align: center;">
+                    Belmonts CB // Clan Command</div>
+                <div
+                    style="position: relative; display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                    <div class="hologram-rings">
+                        <div class="hologram-ring"></div>
+                        <div class="hologram-ring"></div>
+                        <div class="hologram-ring"></div>
+                    </div>
+                    <img src="https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png"
+                        class="profile-img cinematic-img" alt="Geo Nithin">
+                </div>
+                <div class="journey-bio cinematic-bio" style="text-align: center; margin-top: 20px;">
+                    <b class="glitch-chrome" id="clan-name" data-text="GEO NITHIN">GEO NITHIN</b><br>
+                    <span style="font-size: 14px; opacity: 0.8;">B.E. Computer Science Engineering</span>
+                </div>
+                <div class="cinematic-badges"
+                    style="display: flex; gap: 10px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 11px; flex-wrap: wrap;">
+                    <div
+                        style="border: 1px solid rgba(0, 255, 136, 0.3); padding: 4px 8px; border-radius: 4px; color: #00ff88;">
+                        RANK: THE BASHER</div>
+                    <div
+                        style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 4px 8px; border-radius: 4px; color: #00a2ff;">
+                        ROLE: CB OF BELMONTS</div>
+                </div>
+                <div class="cinematic-status"
+                    style="font-family: monospace; font-size: 11px; color: #00a2ff; letter-spacing: 2px;">STATUS: ACTIVE
+                    // ENCRYPTED</div>
+            </div>
+
+            <!-- Right Side: The 15 Sentence Log -->
+            <div class="profile-right"
+                style="flex: 1.5; padding-left: 10px; display: flex; flex-direction: column; justify-content: center;">
+                <div
+                    style="color: #00ff88; margin-bottom: 15px; font-weight: bold; letter-spacing: 2px; font-size: 14px; border-bottom: 1px solid #00ff88; padding-bottom: 5px; font-family: monospace;">
+                    CLAN COMMANDER DATA LOG:</div>
+                <div id="clan-narrative-box"
+                    style="font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.9); font-family: 'Inter', sans-serif; height: 350px; overflow-y: auto; padding-right: 15px; text-align: justify;">
+                    Geo Nithin stands as the cornerstone of the Belmonts clan, bringing unparalleled technical depth and
+                    leadership. As a key CB within our alliance, he has dedicated himself to the pursuit of open-source
+                    excellence and architectural perfection. Every line of logic he oversees is treated with the
+                    precision of a master craftsman. He is not merely a senior member but a vital pillar of support for
+                    every rookie who enters our arena. His ability to handle deep-logic challenges makes him an
+                    indispensable asset during high-stakes missions. Whether it is a midnight debugging session or a
+                    complex system migration, his presence ensures mission success. He maintains an unbreakable
+                    connection with the clan's core values, fostering an environment of transparent communication. Geo
+                    Nithin's expertise in computer science engineering manifests in every project we initiate. He
+                    effectively bridges the gap between abstract concepts and functional, scalable infrastructure. His
+                    commitment to the brotherhood of Bashers is evident in the countless hours he spends mentoring
+                    others. He handles every technical hurdle with a calm, analytical mindset that inspires confidence
+                    in his teammates. Through his leadership, the Belmonts have reached new summits of technological
+                    achievement. We recognize him as a guardian of our digital fortress and a visionary for our future
+                    expansions. His journey is a testament to the strength found in discipline, wisdom, and unyielding
+                    clan loyalty. This log serves as a record of his permanent and honored status within the Belmonts
+                    leadership hierarchy.
+                </div>
+                <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: flex-end;">
+                    <button class="next-btn cinematic-btn" onclick="window.replayClanSpeech()"
+                        style="margin-top: 0; border-color: #00ff88; color: #00ff88; font-size: 12px;">▶ Play
+                        Log</button>
+                    <button class="next-btn cinematic-btn" onclick="goToAditya()"
+                        style="margin-top: 0; font-size: 12px;">Squad Command // NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="aditya-profile-screen"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
         <div class="profile-card">
-            <div class="profile-header cinematic-header">Belmonts CB // Squad Command</div>
-            <div class="cinematic-img" style="font-size: 80px; margin-bottom: 20px;">👩‍💻</div>
+            <div class="noise-overlay"></div>
+            <div class="profile-header cinematic-header" id="aditya-header" data-text="Belmonts CB // Squad Command">
+                Belmonts CB // Squad Command</div>
+            <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+                <div class="hologram-rings">
+                    <div class="hologram-ring"></div>
+                    <div class="hologram-ring"></div>
+                    <div class="hologram-ring"></div>
+                </div>
+                <div class="cinematic-img"
+                    style="font-size: 80px; margin-bottom: 20px; position: relative; z-index: 2;">👩‍💻</div>
+            </div>
             <div class="journey-bio cinematic-bio">
-                <b>ADHITHYA MAHESH</b><br>
+                <b class="glitch-chrome" id="aditya-name" data-text="ADITYA MAHESH">ADITYA MAHESH</b><br>
                 <span style="font-size: 14px; opacity: 0.8;">CB OF BELMONTS</span>
             </div>
 
@@ -683,18 +1437,28 @@
                 style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ff0088; letter-spacing: 2px;">
                 STATUS: ACTIVE // SQUAD LEADER
             </div>
-            <button class="next-btn cinematic-btn" onclick="goToSando()">Event Command // NEXT</button>
+            <button class="next-btn cinematic-btn" onclick="goToSando()" style="margin-top: 20px;">Event Command //
+                NEXT</button>
         </div>
     </div>
 
     <div id="sando-profile-screen"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
         <div class="profile-card">
-            <div class="profile-header cinematic-header">Lumina Clan // Event Command</div>
-            <img src="https://i.postimg.cc/NjMvhT4J/79fe4bad-bab5-43d2-b938-33d24454d5fa.jpg"
-                class="profile-img cinematic-img" alt="Sando Fali">
+            <div class="noise-overlay"></div>
+            <div class="profile-header cinematic-header" id="sando-header" data-text="Lumina Clan // Event Command">
+                Lumina Clan // Event Command</div>
+            <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+                <div class="hologram-rings">
+                    <div class="hologram-ring"></div>
+                    <div class="hologram-ring"></div>
+                    <div class="hologram-ring"></div>
+                </div>
+                <img src="https://i.postimg.cc/NjMvhT4J/79fe4bad-bab5-43d2-b938-33d24454d5fa.jpg"
+                    class="profile-img cinematic-img" alt="Sando Fali">
+            </div>
             <div class="journey-bio cinematic-bio">
-                <b>SANDO FALI</b><br>
+                <b class="glitch-chrome" id="sando-name" data-text="SANDO FALI">SANDO FALI</b><br>
                 <span style="font-size: 14px; opacity: 0.8;">LEAD ORGANIZER</span>
             </div>
 
@@ -724,7 +1488,8 @@
                 style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ffaa00; letter-spacing: 2px;">
                 STATUS: ACTIVE // MISSION ORGANIZER
             </div>
-            <button class="next-btn cinematic-btn" onclick="goToRoadmap()">Access Roadmap // NEXT</button>
+            <button class="next-btn cinematic-btn" onclick="goToRoadmap()" style="margin-top: 20px;">Roadmap //
+                NEXT</button>
         </div>
     </div>
     <div id="roadmap-screen">
@@ -734,20 +1499,24 @@
                 <path id="roadmap-path" class="roadmap-line" d="M 100,200 C 250,50 400,350 500,200 S 750,50 900,200" />
             </svg>
             <div class="roadmap-node active">
-                <b>W-01</b>
+                <b>Weekly Bash 1</b>
                 <span>Basic Code</span>
             </div>
             <div class="roadmap-node">
-                <b>W-02</b>
+                <b>Weekly Bash 2</b>
                 <span>3D Assets</span>
             </div>
             <div class="roadmap-node">
-                <b>W-03</b>
+                <b>Weekly Bash 3</b>
                 <span>Cinematic</span>
             </div>
             <div class="roadmap-node">
-                <b>W-04</b>
+                <b>Weekly Bash 4</b>
                 <span>Deployment</span>
+            </div>
+            <div class="roadmap-node">
+                <b>Weekly Bash 5</b>
+                <span>Final Ops</span>
             </div>
         </div>
     </div>
@@ -829,6 +1598,22 @@
             osc.stop(ctx.currentTime + 0.5);
         }
 
+        function playImpactBeep() {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(150, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.4);
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.4);
+        }
+        window.playImpactBeep = playImpactBeep;
+
         function createTextTexture(text) {
             const canvas = document.createElement('canvas');
             canvas.width = 512;
@@ -849,57 +1634,862 @@
         }
 
         // --- GLOBAL TRANSITION HELPERS ---
-        window.goToProfile = function () {
+        window.scrambleText = function (element, targetText, duration = 1000) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
+            let start = null;
+            const originalText = element.innerText;
+
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                const currentLength = Math.floor((progress / duration) * targetText.length);
+
+                let scrambled = '';
+                for (let i = 0; i < targetText.length; i++) {
+                    if (i < currentLength) {
+                        scrambled += targetText[i];
+                    } else {
+                        scrambled += chars[Math.floor(Math.random() * chars.length)];
+                    }
+                }
+
+                element.innerText = scrambled;
+                if (progress < duration) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    element.innerText = targetText;
+                }
+            }
+            window.requestAnimationFrame(step);
+        };
+
+        window.goToClanLogos = function () {
             const journey = document.getElementById('journey-screen');
-            const profile = document.getElementById('profile-screen');
-            if (journey.style.opacity === '0') return; // Prevent double trigger
+            const clanLogos = document.getElementById('clan-logos-screen');
+            if (journey.style.opacity === '0') return;
             journey.style.opacity = '0';
             setTimeout(() => {
                 journey.style.display = 'none';
-                profile.style.display = 'flex';
-                setTimeout(() => profile.style.opacity = '1', 50);
+                clanLogos.style.display = 'flex';
+                setTimeout(() => {
+                    clanLogos.style.opacity = '1';
+                    startClanLogosAnimation();
+                }, 80);
             }, 1000);
         };
 
-        window.goToClanProfile = function () {
+        window.goToCoreBashers = function () {
             const profile = document.getElementById('profile-screen');
-            const clanProfile = document.getElementById('clan-profile-screen');
+            const coreBashers = document.getElementById('core-bashers-screen');
             if (profile.style.opacity === '0') return;
             profile.style.opacity = '0';
             setTimeout(() => {
                 profile.style.display = 'none';
-                clanProfile.style.display = 'flex';
-                setTimeout(() => clanProfile.style.opacity = '1', 50);
+                coreBashers.style.display = 'flex';
+                setTimeout(() => {
+                    coreBashers.style.opacity = '1';
+                    startCoreBashersAnimation();
+                }, 80);
             }, 1000);
         };
 
-        window.goToAdhithya = function () {
+        window.goToCoreBashersFromLogos = function () {
+            const clanLogos = document.getElementById('clan-logos-screen');
+            const coreBashers = document.getElementById('core-bashers-screen');
+            const flash = document.getElementById('clan-logos-flash');
+
+            if (flash) {
+                flash.style.opacity = '0';
+            }
+            clanLogos.style.opacity = '0';
+            setTimeout(function () {
+                clanLogos.style.display = 'none';
+                coreBashers.style.display = 'flex';
+                setTimeout(function () {
+                    coreBashers.style.opacity = '1';
+                    startCoreBashersAnimation();
+                }, 100);
+            }, 600);
+        };
+
+        window.goToProfileFromBashers = function () {
+            const coreBashers = document.getElementById('core-bashers-screen');
+            const profile = document.getElementById('profile-screen');
+            coreBashers.style.opacity = '0';
+            setTimeout(function () {
+                coreBashers.style.display = 'none';
+                profile.style.display = 'flex';
+                setTimeout(function () {
+                    profile.style.opacity = '1';
+                }, 50);
+            }, 1000);
+        };
+
+        window.goToProfile = function () {
+            const profile = document.getElementById('profile-screen');
+            const flash = document.getElementById('clan-logos-flash');
+            const clanLogos = document.getElementById('clan-logos-screen');
+
+            // Flash effect -> transition
+            if (flash) {
+                flash.style.transition = 'opacity 0.3s ease';
+                flash.style.opacity = '1';
+                setTimeout(() => {
+                    clanLogos.style.opacity = '0';
+                    clanLogos.style.display = 'none';
+                    flash.style.opacity = '0';
+                    profile.style.display = 'flex';
+                    setTimeout(() => profile.style.opacity = '1', 50);
+                }, 400);
+            } else {
+                clanLogos.style.opacity = '0';
+                setTimeout(() => {
+                    clanLogos.style.display = 'none';
+                    profile.style.display = 'flex';
+                    setTimeout(() => profile.style.opacity = '1', 50);
+                }, 1000);
+            }
+        };
+
+        // ---- Clan Logos Canvas Animation (Cinematic: Supreme Belmonts) ----
+        function startClanLogosAnimation() {
+            const canvas = document.getElementById('clan-logos-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const W = canvas.width, H = canvas.height;
+            const cx = W / 2, cy = H / 2;
+
+            const R = Math.min(W, H) * 0.27; // peripheral radius
+            const logoRadius = Math.min(W, H) * 0.075; // logo circle radius
+
+            const logos = [
+                {
+                    name: 'BELMONTS', url: 'https://i.postimg.cc/j5CxfYTY/belmonts.jpg',
+                    x: cx, y: cy, color: '#ffd700', glow: 'rgba(255,215,0,', isBelmonts: true, shards: []
+                },
+                {
+                    name: 'AURA7F', url: 'https://i.postimg.cc/8zVz0YRC/aura7f.jpg',
+                    x: cx, y: cy - R, color: '#00a2ff', glow: 'rgba(0,162,255,', isBelmonts: false, shards: []
+                },
+                {
+                    name: 'LUMINA', url: 'https://i.postimg.cc/QMd9fPDg/lumina.jpg',
+                    x: cx - R * 0.866, y: cy + R * 0.5, color: '#ff00cc', glow: 'rgba(255,0,204,', isBelmonts: false, shards: []
+                },
+                {
+                    name: 'SADASKI ADAPTI', url: 'https://i.postimg.cc/v8g9RpV2/sadaski-adapki.jpg',
+                    x: cx + R * 0.866, y: cy + R * 0.5, color: '#00ff88', glow: 'rgba(0,255,136,', isBelmonts: false, shards: []
+                },
+            ];
+
+            const imgs = logos.map(l => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.src = l.url;
+                return img;
+            });
+
+            function createShards(logo) {
+                const shards = [];
+                for (let i = 0; i < 22; i++) {
+                    const angle = (i / 22) * Math.PI * 2 + Math.random() * 0.3;
+                    const speed = 1.5 + Math.random() * 3.5;
+                    shards.push({
+                        x: logo.x, y: logo.y,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        size: logoRadius * (0.15 + Math.random() * 0.35),
+                        angle: Math.random() * Math.PI * 2,
+                        spin: (Math.random() - 0.5) * 0.25,
+                        alpha: 1.0,
+                        color: logo.color
+                    });
+                }
+                return shards;
+            }
+            logos.forEach(l => { if (!l.isBelmonts) l.shards = createShards(l); });
+
+            const bokeh = Array.from({ length: 150 }, (_, i) => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: 1.5 + Math.random() * 6,
+                alpha: 0,
+                maxAlpha: 0.3 + Math.random() * 0.5,
+                color: ['#ffd700', '#00a2ff', '#ff00cc', '#00ff88'][i % 4],
+                vx: (Math.random() - 0.5) * 1.2,
+                vy: -0.3 - Math.random() * 0.8,
+                life: 0
+            }));
+
+            let lightning = [];
+            function generateLightning(ox, oy, tx, ty, roughness, depth) {
+                if (depth === 0) return [[{ x: ox, y: oy }, { x: tx, y: ty }]];
+                const mx = (ox + tx) / 2 + (Math.random() - 0.5) * roughness;
+                const my = (oy + ty) / 2 + (Math.random() - 0.5) * roughness;
+                const left = generateLightning(ox, oy, mx, my, roughness / 2, depth - 1);
+                const right = generateLightning(mx, my, tx, ty, roughness / 2, depth - 1);
+                const branches = [...left, ...right];
+                if (Math.random() < 0.3) {
+                    const bx = mx + (Math.random() - 0.5) * roughness * 1.5;
+                    const by = my + (Math.random() - 0.5) * roughness * 1.5;
+                    branches.push(...generateLightning(mx, my, bx, by, roughness / 3, depth - 1));
+                }
+                return branches;
+            }
+
+            let lightningTimer = 0;
+            let activeLightning = [];
+            let lightningAlpha = 0;
+            let startTime = null;
+            let phase = 'challengers';
+            let phaseStart = 0;
+            let animId = null;
+            let pulseT = 0;
+            let screenShake = 0;
+            let shatterTriggered = false;
+
+            const T_CHALLENGERS = 3000;
+            const T_ARRIVAL = 800;
+            const T_DOMINION = 2500;
+            const T_EXPAND = 2500;
+
+            function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+            function outBack(t) { const c1 = 1.70158; const c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+            function lerp(a, b, t) { return a + (b - a) * t; }
+
+            function drawFloor(globalAlpha) {
+                ctx.save();
+                ctx.globalAlpha = globalAlpha;
+                const floorY = H * 0.65;
+                const floorGrad = ctx.createLinearGradient(0, floorY, 0, H);
+                floorGrad.addColorStop(0, 'rgba(5,5,8,0)');
+                floorGrad.addColorStop(0.2, 'rgba(8,8,15,0.7)');
+                floorGrad.addColorStop(1, 'rgba(2,2,6,0.95)');
+                ctx.fillStyle = floorGrad;
+                ctx.fillRect(0, floorY, W, H - floorY);
+                ctx.restore();
+            }
+
+            function drawReflection(img, logo, alpha, scale) {
+                if (logo.y > H * 0.6) return;
+                const s = logoRadius * 2 * scale;
+                const reflY = H * 0.65 + (H * 0.65 - logo.y) * 0.3;
+                ctx.save();
+                ctx.globalAlpha = alpha * 0.25;
+                ctx.translate(logo.x, reflY);
+                ctx.scale(1, -0.4);
+                ctx.beginPath();
+                ctx.arc(0, 0, logoRadius * scale, 0, Math.PI * 2);
+                ctx.clip();
+                if (img.complete && img.naturalWidth > 0) ctx.drawImage(img, -s / 2, -s / 2, s, s);
+                ctx.restore();
+            }
+
+            function drawLogo(img, logo, alpha, scale, electricPulse) {
+                if (alpha <= 0) return;
+                const r = logoRadius * scale;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                const auraR = r * (1.6 + (electricPulse ? Math.sin(pulseT * 10) * 0.15 : 0));
+                const aura = ctx.createRadialGradient(logo.x, logo.y, r * 0.5, logo.x, logo.y, auraR);
+                aura.addColorStop(0, logo.glow + (electricPulse ? '0.6)' : '0.3)'));
+                aura.addColorStop(1, logo.glow + '0)');
+                ctx.beginPath();
+                ctx.arc(logo.x, logo.y, auraR, 0, Math.PI * 2);
+                ctx.fillStyle = aura;
+                ctx.fill();
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(logo.x, logo.y, r, 0, Math.PI * 2);
+                ctx.clip();
+                if (img.complete && img.naturalWidth > 0) ctx.drawImage(img, logo.x - r, logo.y - r, r * 2, r * 2);
+                ctx.restore();
+
+                ctx.beginPath();
+                ctx.arc(logo.x, logo.y, r, 0, Math.PI * 2);
+                ctx.strokeStyle = logo.color;
+                ctx.lineWidth = electricPulse ? 3 : 2;
+                ctx.shadowColor = logo.color;
+                ctx.shadowBlur = electricPulse ? 25 : 10;
+                ctx.stroke();
+
+                const labelSize = Math.max(10, r * 0.2);
+                ctx.font = `bold ${labelSize}px Inter`;
+                ctx.fillStyle = logo.color;
+                ctx.textAlign = 'center';
+                ctx.fillText(logo.name, logo.x, logo.y + r + 15);
+                ctx.restore();
+            }
+
+            function drawLightning(segments, alpha, color) {
+                if (!segments || alpha <= 0) return;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.5;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = color;
+                segments.forEach(seg => {
+                    ctx.beginPath();
+                    ctx.moveTo(seg[0].x, seg[0].y);
+                    ctx.lineTo(seg[1].x, seg[1].y);
+                    ctx.stroke();
+                });
+                ctx.restore();
+            }
+
+            function drawBokeh(strength) {
+                bokeh.forEach(p => {
+                    p.y += p.vy * strength;
+                    p.alpha = Math.min(p.maxAlpha, p.alpha + 0.01);
+                    if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; p.alpha = 0; }
+                    ctx.save();
+                    ctx.globalAlpha = p.alpha * strength;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+                    ctx.restore();
+                });
+            }
+
+            function drawShards(logo, progress) {
+                logo.shards.forEach(s => {
+                    s.x += s.vx * (1 + progress * 2);
+                    s.y += s.vy * (1 + progress * 2);
+                    s.angle += s.spin;
+                    s.alpha = Math.max(0, 1 - progress * 1.5);
+                    if (s.alpha <= 0) return;
+                    ctx.save();
+                    ctx.globalAlpha = s.alpha;
+                    ctx.translate(s.x, s.y);
+                    ctx.rotate(s.angle);
+                    ctx.fillStyle = s.color;
+                    ctx.fillRect(-s.size / 2, -s.size / 2, s.size, s.size);
+                    ctx.restore();
+                });
+            }
+
+            function animate(ts) {
+                if (!startTime) { startTime = ts; phaseStart = ts; }
+                const elapsed = ts - phaseStart;
+                pulseT = (ts - startTime) / 1000;
+
+                ctx.clearRect(0, 0, W, H);
+                if (screenShake > 0) {
+                    ctx.save();
+                    ctx.translate((Math.random() - 0.5) * screenShake, (Math.random() - 0.5) * screenShake);
+                    screenShake *= 0.9;
+                }
+
+                const bgGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, W);
+                bgGrad.addColorStop(0, '#0a0a1a');
+                bgGrad.addColorStop(1, '#000');
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(-100, -100, W + 200, H + 200);
+
+                if (phase === 'challengers') {
+                    const t = Math.min(elapsed / T_CHALLENGERS, 1);
+                    drawFloor(t * 0.7);
+                    logos.forEach((logo, i) => {
+                        if (logo.isBelmonts) return;
+                        const lt = ease(Math.min(Math.max((t - (i - 1) * 0.2) / 0.5, 0), 1));
+                        const oy = Math.sin(pulseT + i) * 15;
+                        drawReflection(imgs[i], logo, lt, 0.9);
+                        drawLogo(imgs[i], { ...logo, y: logo.y + oy }, lt, 0.9, false);
+                    });
+                    if (t >= 1) { phase = 'arrival'; phaseStart = ts; }
+                } else if (phase === 'arrival') {
+                    const t = Math.min(elapsed / T_ARRIVAL, 1);
+                    drawFloor(0.7);
+                    logos.forEach((logo, i) => {
+                        if (!logo.isBelmonts) drawLogo(imgs[i], logo, 1, 0.9, false);
+                    });
+                    const arrivalT = outBack(t);
+                    const bScale = lerp(5, 1.2, arrivalT);
+                    drawLogo(imgs[0], logos[0], t, bScale, true);
+                    if (t > 0.1 && !shatterTriggered) {
+                        shatterTriggered = true;
+                        screenShake = 35;
+                        if (window.playImpactBeep) window.playImpactBeep();
+                    }
+                    if (t >= 1) { phase = 'dominion'; phaseStart = ts; shatterTriggered = false; }
+                } else if (phase === 'dominion') {
+                    const t = Math.min(elapsed / T_DOMINION, 1);
+                    drawLogo(imgs[0], logos[0], 1, 1.2 + Math.sin(pulseT * 15) * 0.03, true);
+                    lightningTimer += 0.1;
+                    if (lightningTimer > 0.15) {
+                        lightningTimer = 0;
+                        activeLightning = logos.filter(l => !l.isBelmonts).map(l => ({
+                            bolts: generateLightning(cx, cy, l.x, l.y, 80, 4), color: '#ffd700'
+                        }));
+                        lightningAlpha = 1;
+                        screenShake = 8;
+                    }
+                    lightningAlpha *= 0.85;
+                    activeLightning.forEach(l => drawLightning(l.bolts, lightningAlpha, l.color));
+                    logos.forEach((logo, i) => {
+                        if (logo.isBelmonts) return;
+                        const sT = Math.min(Math.max((t - 0.1) / 0.7, 0), 1);
+                        drawShards(logo, sT);
+                        if (sT < 1) drawLogo(imgs[i], logo, 1 - sT, 0.9 - 0.2 * sT, false);
+                    });
+                    drawBokeh(t * 3);
+                    if (t >= 1) { phase = 'expand'; phaseStart = ts; }
+                } else if (phase === 'expand') {
+                    const t = Math.min(elapsed / T_EXPAND, 1);
+                    const scale = 1.2 + t * 20;
+                    const alpha = 1 - Math.pow(t, 3);
+                    drawLogo(imgs[0], logos[0], alpha, scale, true);
+
+                    ctx.save();
+                    ctx.textAlign = 'center';
+                    ctx.fillStyle = '#ffd700';
+                    ctx.shadowColor = '#ffd700';
+                    ctx.shadowBlur = 20;
+                    ctx.globalAlpha = Math.min(t * 2.5, 1) * (1 - t);
+                    ctx.font = 'bold 5vw Inter';
+                    ctx.fillText("THE SUPREME CLAN", cx, cy - 50);
+                    ctx.font = '900 10vw Inter';
+                    ctx.fillText("BELMONTS", cx, cy + 80);
+                    ctx.restore();
+
+                    if (t > 0.8) {
+                        const f = document.getElementById('clan-logos-flash');
+                        if (f) f.style.opacity = '1';
+                    }
+                    if (t >= 1) {
+                        cancelAnimationFrame(animId);
+                        window.goToCoreBashersFromLogos();
+                        return;
+                    }
+                }
+
+                if (screenShake > 0) ctx.restore();
+                animId = requestAnimationFrame(animate);
+            }
+            animId = requestAnimationFrame(animate);
+        }
+
+
+        // ---- Core Bashers Animation (Sequential Center Display) ----
+        function startCoreBashersAnimation() {
+            const canvas = document.getElementById('core-bashers-canvas');
+            if (!canvas) { console.error('Canvas not found'); return; }
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const W = canvas.width, H = canvas.height;
+            const cx = W / 2, cy = H / 2;
+
+            // All Core Bashers in order
+            const bashers = [
+                { name: 'MAXEL RUBERT', role: '[EX LO]', imgSrc: 'https://i.postimg.cc/rFbjygYt/1723720496043.jpg', color: '#ffd700' },
+                { name: 'GEO NITHIN', role: '[CB]', imgSrc: 'https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png', color: '#00a2ff' },
+                { name: 'MICHAEL NITHISH', role: '[IT ORGANISER]', imgSrc: 'https://i.postimg.cc/1zjZfN5h/10b27ec3-7058-4501-9a70-87efce812db3.jpg', color: '#ffaa00' },
+                { name: 'AADHITYA MAHESH', role: '[CB]', imgSrc: '', color: '#ff0088' },
+                { name: 'HARSHINI', role: '[EX CB]', imgSrc: '', color: '#00ff88' },
+                { name: 'ANCY', role: '[BASHER]', imgSrc: '', color: '#ff6b6b' },
+                { name: 'SOWMIYA', role: '[BASHER]', imgSrc: '', color: '#9b59b6' },
+                { name: 'SAMUEL MORISH', role: '[BASHER]', imgSrc: '', color: '#3498db' },
+                { name: 'PRAME SANJU', role: '[BASHER]', imgSrc: '', color: '#1abc9c' },
+                { name: 'AMRUTHA', role: '[BASHER]', imgSrc: '', color: '#e91e63' }
+            ];
+
+            // Preload all images
+            let imagesLoaded = 0;
+            bashers.forEach(b => {
+                b.img = new Image();
+                b.img.crossOrigin = 'anonymous';
+                b.img.onload = () => imagesLoaded++;
+                b.img.onerror = () => imagesLoaded++;
+                if (b.imgSrc) {
+                    b.img.src = b.imgSrc;
+                } else {
+                    imagesLoaded++;
+                }
+            });
+
+            const centerRadius = Math.min(W, H) * 0.15;
+            const PERSON_DURATION = 2500; // 2.5 seconds per person
+            const TOTAL_DURATION = bashers.length * PERSON_DURATION;
+
+            let startTime = null;
+            let animId = null;
+
+            function hexToRgba(hex, alpha) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                if (result) {
+                    return 'rgba(' + parseInt(result[1], 16) + ',' + parseInt(result[2], 16) + ',' + parseInt(result[3], 16) + ',' + alpha + ')';
+                }
+                return 'rgba(255,255,255,' + alpha + ')';
+            }
+
+            function animate(ts) {
+                if (!startTime) startTime = ts;
+                const elapsed = ts - startTime;
+                const t = elapsed / TOTAL_DURATION;
+
+                // Clear canvas
+                ctx.clearRect(0, 0, W, H);
+
+                // Background
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, W, H);
+
+                // Grid background
+                ctx.strokeStyle = 'rgba(0,255,136,0.05)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                for (let i = 0; i < W; i += 50) { ctx.moveTo(i, 0); ctx.lineTo(i, H); }
+                for (let i = 0; i < H; i += 50) { ctx.moveTo(0, i); ctx.lineTo(W, i); }
+                ctx.stroke();
+
+                // Rotating ring decoration
+                const rotation = elapsed * 0.001;
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(rotation);
+                ctx.beginPath();
+                ctx.arc(0, 0, centerRadius * 1.6, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(0,162,255,0.25)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([10, 20]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.restore();
+
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(-rotation * 0.5);
+                ctx.beginPath();
+                ctx.arc(0, 0, centerRadius * 1.9, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(0,255,136,0.15)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([5, 15]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.restore();
+
+                // Determine which person to show
+                const personIndex = Math.min(Math.floor(elapsed / PERSON_DURATION), bashers.length - 1);
+                const personElapsed = elapsed - (personIndex * PERSON_DURATION);
+
+                // Fade in/out timing
+                let alpha = 1;
+                if (personElapsed < 300) {
+                    alpha = personElapsed / 300;
+                } else if (personElapsed > PERSON_DURATION - 300) {
+                    alpha = (PERSON_DURATION - personElapsed) / 300;
+                }
+                alpha = Math.max(0, Math.min(1, alpha));
+
+                const person = bashers[personIndex];
+                const r = centerRadius;
+
+                // Glow effect
+                ctx.save();
+                ctx.globalAlpha = alpha * 0.6;
+                const glow = ctx.createRadialGradient(cx, cy, r * 0.5, cx, cy, r * 2.5);
+                glow.addColorStop(0, hexToRgba(person.color, 0.5));
+                glow.addColorStop(1, 'transparent');
+                ctx.beginPath();
+                ctx.arc(cx, cy, r * 2.5, 0, Math.PI * 2);
+                ctx.fillStyle = glow;
+                ctx.fill();
+                ctx.restore();
+
+                // Image drawing with perfectly round off-screen canvas
+                ctx.save();
+                ctx.globalAlpha = alpha;
+
+                if (person.img && person.img.complete && person.img.naturalWidth > 0) {
+                    // Crop image to square from center to avoid squashing
+                    const imgW = person.img.naturalWidth;
+                    const imgH = person.img.naturalHeight;
+                    const minDim = Math.min(imgW, imgH);
+                    const sx = (imgW - minDim) / 2;
+                    const sy = (imgH - minDim) / 2;
+
+                    // Create offscreen canvas for a flawless circular portrait
+                    const offCanvas = document.createElement('canvas');
+                    offCanvas.width = r * 2;
+                    offCanvas.height = r * 2;
+                    const offCtx = offCanvas.getContext('2d');
+
+                    // Draw circular mask on offscreen canvas
+                    offCtx.beginPath();
+                    offCtx.arc(r, r, r, 0, Math.PI * 2);
+                    offCtx.fillStyle = '#fff';
+                    offCtx.fill();
+
+                    // Draw image inside mask using source-in
+                    offCtx.globalCompositeOperation = 'source-in';
+                    offCtx.drawImage(person.img, sx, sy, minDim, minDim, 0, 0, r * 2, r * 2);
+
+                    // Draw the rounded result to the main canvas
+                    ctx.drawImage(offCanvas, cx - r, cy - r);
+
+                } else {
+                    // Fallback - perfectly round dark circle
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                    ctx.fillStyle = '#222';
+                    ctx.fill();
+
+                    ctx.font = 'bold ' + (r * 0.8) + 'px monospace';
+                    ctx.fillStyle = person.color;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(person.name.charAt(0), cx, cy);
+                }
+                ctx.restore();
+
+                // Ring border
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                ctx.strokeStyle = person.color;
+                ctx.lineWidth = 5;
+                ctx.shadowColor = person.color;
+                ctx.shadowBlur = 25;
+                ctx.stroke();
+                ctx.restore();
+
+                // Name text
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.font = 'bold 32px monospace';
+                ctx.fillStyle = person.color;
+                ctx.textAlign = 'center';
+                ctx.shadowColor = person.color;
+                ctx.shadowBlur = 20;
+                ctx.fillText(person.name, cx, cy + r + 55);
+                ctx.restore();
+
+                // Role text
+                ctx.save();
+                ctx.globalAlpha = alpha * 0.8;
+                ctx.font = '18px monospace';
+                ctx.fillStyle = '#fff';
+                ctx.textAlign = 'center';
+                ctx.fillText(person.role, cx, cy + r + 85);
+                ctx.restore();
+
+                // Progress dots
+                ctx.save();
+                ctx.globalAlpha = 0.8;
+                const dotSpacing = 25;
+                const dotsStartX = cx - ((bashers.length - 1) * dotSpacing) / 2;
+                for (let i = 0; i < bashers.length; i++) {
+                    ctx.beginPath();
+                    ctx.arc(dotsStartX + i * dotSpacing, cy + r + 130, i === personIndex ? 7 : 4, 0, Math.PI * 2);
+                    ctx.fillStyle = i === personIndex ? bashers[i].color : 'rgba(255,255,255,0.3)';
+                    ctx.fill();
+                }
+                ctx.restore();
+
+                // Check if done
+                if (elapsed >= TOTAL_DURATION) {
+                    cancelAnimationFrame(animId);
+                    setTimeout(function () {
+                        if (window.goToProfileFromBashers) {
+                            window.goToProfileFromBashers();
+                        }
+                    }, 500);
+                    return;
+                }
+
+                animId = requestAnimationFrame(animate);
+            }
+
+            // Start animation
+            animId = requestAnimationFrame(animate);
+        }
+
+
+        window.goToClanProfileFromBashers = function () {
+            const coreBashers = document.getElementById('core-bashers-screen');
             const clanProfile = document.getElementById('clan-profile-screen');
-            const adhithyaProfile = document.getElementById('adhithya-profile-screen');
+            if (coreBashers.style.opacity === '0') return;
+            coreBashers.style.opacity = '0';
+            setTimeout(() => {
+                coreBashers.style.display = 'none';
+                clanProfile.style.display = 'flex';
+                setTimeout(() => {
+                    clanProfile.style.opacity = '1';
+                    scrambleText(document.getElementById('clan-header'), "Belmonts CB // Clan Command");
+                    scrambleText(document.getElementById('clan-name'), "GEO NITHIN");
+                }, 50);
+            }, 1000);
+        };
+
+        let currentUtterance = null; // Track speech
+
+        window.goToExperience = function () {
+            if (sound && sound.isPlaying) sound.pause();
+            const profile = document.getElementById('profile-screen');
+            const experience = document.getElementById('experience-screen');
+            if (profile.style.opacity === '0') return;
+            profile.style.opacity = '0';
+            setTimeout(() => {
+                profile.style.display = 'none';
+                experience.style.display = 'flex';
+                setTimeout(() => {
+                    experience.style.opacity = '1';
+                    scrambleText(document.getElementById('experience-header'), "Experience Log // The Journey");
+
+                    // --- Text To Speech Engine ---
+                    window.speechSynthesis.cancel(); // Stop anything playing
+
+                    const story = "Hi I am Vignesh from computer science and engineering department Forty-five days ago, I stepped into the unknown as a complete rookie. but today, I stand rebuilt by the discipline and brotherhood of the Bashers. My journey was set in motion by Maxwell Rubert, who first spoke the name of this tribe into my life and gave me a map to my own potential. Upon arriving at Belmonts, the very first person I met was Harshini, whose presence immediately set the standard for the dedication I would soon adopt as my own. As I began carving out my path in the DevOps domain, Sowmiya Sister became a vital guide, sharing her expertise in our shared field and helping me navigate the complexities of the tech world. Alongside her, Michael Nithish Bro poured his energy into my growth, helping me more and more until my rookie doubts were replaced by professional confidence. This trek has been about finding a true family in Geo Nithin Bro and Aditya Mahesh sister. They are not just my seniors; they are my brother and sister who have guided me with unbreakable strength and grace. I am no longer the person who started in mid-January. I have been dismantled and reconstructed by the wisdom of my mentors. To my brothers and sisters who saw the warrior in a rookie. thank you for pushing me toward the summit. My journey has only just begun. and I am ready to conquer everything that lies ahead. so next we move to about belmont bashers";
+
+                    function playStory() {
+                        window.speechSynthesis.cancel();
+                        currentUtterance = new SpeechSynthesisUtterance(story);
+                        currentUtterance.rate = 0.85; // Slow and deliberate
+                        currentUtterance.pitch = 0.6; // Deep, resonant
+                        currentUtterance.volume = 1.0;
+
+                        let voices = window.speechSynthesis.getVoices();
+                        if (voices.length === 0) {
+                            // Chrome sometimes needs a moment to load voices
+                            window.speechSynthesis.onvoiceschanged = () => {
+                                voices = window.speechSynthesis.getVoices();
+                                setVoiceAndPlay(voices);
+                            };
+                        } else {
+                            setVoiceAndPlay(voices);
+                        }
+                    }
+
+                    function setVoiceAndPlay(voices) {
+                        const preferredVoice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) ||
+                            voices.find(v => v.lang.includes('en-GB') && v.name.includes('Male')) ||
+                            voices.find(v => v.name.includes('Google UK English Male')) ||
+                            voices[0];
+                        if (preferredVoice) {
+                            currentUtterance.voice = preferredVoice;
+                        }
+                        window.speechSynthesis.speak(currentUtterance);
+                    }
+
+                    // Expose play button in case of Autoplay blocking
+                    window.replayStory = playStory;
+
+                    // Attempt to autoplay
+                    playStory();
+
+                }, 50);
+            }, 1000);
+        };
+
+        window.goToBashersIntro = function () {
+            // Stop speech if it's still playing
+            window.speechSynthesis.cancel();
+
+            const experience = document.getElementById('experience-screen');
+            const bashersIntro = document.getElementById('bashers-intro-screen');
+            const bashersText = document.getElementById('bashers-text-container');
+
+            if (experience.style.opacity === '0') return;
+            experience.style.opacity = '0';
+
+            setTimeout(() => {
+                experience.style.display = 'none';
+                bashersIntro.style.display = 'flex';
+
+                // Reset text animation so it plays fresh
+                bashersText.style.animation = 'none';
+                bashersText.offsetHeight; /* trigger reflow */
+                bashersText.style.animation = 'bashersReveal 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards';
+
+                setTimeout(() => {
+                    bashersIntro.style.opacity = '1';
+
+                    // Automatically forward to the clan profiles after 4 seconds of animation
+                    setTimeout(() => {
+                        window.goToClanProfile();
+                    }, 4000);
+
+                }, 50);
+            }, 1000);
+        };
+
+        window.goToClanProfile = function () {
+            const bashersIntro = document.getElementById('bashers-intro-screen');
+            const clanProfile = document.getElementById('clan-profile-screen');
+
+            if (bashersIntro.style.opacity === '0') return;
+            bashersIntro.style.opacity = '0';
+            setTimeout(() => {
+                bashersIntro.style.display = 'none';
+                clanProfile.style.display = 'flex';
+                setTimeout(() => {
+                    clanProfile.style.opacity = '1';
+                    scrambleText(document.getElementById('clan-header'), "Belmonts CB // Clan Command");
+                    scrambleText(document.getElementById('clan-name'), "GEO NITHIN");
+
+                    // --- Clan Leader Voice Engine ---
+                    const clanBio = "Geo Nithin bro stands as the cornerstone of the Belmonts clan, bringing unparalleled technical depth and leadership. As a key CB within our alliance, he has dedicated himself to the pursuit of open-source excellence and architectural perfection. Every line of logic he oversees is treated with the precision of a master craftsman. He is not merely a senior member but a vital pillar of support for every rookie who enters our arena. His ability to handle deep-logic challenges makes him an indispensable asset during high-stakes missions. Whether it is a midnight debugging session or a complex system migration, his presence ensures mission success. He maintains an unbreakable connection with the clan's core values, fostering an environment of transparent communication. Geo Nithin's expertise in computer science engineering manifests in every project we initiate. He effectively bridges the gap between abstract concepts and functional, scalable infrastructure. His commitment to the brotherhood of Bashers is evident in the countless hours he spends mentoring others. He handles every technical hurdle with a calm, analytical mindset that inspires confidence in his teammates. Through his leadership, the Belmonts have reached new summits of technological achievement. We recognize him as a guardian of our digital fortress and a visionary for our future expansions. His journey is a testament to the strength found in discipline, wisdom, and unyielding clan loyalty. This log serves as a record of his permanent and honored status within the Belmonts leadership hierarchy.";
+
+                    function playClanSpeech() {
+                        window.speechSynthesis.cancel();
+                        const utterance = new SpeechSynthesisUtterance(clanBio);
+                        utterance.rate = 0.9;
+                        utterance.pitch = 0.8;
+                        const voices = window.speechSynthesis.getVoices();
+                        utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) ||
+                            voices.find(v => v.name.includes('Google UK English Male')) || voices[0];
+                        window.speechSynthesis.speak(utterance);
+                    }
+                    window.replayClanSpeech = playClanSpeech;
+                    playClanSpeech();
+                }, 50);
+            }, 1000);
+        };
+
+        window.goToAditya = function () {
+            const clanProfile = document.getElementById('clan-profile-screen');
+            const adityaProfile = document.getElementById('aditya-profile-screen');
             if (clanProfile.style.opacity === '0') return;
             clanProfile.style.opacity = '0';
             setTimeout(() => {
                 clanProfile.style.display = 'none';
-                adhithyaProfile.style.display = 'flex';
-                setTimeout(() => adhithyaProfile.style.opacity = '1', 50);
+                adityaProfile.style.display = 'flex';
+                setTimeout(() => {
+                    adityaProfile.style.opacity = '1';
+                    scrambleText(document.getElementById('aditya-header'), "Belmonts CB // Squad Command");
+                    scrambleText(document.getElementById('aditya-name'), "ADITYA MAHESH");
+                }, 50);
             }, 1000);
         };
 
         window.goToSando = function () {
-            const adhithyaProfile = document.getElementById('adhithya-profile-screen');
+            const adityaProfile = document.getElementById('aditya-profile-screen');
             const sandoProfile = document.getElementById('sando-profile-screen');
-            if (adhithyaProfile.style.opacity === '0') return;
-            adhithyaProfile.style.opacity = '0';
+            if (adityaProfile.style.opacity === '0') return;
+            adityaProfile.style.opacity = '0';
             setTimeout(() => {
-                adhithyaProfile.style.display = 'none';
+                adityaProfile.style.display = 'none';
                 sandoProfile.style.display = 'flex';
-                setTimeout(() => sandoProfile.style.opacity = '1', 50);
+                setTimeout(() => {
+                    sandoProfile.style.opacity = '1';
+                    scrambleText(document.getElementById('sando-header'), "Lumina Clan // Event Command");
+                    scrambleText(document.getElementById('sando-name'), "SANDO FALI");
+                }, 50);
             }, 1000);
         };
 
         window.goToRoadmap = function () {
+            if (sound && sound.isPlaying) sound.pause();
+
             const sandoProfile = document.getElementById('sando-profile-screen');
-            const adhithyaProfile = document.getElementById('adhithya-profile-screen');
+            const adityaProfile = document.getElementById('aditya-profile-screen');
             const clanProfile = document.getElementById('clan-profile-screen');
             const profile = document.getElementById('profile-screen');
             const roadmap = document.getElementById('roadmap-screen');
@@ -908,7 +2498,7 @@
             // Handle transition from whichever profile is currently visible
             let activeProfile;
             if (sandoProfile.style.display === 'flex') activeProfile = sandoProfile;
-            else if (adhithyaProfile.style.display === 'flex') activeProfile = adhithyaProfile;
+            else if (adityaProfile.style.display === 'flex') activeProfile = adityaProfile;
             else if (clanProfile.style.display === 'flex') activeProfile = clanProfile;
             else activeProfile = profile;
 
@@ -947,10 +2537,45 @@
             function checkReady() {
                 loadedCount++;
                 if (loadedCount === 2) {
-                    startBtn.innerText = "Initiate Connection";
+                    startBtn.innerText = "Start Journey";
                     startBtn.style.borderColor = "#00ff88";
                     startBtn.style.color = "#00ff88";
                 }
+            }
+
+            // Create fallback synthetic audio buffer
+            function createSyntheticAudioBuffer(ctx, duration = 10, frequency = 220) {
+                const sampleRate = ctx.sampleRate;
+                const length = sampleRate * duration;
+                const buffer = ctx.createBuffer(2, length, sampleRate);
+                for (let channel = 0; channel < 2; channel++) {
+                    const data = buffer.getChannelData(channel);
+                    for (let i = 0; i < length; i++) {
+                        // Create ambient drone with harmonics
+                        const t = i / sampleRate;
+                        data[i] = Math.sin(2 * Math.PI * frequency * t) * 0.1
+                            + Math.sin(2 * Math.PI * frequency * 1.5 * t) * 0.05
+                            + Math.sin(2 * Math.PI * frequency * 2 * t) * 0.03;
+                        // Add slow volume envelope
+                        data[i] *= 0.5 + 0.5 * Math.sin(2 * Math.PI * t / duration);
+                    }
+                }
+                return buffer;
+            }
+
+            function createImpactBuffer(ctx) {
+                const sampleRate = ctx.sampleRate;
+                const length = sampleRate * 0.5;
+                const buffer = ctx.createBuffer(2, length, sampleRate);
+                for (let channel = 0; channel < 2; channel++) {
+                    const data = buffer.getChannelData(channel);
+                    for (let i = 0; i < length; i++) {
+                        const t = i / sampleRate;
+                        // Impact sound with decay
+                        data[i] = (Math.random() * 2 - 1) * Math.exp(-t * 10) * 0.5;
+                    }
+                }
+                return buffer;
             }
 
             audioLoader.load(CONFIG.audioUrl, (buffer) => {
@@ -958,10 +2583,23 @@
                 sound.setLoop(true);
                 sound.setVolume(0.5);
                 checkReady();
+            }, undefined, (err) => {
+                console.warn('Audio load failed, using synthetic fallback:', err);
+                const syntheticBuffer = createSyntheticAudioBuffer(listener.context);
+                sound.setBuffer(syntheticBuffer);
+                sound.setLoop(true);
+                sound.setVolume(0.3);
+                checkReady();
             });
             audioLoader.load(CONFIG.zoomSfxUrl, (buffer) => {
                 zoomSfx.setBuffer(buffer);
                 zoomSfx.setVolume(1.0);
+                checkReady();
+            }, undefined, (err) => {
+                console.warn('SFX load failed, using synthetic fallback:', err);
+                const impactBuffer = createImpactBuffer(listener.context);
+                zoomSfx.setBuffer(impactBuffer);
+                zoomSfx.setVolume(0.8);
                 checkReady();
             });
 
@@ -992,11 +2630,15 @@
                 composer.setSize(window.innerWidth, window.innerHeight);
             });
 
-            startBtn.addEventListener('click', () => {
-                if (listener.context.state === 'suspended') listener.context.resume();
+            startBtn.addEventListener('click', async () => {
+                if (listener.context.state === 'suspended') {
+                    await listener.context.resume();
+                }
                 playSyntheticBeep(listener.context);
                 document.getElementById('start-overlay').style.opacity = '0';
-                if (sound && sound.buffer) sound.play();
+                if (sound && sound.buffer && !sound.isPlaying) {
+                    sound.play();
+                }
 
                 setTimeout(() => {
                     document.getElementById('start-overlay').style.display = 'none';
@@ -1008,7 +2650,7 @@
                     }
                     cameraState.zoomingIntro = true;
 
-                    // --- AUTOMATIC CINEMATIC PROGRESSION (Fallbacks) ---
+                    // --- AUTOMATIC CINEMATIC PROGRESSION ---
                     setTimeout(() => {
                         document.getElementById('canvas-container').classList.add('fade-out');
                         document.querySelector('.ui-overlay').classList.add('fade-out');
@@ -1017,20 +2659,8 @@
                             journey.style.display = 'flex';
                             setTimeout(() => journey.style.opacity = '1', 50);
 
-                            // AUTO-NEXT TO PROFILE (8s)
-                            setTimeout(() => { if (window.goToProfile) window.goToProfile(); }, 8000);
+                            // User clicks NEXT buttons to progress through pages
 
-                            // AUTO-NEXT TO CLAN PROFILE (16s)
-                            setTimeout(() => { if (window.goToClanProfile) window.goToClanProfile(); }, 16000);
-
-                            // AUTO-NEXT TO ADHITHYA PROFILE (24s)
-                            setTimeout(() => { if (window.goToAdhithya) window.goToAdhithya(); }, 24000);
-
-                            // AUTO-NEXT TO SANDO PROFILE (32s)
-                            setTimeout(() => { if (window.goToSando) window.goToSando(); }, 32000);
-
-                            // AUTO-NEXT TO ROADMAP DISABLED (User requested manual only for these personal command pages)
-                            // setTimeout(() => { if (window.goToRoadmap) window.goToRoadmap(); }, 40000);
                         }, 2000);
                     }, 10000); // Intro duration (10s)
                 }, 800);
@@ -1074,7 +2704,6 @@
             ledRingBack.position.z = -0.15;
             crest.add(ledRingBack);
         }
-
         function createDataStreams() {
             particles = new THREE.Group();
             for (let i = 0; i < 60; i++) {
@@ -1089,7 +2718,6 @@
             }
             scene.add(particles);
         }
-
         function createBackgroundAssets() {
             const serverGroup = new THREE.Group();
             for (let i = 0; i < 20; i++) {
@@ -1102,7 +2730,6 @@
             }
             scene.add(serverGroup);
         }
-
         function animate() {
             requestAnimationFrame(animate);
             const elapsed = clock.getElapsedTime();
