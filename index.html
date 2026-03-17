@@ -2309,8 +2309,6 @@
             // Start animation
             animId = requestAnimationFrame(animate);
         }
-
-
         window.goToClanProfileFromBashers = function () {
             const coreBashers = document.getElementById('core-bashers-screen');
             const clanProfile = document.getElementById('clan-profile-screen');
@@ -2365,7 +2363,6 @@
                             setVoiceAndPlay(voices);
                         }
                     }
-
                     function setVoiceAndPlay(voices) {
                         const preferredVoice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) ||
                             voices.find(v => v.lang.includes('en-GB') && v.name.includes('Male')) ||
@@ -2483,7 +2480,7 @@
                 }, 50);
             }, 1000);
         };
-        
+
         window.goToSando = function () {
             const adityaProfile = document.getElementById('aditya-profile-screen');
             const sandoProfile = document.getElementById('sando-profile-screen');
