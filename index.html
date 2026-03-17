@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1127,6 +1128,240 @@
         .v-roadmap-node.right-side::after {
             left: -25px;
         }
+
+        /* ===== CI/CD PIPELINE SCREEN ===== */
+        #cicd-pipeline-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at top, #050d1a 0%, #000 100%);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            overflow: hidden;
+        }
+
+        .cicd-header {
+            font-family: 'Inter', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #00a2ff;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0,162,255,0.7);
+            margin-bottom: 8px;
+        }
+
+        .cicd-subheader {
+            font-family: 'Inter', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: rgba(0,162,255,0.5);
+            margin-bottom: 40px;
+        }
+
+        .pipeline-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            width: 100%;
+            max-width: 780px;
+            padding: 0 20px;
+        }
+
+        .pipeline-phases {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: center;
+            gap: 0;
+            width: 100%;
+        }
+
+        .pipeline-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .pipeline-stage.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stage-box {
+            background: rgba(0, 162, 255, 0.05);
+            border: 1px solid rgba(0, 162, 255, 0.25);
+            border-radius: 12px;
+            padding: 18px 14px;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .stage-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, #00a2ff, transparent);
+        }
+
+        .pipeline-stage.active .stage-box {
+            border-color: rgba(0, 255, 136, 0.6);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.2), inset 0 0 20px rgba(0, 255, 136, 0.05);
+        }
+
+        .pipeline-stage.active .stage-box::before {
+            animation: scanBar 1.5s linear infinite;
+        }
+
+        @keyframes scanBar {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .stage-icon {
+            font-size: 26px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .stage-label {
+            font-family: 'Inter', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #00a2ff;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .stage-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .stage-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+        }
+
+        .stage-status {
+            margin-top: 8px;
+            font-family: monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .status-done   { background: rgba(0,255,136,0.15); color: #00ff88; border: 1px solid rgba(0,255,136,0.4); }
+        .status-active { background: rgba(255,170,0,0.15); color: #ffaa00;  border: 1px solid rgba(255,170,0,0.4); animation: blink 1s infinite; }
+        .status-queue  { background: rgba(0,162,255,0.1);  color: #00a2ff; border: 1px solid rgba(0,162,255,0.3); }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .pipeline-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6px;
+            flex-shrink: 0;
+        }
+
+        .connector-line {
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(0,162,255,0.3), rgba(0,255,136,0.5));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .connector-line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            animation: flowRight 2s linear infinite;
+        }
+
+        @keyframes flowRight {
+            0% { left: -60%; }
+            100% { left: 100%; }
+        }
+
+        .pipeline-roadmap {
+            margin-top: 30px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(0,162,255,0.2);
+            border-radius: 10px;
+            padding: 16px 24px;
+            width: 100%;
+            backdrop-filter: blur(8px);
+        }
+
+        .roadmap-label {
+            font-family: monospace;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #ffaa00;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(255,170,0,0.2);
+            padding-bottom: 6px;
+        }
+
+        .roadmap-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .roadmap-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .dot-done    { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
+        .dot-current { background: #ffaa00; box-shadow: 0 0 8px #ffaa00; animation: blink 1s infinite; }
+        .dot-future  { background: transparent; border: 1px solid rgba(255,255,255,0.2); }
+
+        .roadmap-row-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(255,255,255,0.75);
+        }
+        .roadmap-row-text b { color: #fff; }
+        .roadmap-row-text.dim { color: rgba(255,255,255,0.3); }
+
+        .cicd-footer-btns {
+            margin-top: 28px;
+            display: flex;
+            gap: 15px;
+        }
     </style>
 </head>
 
@@ -1211,8 +1446,7 @@
                 </div>
 
                 <div class="journey-links" style="margin-top: 15px;">
-                    <button class="next-btn cinematic-btn" onclick="goToExperience()" style="margin-top: 0;">Experience
-                        Log // NEXT</button>
+                    <button class="next-btn cinematic-btn" onclick="goToCICD()" style="margin-top: 0;">Initialize Pipeline // NEXT</button>
                     <!-- <a href="mailto:vigneshvelappan73051@gmail.com" class="btn-link" style="font-size: 10px; padding: 5px 15px; margin-top: 5px;">vigneshvelappan73051@gmail.com</a> -->
                 </div>
             </div>
@@ -1241,6 +1475,113 @@
                         <b>STAGE 5</b><span>CI/CD Flow</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CI/CD PIPELINE SCREEN -->
+    <div id="cicd-pipeline-screen">
+        <div class="cicd-header">// CI/CD PIPELINE // AUTOMATED DEPLOYMENT</div>
+        <div class="cicd-subheader">DEVOPS COMMAND CENTER &gt;&gt; PIPELINE ACTIVE</div>
+
+        <div class="pipeline-wrapper">
+            <!-- Horizontal Stage Row -->
+            <div class="pipeline-phases">
+
+                <!-- Stage 1: Source -->
+                <div class="pipeline-stage" id="ps-1">
+                    <div class="stage-box">
+                        <div class="stage-icon" style="color:#9664ff;">⬡</div>
+                        <div class="stage-label">STAGE 01</div>
+                        <div class="stage-title">Source</div>
+                        <div class="stage-desc">git push<br>origin main</div>
+                        <div class="stage-status status-done">✔ COMMITTED</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-connector"><div class="connector-line"></div></div>
+
+                <!-- Stage 2: Build -->
+                <div class="pipeline-stage" id="ps-2">
+                    <div class="stage-box">
+                        <div class="stage-icon" style="color:#00a2ff;">⬡</div>
+                        <div class="stage-label">STAGE 02</div>
+                        <div class="stage-title">Build</div>
+                        <div class="stage-desc">Jenkins<br>docker build</div>
+                        <div class="stage-status status-done">✔ PASSED</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-connector"><div class="connector-line"></div></div>
+
+                <!-- Stage 3: Test -->
+                <div class="pipeline-stage" id="ps-3">
+                    <div class="stage-box">
+                        <div class="stage-icon" style="color:#ffaa00;">⬡</div>
+                        <div class="stage-label">STAGE 03</div>
+                        <div class="stage-title">Test</div>
+                        <div class="stage-desc">Unit &amp; Scan<br>SonarQube</div>
+                        <div class="stage-status status-active">▶ RUNNING</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-connector"><div class="connector-line"></div></div>
+
+                <!-- Stage 4: Deploy -->
+                <div class="pipeline-stage" id="ps-4">
+                    <div class="stage-box">
+                        <div class="stage-icon" style="color:#00ff88;">⬡</div>
+                        <div class="stage-label">STAGE 04</div>
+                        <div class="stage-title">Deploy</div>
+                        <div class="stage-desc">Docker Push<br>to Registry</div>
+                        <div class="stage-status status-queue">◷ QUEUED</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-connector"><div class="connector-line"></div></div>
+
+                <!-- Stage 5: Monitor -->
+                <div class="pipeline-stage" id="ps-5">
+                    <div class="stage-box">
+                        <div class="stage-icon" style="color:#ff0088;">⬡</div>
+                        <div class="stage-label">STAGE 05</div>
+                        <div class="stage-title">Monitor</div>
+                        <div class="stage-desc">Grafana<br>Live Metrics</div>
+                        <div class="stage-status status-queue">◷ PENDING</div>
+                    </div>
+                </div>
+
+            </div><!-- /pipeline-phases -->
+
+            <!-- Roadmap End Panel -->
+            <div class="pipeline-roadmap" id="ps-roadmap" style="opacity:0;transition:opacity 0.8s ease;">
+                <div class="roadmap-label">PIPELINE ROADMAP // HOW TO START &rarr; CONTINUE &rarr; END</div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div class="roadmap-row">
+                        <div class="roadmap-dot dot-done"></div>
+                        <div class="roadmap-row-text"><b>START:</b> Developer pushes code &rarr; GitHub webhook fires &rarr; Jenkins picks up job</div>
+                    </div>
+                    <div class="roadmap-row">
+                        <div class="roadmap-dot dot-done"></div>
+                        <div class="roadmap-row-text"><b>BUILD:</b> Jenkins pulls repo &rarr; Docker image is compiled &rarr; Artifacts stored</div>
+                    </div>
+                    <div class="roadmap-row">
+                        <div class="roadmap-dot dot-current"></div>
+                        <div class="roadmap-row-text"><b>TEST &amp; SCAN:</b> Unit tests run &rarr; SonarQube static analysis &rarr; Quality gate checked</div>
+                    </div>
+                    <div class="roadmap-row">
+                        <div class="roadmap-dot dot-future"></div>
+                        <div class="roadmap-row-text dim"><b>DEPLOY:</b> Image pushed to registry &rarr; Server pulls &rarr; Nginx reverse proxy live</div>
+                    </div>
+                    <div class="roadmap-row">
+                        <div class="roadmap-dot dot-future"></div>
+                        <div class="roadmap-row-text dim"><b>END / MONITOR:</b> Grafana dashboards &rarr; Health checks &rarr; Feedback loop to Stage 01</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cicd-footer-btns">
+                <button class="next-btn cinematic-btn" onclick="goToExperienceFromCICD()" style="margin-top:0;">Experience Log // NEXT</button>
             </div>
         </div>
     </div>
@@ -1361,19 +1702,19 @@
                     CLAN COMMANDER DATA LOG:</div>
                 <div id="clan-narrative-box"
                     style="font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.9); font-family: 'Inter', sans-serif; height: 350px; overflow-y: auto; padding-right: 15px; text-align: justify;">
-                Geo Nithin bro from the Belmonts clan combines deep technical mastery with strong leadership, standing as a key CB who drives open-source 
-                excellence and upholds the highest standards of architecture. 
-                He treats every line of logic with the precision of a master craftsman, proving himself to 
-                be more than just a senior member—he is a dependable pillar who guides and supports every newcomer.
-                His ability to solve complex,high-stakes challenges makes him indispensable to the clan, and whether it’s late-night debugging or large-scale system migrations, 
-                his presence guarantees success. Deeply connected to the clan’s core values, he fosters transparency and unity while bridging the gap between abstract theory and 
-                scalable, real-world systems. Through mentorship and calm, analytical problem-solving, he inspires confidence and growth across the team.
-                 Geo Nithin ultimately stands as a guardian, visionary, and enduring symbol of strength, loyalty, and excellence within the Belmonts.
-
+                    Geo Nithin bro from the Belmonts clan blends deep technical mastery with strong leadership, serving
+                    as a key CB who drives open-source excellence and high architectural standards.
+                    He approaches every challenge with precision and a calm, analytical mindset, making him a dependable
+                    pillar for both complex missions and newcomer support.
+                    Whether handling debugging sessions or system migrations, his presence ensures success while
+                    fostering transparency and unity within the clan. Through his
+                    mentorship and ability to turn ideas into scalable systems, he continues to inspire growth and
+                    stands as a true symbol of strength,
+                    loyalty, and excellence within the Belmonts.
                 </div>
                 <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: flex-end;">
                     <button class="next-btn cinematic-btn" onclick="window.replayClanSpeech()"
-                        style="margin-top: 0; border-color: #00ff88; color: #00ff88; font-size: 12px;">▶ Play
+                        style="margin-top: 0; border-color: #00ff88; color: #00ffdd; font-size: 12px;">▶ Play
                         Log</button>
                     <button class="next-btn cinematic-btn" onclick="goToAditya()"
                         style="margin-top: 0; font-size: 12px;">Squad Command // NEXT</button>
@@ -1384,25 +1725,29 @@
 
     <div id="aditya-profile-screen"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
-        <div class="profile-card split-layout" style="max-width: 950px; display: flex; flex-direction: row; gap: 40px; padding: 40px; align-items: stretch;">
+        <div class="profile-card split-layout"
+            style="max-width: 950px; display: flex; flex-direction: row; gap: 40px; padding: 40px; align-items: stretch;">
             <div class="noise-overlay"></div>
-            
+
             <!-- Left Side: Identity -->
             <div class="profile-left"
                 style="flex: 1; border-right: 1px solid rgba(255, 0, 136, 0.2); padding-right: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <div class="profile-header cinematic-header" id="aditya-header" data-text="Belmonts CB // Squad Command"
                     style="width: 100%; text-align: center;">
                     Belmonts CB // Squad Command</div>
-                <div style="position: relative; display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                <div
+                    style="position: relative; display: flex; justify-content: center; align-items: center; margin-top: 20px;">
                     <div class="hologram-rings">
                         <div class="hologram-ring"></div>
                         <div class="hologram-ring" style="border-color: rgba(255, 0, 136, 0.3);"></div>
                         <div class="hologram-ring" style="border-color: rgba(255, 170, 0, 0.3);"></div>
                     </div>
-                    <img src="https://i.postimg.cc/8P6S95Hz/aditya-mahesh.jpg" class="profile-img cinematic-img" alt="Aditya Mahesh" style="border-color: #ff0088; box-shadow: 0 0 20px rgba(255, 0, 136, 0.5);">
+                    <img src="https://i.postimg.cc/8P6S95Hz/aditya-mahesh.jpg" class="profile-img cinematic-img"
+                        alt="Aditya Mahesh" style="border-color: #ff0088; box-shadow: 0 0 20px rgba(255, 0, 136, 0.5);">
                 </div>
                 <div class="journey-bio cinematic-bio" style="text-align: center; margin-top: 20px;">
-                    <b class="glitch-chrome" id="aditya-name" data-text="ADITYA MAHESH" style="color: #ff0088; text-shadow: 0 0 10px rgba(255, 0, 136, 0.5);">ADITYA MAHESH</b><br>
+                    <b class="glitch-chrome" id="aditya-name" data-text="ADITYA MAHESH"
+                        style="color: #ff0088; text-shadow: 0 0 10px rgba(255, 0, 136, 0.5);">ADITYA MAHESH</b><br>
                     <span style="font-size: 14px; opacity: 0.8;">CB OF BELMONTS</span>
                 </div>
                 <div class="cinematic-badges"
@@ -1427,7 +1772,20 @@
                     SQUAD COMMANDER DATA LOG:</div>
                 <div id="aditya-narrative-box"
                     style="font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.9); font-family: 'Inter', sans-serif; height: 350px; overflow-y: auto; padding-right: 15px; text-align: justify;">
-                    Aditya Mahesh stands as a cornerstone of the Belmonts clan, serving as a dedicated CB and an expert Game Developer. Known for her immense hard work and unwavering commitment, she is the primary point of contact for clarifying complex technical doubts within our arena. Every challenge she encounters is met with the precision and expertise of a master developer. Beyond her technical brilliance, she serves as a vital motivational force, inspiring every member to push beyond their limits. She is cherished as a core sister-pillar within the clan, providing guidance, strength, and grace to all Bashers. Her ability to handle high-stakes situations makes her an indispensable asset to our command center. Whether it is a deep-logic hurdle or a strategic mission, her presence ensures clarity and success. She fosters an environment of discipline and mutual support, embodying the true spirit of the Belmonts. Her journey is a testament to the power of dedication and technical excellence in the gaming domain. We recognize her as a guardian of our digital fortress and a visionary leader for our future squads. This log serves as a permanent record of her honored status and leadership within the Belmonts hierarchy. She remains not just a commander, but a sister to us all, guiding the clan with unbreakable loyalty.
+                    Aditya Mahesh stands as a cornerstone of the Belmonts clan, serving as a dedicated CB and an expert
+                    Game Developer. Known for her immense hard work and unwavering commitment, she is the primary point
+                    of contact for clarifying complex technical doubts within our arena. Every challenge she encounters
+                    is met with the precision and expertise of a master developer. Beyond her technical brilliance, she
+                    serves as a vital motivational force, inspiring every member to push beyond their limits. She is
+                    cherished as a core sister-pillar within the clan, providing guidance, strength, and grace to all
+                    Bashers. Her ability to handle high-stakes situations makes her an indispensable asset to our
+                    command center. Whether it is a deep-logic hurdle or a strategic mission, her presence ensures
+                    clarity and success. She fosters an environment of discipline and mutual support, embodying the true
+                    spirit of the Belmonts. Her journey is a testament to the power of dedication and technical
+                    excellence in the gaming domain. We recognize her as a guardian of our digital fortress and a
+                    visionary leader for our future squads. This log serves as a permanent record of her honored status
+                    and leadership within the Belmonts hierarchy. She remains not just a commander, but a sister to us
+                    all, guiding the clan with unbreakable loyalty.
                 </div>
                 <div style="margin-top: 25px; display: flex; gap: 15px; justify-content: flex-end;">
                     <button class="next-btn cinematic-btn" onclick="window.replayAdityaSpeech()"
@@ -2769,5 +3127,64 @@
         init();
         animate();
     </script>
+
+    <script>
+        // ========== CI/CD Pipeline Navigation ==========
+        window.goToCICD = function () {
+            const profile = document.getElementById('profile-screen');
+            const cicd    = document.getElementById('cicd-pipeline-screen');
+            if (profile.style.opacity === '0') return;
+            profile.style.opacity = '0';
+            setTimeout(function () {
+                profile.style.display = 'none';
+                cicd.style.display = 'flex';
+                setTimeout(function () {
+                    cicd.style.opacity = '1';
+                    startCICDAnimation();
+                }, 80);
+            }, 1000);
+        };
+
+        window.goToExperienceFromCICD = function () {
+            const cicd       = document.getElementById('cicd-pipeline-screen');
+            const experience = document.getElementById('experience-screen');
+            if (cicd.style.opacity === '0') return;
+            cicd.style.opacity = '0';
+            setTimeout(function () {
+                cicd.style.display = 'none';
+                experience.style.display = 'flex';
+                setTimeout(function () { experience.style.opacity = '1'; }, 80);
+            }, 1000);
+        };
+
+        function startCICDAnimation() {
+            const stages   = [1, 2, 3, 4, 5];
+            const roadmap  = document.getElementById('ps-roadmap');
+            // Reset
+            stages.forEach(function(i) {
+                var el = document.getElementById('ps-' + i);
+                if (el) { el.classList.remove('visible', 'active'); }
+            });
+            if (roadmap) roadmap.style.opacity = '0';
+
+            // Reveal stages one by one
+            stages.forEach(function(i, idx) {
+                setTimeout(function() {
+                    var el = document.getElementById('ps-' + i);
+                    if (el) {
+                        el.classList.add('visible');
+                        // Mark stage 3 (current) as active
+                        if (i === 3) el.classList.add('active');
+                    }
+                }, idx * 300 + 400);
+            });
+
+            // Reveal roadmap after all stages appear
+            setTimeout(function() {
+                if (roadmap) roadmap.style.opacity = '1';
+            }, stages.length * 300 + 700);
+        }
+    </script>
 </body>
+
 </html>
