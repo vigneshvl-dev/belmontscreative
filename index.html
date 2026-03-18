@@ -1531,6 +1531,58 @@
         @keyframes pulseRed { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
         @keyframes rotatingGlow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
         @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+
+        /* --- Weekly Bash Gallery --- */
+        #weekly-bash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #050a0f 0%, #000 100%);
+            display: none; justify-content: center; align-items: center;
+            z-index: 220; opacity: 0; transition: opacity 1s ease;
+            overflow-y: auto; padding: 20px;
+        }
+        .bash-container {
+            width: 95%; max-width: 1300px;
+            display: flex; flex-wrap: wrap; gap: 40px;
+            margin: auto; align-items: center;
+        }
+        .bash-gallery {
+            flex: 1.2; min-width: 300px; display: grid; 
+            grid-template-columns: 1fr 1fr; gap: 15px;
+        }
+        .bash-gallery img {
+            width: 100%; border-radius: 12px; border: 1px solid rgba(0, 162, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: cover;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            height: 250px;
+        }
+        .bash-gallery img:first-child {
+            grid-column: span 2; height: 350px;
+        }
+        .bash-gallery img:hover { 
+            transform: scale(1.02); border-color: rgba(0, 255, 136, 0.8); 
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
+            z-index: 2; position: relative;
+        }
+        .bash-story {
+            flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;
+        }
+        .bash-story-title {
+            font-size: 32px; font-weight: 900; color: #fff; letter-spacing: 3px; font-family: 'Inter', sans-serif;
+            margin-bottom: 25px; text-shadow: 0 0 20px rgba(0, 162, 255, 0.5);
+            position: relative; padding-bottom: 15px;
+        }
+        .bash-story-title::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100px; height: 4px;
+            background: linear-gradient(90deg, #00a2ff, #00ff88); border-radius: 2px;
+        }
+        .bash-story-text {
+            font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.85); font-family: monospace;
+            background: rgba(10, 15, 25, 0.6); padding: 30px; border-radius: 15px;
+            border-left: 4px solid #00a2ff; backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .bash-story-text p { margin-bottom: 15px; }
+        .bash-story-text p:last-child { margin-bottom: 0; }
     </style>
 </head>
 
@@ -1860,7 +1912,7 @@
         </div>
         <div class="dashboard-grid">
             <!-- Geo Nithin Card -->
-            <div class="hd-card">
+            <div class="hd-card" id="card-geo">
                 <div class="card-header">
                     <img src="https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png" class="card-avatar" alt="Geo">
                     <div class="card-title-group">
@@ -1871,16 +1923,18 @@
                 <div class="card-stats">
                     <div class="stat-row"><span class="stat-label">System Architecture</span><span class="stat-value">98%</span></div>
                     <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 98%;"></div></div>
-                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">Debugging Efficiency</span><span class="stat-value">95%</span></div>
-                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%;"></div></div>
                 </div>
                 <div class="card-feedback">
-                    "Precision and a calm, analytical mindset. A dependable pillar for complex missions and open-source excellence."
+                    "He is the CB of Belmonts Clan.<br>
+                    Also a talented football player.<br>
+                    Helped me work on VS Code and Google Antigravity.<br>
+                    He is the absolute basement of my journey.<br>
+                    Taught me how to deploy a website to GitHub."
                 </div>
             </div>
             
             <!-- Aadhitya Mahesh Card -->
-            <div class="hd-card">
+            <div class="hd-card" id="card-aadhitya">
                 <div class="card-header">
                     <img src="https://i.postimg.cc/R0wzmMcp/IMG-6567.jpg" class="card-avatar" alt="Aadhitya" style="border-color: #ff0088;">
                     <div class="card-title-group">
@@ -1889,18 +1943,20 @@
                     </div>
                 </div>
                 <div class="card-stats">
-                    <div class="stat-row"><span class="stat-label">Game Logic</span><span class="stat-value">100%</span></div>
-                    <div class="stat-bar-bg"><div class="stat-bar-fill danger" style="width: 100%;"></div></div>
-                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">Hardwork & Focus</span><span class="stat-value">100%</span></div>
+                    <div class="stat-row"><span class="stat-label">Community Support</span><span class="stat-value">100%</span></div>
                     <div class="stat-bar-bg"><div class="stat-bar-fill danger" style="width: 100%;"></div></div>
                 </div>
                 <div class="card-feedback" style="border-left-color: #ff0088;">
-                    "A cornerstone of the clan. Master developer and the primary point of contact for complex technical doubts."
+                    "A pure cornerstone of our clan.<br>
+                    Whenever I asked for help, she answered.<br>
+                    She cleared all my doubts about the community.<br>
+                    Taught me the true meaning of the clan.<br>
+                    Always available with the right guidance."
                 </div>
             </div>
 
             <!-- Michael Nithish Card -->
-            <div class="hd-card">
+            <div class="hd-card" id="card-michael">
                 <div class="card-header">
                     <img src="https://i.postimg.cc/N0FrCzmf/IMG-6671.jpg" class="card-avatar" alt="Michael" style="border-color: #ffaa00;">
                     <div class="card-title-group">
@@ -1909,18 +1965,42 @@
                     </div>
                 </div>
                 <div class="card-stats">
-                    <div class="stat-row"><span class="stat-label">Network Infra</span><span class="stat-value">92%</span></div>
-                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 92%; background:#ffaa00; box-shadow:0 0 10px #ffaa00;"></div></div>
-                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">System Stability</span><span class="stat-value">88%</span></div>
-                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 88%; background:#ffaa00; box-shadow:0 0 10px #ffaa00;"></div></div>
+                    <div class="stat-row"><span class="stat-label">Domain Knowledge</span><span class="stat-value">100%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%; background:#ffaa00; box-shadow:0 0 10px #ffaa00;"></div></div>
                 </div>
                 <div class="card-feedback" style="border-left-color: #ffaa00;">
-                    "Architects the core IT infrastructure. Ensures flawless digital connectivity for all clan operations."
+                    "He is an incredibly powerful man.<br>
+                    Knows more than anyone about all technical domains.<br>
+                    Even at midnight, he was awake to help me.<br>
+                    He pushed my abilities further and further.<br>
+                    The absolute architect of my IT journey."
+                </div>
+            </div>
+
+            <!-- Maxwell Rubert Card -->
+            <div class="hd-card" id="card-maxwell">
+                <div class="card-header">
+                    <img src="https://i.postimg.cc/rFbjygYt/1723720496043.jpg" class="card-avatar" alt="Maxwell" style="border-color: #00d2ff;">
+                    <div class="card-title-group">
+                        <div class="card-name" style="color: #00d2ff;">Maxwell Rubert</div>
+                        <div class="card-role" style="color: #00d2ff; background: rgba(0,210,255,0.1);">EX LO</div>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Initiation</span><span class="stat-value">100%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%; background:#00d2ff; box-shadow:0 0 10px #00d2ff;"></div></div>
+                </div>
+                <div class="card-feedback" style="border-left-color: #00d2ff;">
+                    "The spark that started everything.<br>
+                    He is the one who introduced me to Bashers.<br>
+                    Opened the doors to this massive brotherhood.<br>
+                    Catalyst for my journey here.<br>
+                    Will forever be the foundation."
                 </div>
             </div>
 
             <!-- Harshini Card -->
-            <div class="hd-card">
+            <div class="hd-card" id="card-harshini">
                 <div class="card-header">
                     <img src="https://i.postimg.cc/2SMzmcg8/IMG-6660.jpg" class="card-avatar" alt="Harshini" style="border-color: #00ff88;">
                     <div class="card-title-group">
@@ -1929,19 +2009,66 @@
                     </div>
                 </div>
                 <div class="card-stats">
-                    <div class="stat-row"><span class="stat-label">Strategic Planning</span><span class="stat-value">96%</span></div>
-                    <div class="stat-bar-bg"><div class="stat-bar-fill accent" style="width: 96%;"></div></div>
-                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">Legacy Impact</span><span class="stat-value">99%</span></div>
-                    <div class="stat-bar-bg"><div class="stat-bar-fill accent" style="width: 99%;"></div></div>
+                    <div class="stat-row"><span class="stat-label">Clan Introduction</span><span class="stat-value">98%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill accent" style="width: 98%;"></div></div>
                 </div>
                 <div class="card-feedback" style="border-left-color: #00ff88;">
-                    "Former CB whose visionary strategies laid the groundwork for the modern Belmonts dominion."
+                    "The very first sister I met in the Belmonts clan.<br>
+                    Welcomed me on day one with open arms.<br>
+                    Gave the best and clearest introduction about the clan.<br>
+                    Set the tone for my entire journey.<br>
+                    A visionary leader."
                 </div>
             </div>
+
+            <!-- Ancy Card -->
+            <div class="hd-card" id="card-ancy">
+                <div class="card-header">
+                    <img src="https://i.postimg.cc/0y26rBtd/IMG-6666.jpg" class="card-avatar" alt="Ancy" style="border-color: #ff6b6b;">
+                    <div class="card-title-group">
+                        <div class="card-name" style="color: #ff6b6b;">Ancy</div>
+                        <div class="card-role" style="color: #ff6b6b; background: rgba(255,107,107,0.1);">BASHER</div>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Workflow Automation</span><span class="stat-value">95%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%; background:#ff6b6b; box-shadow:0 0 10px #ff6b6b;"></div></div>
+                </div>
+                <div class="card-feedback" style="border-left-color: #ff6b6b;">
+                    "Master of automation.<br>
+                    She took the time to explain n8n workflows.<br>
+                    Her guidance directly helped me build my chatbot.<br>
+                    Patient, technical, and brilliant.<br>
+                    A core asset to my technical growth."
+                </div>
+            </div>
+
+            <!-- Sowmiya Card -->
+            <div class="hd-card" id="card-sowmiya">
+                <div class="card-header">
+                    <img src="https://i.postimg.cc/MZ7X5SNb/IMG-6662.jpg" class="card-avatar" alt="Sowmiya" style="border-color: #9b59b6;">
+                    <div class="card-title-group">
+                        <div class="card-name" style="color: #9b59b6;">Sowmiya</div>
+                        <div class="card-role" style="color: #9b59b6; background: rgba(155,89,182,0.1);">BASHER</div>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">DevOps Mastery</span><span class="stat-value">100%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 100%; background:#9b59b6; box-shadow:0 0 10px #9b59b6;"></div></div>
+                </div>
+                <div class="card-feedback" style="border-left-color: #9b59b6;">
+                    "She is my absolute domain expert.<br>
+                    Taught me everything about DevOps practices.<br>
+                    Helped me endlessly with my career domain.<br>
+                    The reason I am confident in CI/CD.<br>
+                    A true mentor in the field."
+                </div>
+            </div>
+
         </div>
         
         <div style="position: absolute; bottom: 30px; display: flex; gap: 20px; z-index: 220;">
-            <button class="next-btn cinematic-btn" onclick="goToSando()" style="margin: 0; padding: 10px 20px; font-size: 14px;">Event Command // NEXT</button>
+            <button class="next-btn cinematic-btn" onclick="goToRoadmap()" style="margin: 0; padding: 10px 20px; font-size: 14px;">Event Command // NEXT</button>
         </div>
     </div>
 
@@ -2089,55 +2216,6 @@
         </div>
     </div>
 
-    <div id="sando-profile-screen"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
-        <div class="profile-card">
-            <div class="noise-overlay"></div>
-            <div class="profile-header cinematic-header" id="sando-header" data-text="Lumina Clan // Event Command">
-                Lumina Clan // Event Command</div>
-            <div style="position: relative; display: flex; justify-content: center; align-items: center;">
-                <div class="hologram-rings">
-                    <div class="hologram-ring"></div>
-                    <div class="hologram-ring"></div>
-                    <div class="hologram-ring"></div>
-                </div>
-                <img src="https://i.postimg.cc/NjMvhT4J/79fe4bad-bab5-43d2-b938-33d24454d5fa.jpg"
-                    class="profile-img cinematic-img" alt="Sando Fali">
-            </div>
-            <div class="journey-bio cinematic-bio">
-                <b class="glitch-chrome" id="sando-name" data-text="SANDO FALI">SANDO FALI</b><br>
-                <span style="font-size: 14px; opacity: 0.8;">LEAD ORGANIZER</span>
-            </div>
-
-            <div class="cinematic-badges"
-                style="display: flex; gap: 15px; margin: 20px 0; justify-content: center; font-family: monospace; font-size: 13px;">
-                <div
-                    style="border: 1px solid rgba(0, 162, 255, 0.3); padding: 5px 10px; border-radius: 4px; color: #00a2ff;">
-                    RANK: BEST LEAD</div>
-                <div
-                    style="border: 1px solid rgba(255, 170, 0, 0.3); padding: 5px 10px; border-radius: 4px; color: #ffaa00;">
-                    VIBE: FUNNY GUY</div>
-            </div>
-
-            <div class="journey-info cinematic-log"
-                style="text-align: left; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 3px solid #ffaa00;">
-                <div
-                    style="color: #ffaa00; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; font-size: 12px;">
-                    COMMANDER LOG:</div>
-                <div style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.9);">
-                    • Best lead organizer in the circuit.<br>
-                    • First encountered at a Hackathon mission.<br>
-                    • Presence detected in multiple high-level events.
-                </div>
-            </div>
-
-            <div class="cinematic-status"
-                style="margin-top: 20px; font-family: monospace; font-size: 12px; color: #ffaa00; letter-spacing: 2px;">
-                STATUS: ACTIVE // MISSION ORGANIZER
-            </div>
-            <button class="next-btn cinematic-btn" onclick="goToRoadmap()" style="margin-top: 20px;">Roadmap //
-                NEXT</button>
-        </div>
     </div>
     <div id="roadmap-screen">
         <div class="roadmap-container">
@@ -2164,6 +2242,124 @@
             <div class="roadmap-node">
                 <b>Weekly Bash 5</b>
                 <span>Final Ops</span>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="next-btn cinematic-btn" onclick="goToWeeklyBash()" style="z-index: 10; position: relative;">Initiation // NEXT</button>
+        </div>
+    </div>
+
+    <!-- WEEKLY BASH 1 SCREEN -->
+    <div id="weekly-bash-1-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #050a0f 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 220; opacity: 0; transition: opacity 1s ease; overflow-y: auto; padding: 20px;">
+        <div class="bash-container">
+            <div class="bash-gallery">
+                <img src="https://i.postimg.cc/BQV0zRJS/Screenshot-2026-03-18-065940.png" alt="Weekly Bash Smartboard Call">
+                <img src="https://i.postimg.cc/9fGHrMZy/Screenshot-2026-03-18-065816.png" alt="Weekly Bash Presentation">
+                <img src="https://i.postimg.cc/9fGHrMZy/Screenshot-2026-03-18-065816.png" alt="Weekly Bash Lunch">
+            </div>
+            <div class="bash-story">
+                <div class="bash-story-title">WEEKLY BASH 1</div>
+                <div class="bash-story-text">
+                    <p style="color: #00a2ff; font-weight: bold; font-size: 13px; letter-spacing: 2px;">LOG: THE FIRST BASH</p>
+                    <p>This was the first weekly bash where I chose the Belmonts clan and officially started my journey.</p>
+                    <p>It was an incredible first experience. Our founder, Roshan Lal sir, joined us via video call to talk with everyone and share his vision.</p>
+                    <p>After the presentation, we all ate lunch together as a clan. It was more than just a meeting; it was a brotherhood. We spent the rest of the afternoon playing games and bonding.</p>
+                    <p style="margin-top: 20px; color: #00ff88; font-style: italic;">"This is one of the most wonderful sessions I've ever had."</p>
+                    
+                    <button class="next-btn cinematic-btn" onclick="goToWeeklyBash2()" style="margin-top: 30px;">Lumina Session // NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY BASH 2 SCREEN -->
+    <div id="weekly-bash-2-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a050f 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 220; opacity: 0; transition: opacity 1s ease; overflow-y: auto; padding: 20px;">
+        <div class="bash-container">
+            <div class="bash-gallery">
+                <img src="https://i.postimg.cc/gkH2c1vn/Screenshot-2026-03-18-070242.png" alt="Git and Github Session">
+                <img src="https://i.postimg.cc/HnWPwJPh/Screenshot-2026-03-18-070358.png" alt="Lumina Clan Activity">
+                <img src="https://i.postimg.cc/gkH2c1vn/Screenshot-2026-03-18-070242.png" alt="Bash Memories">
+            </div>
+            <div class="bash-story">
+                <div class="bash-story-title">WEEKLY BASH 2</div>
+                <div class="bash-story-text">
+                    <p style="color: #00ff88; font-weight: bold; font-size: 13px; letter-spacing: 2px;">LOG: GIT & GITHUB MASTERY</p>
+                    <p>This was the second weekly bash, hosted by the Lumina clan. The morning was dedicated to a deep dive into Git and GitHub.</p>
+                    <p>It was an incredibly clear session that resolved all my doubts about GitHub and version control—a necessary foundation for my journey.</p>
+                    <p>In the evening, the clan conducted an amazing series of fun games. It was the perfect way to bond after a morning of intense learning.</p>
+                    <p style="margin-top: 20px; color: #ff0088; font-style: italic;">"Morning mastery, evening games—a perfectly balanced bash."</p>
+                    
+                    <button class="next-btn cinematic-btn" onclick="goToWeeklyBash3()" style="margin-top: 30px;">Sadaski Workshop // NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY BASH 3 SCREEN -->
+    <div id="weekly-bash-3-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a050f 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 220; opacity: 0; transition: opacity 1s ease; overflow-y: auto; padding: 20px;">
+        <div class="bash-container">
+            <div class="bash-gallery">
+                <img src="https://i.postimg.cc/D0XkJ4J2/Screenshot-2026-03-18-182312.png" alt="Game Dev Session">
+                <img src="https://i.postimg.cc/Jny4xnHz/Screenshot-2026-03-18-182246.png" alt="Sadaski Adapti Clan">
+                <img src="https://i.postimg.cc/fT7WB1yd/Screenshot-2026-03-18-182144.png" alt="Gaming Session">
+            </div>
+            <div class="bash-story">
+                <div class="bash-story-title">WEEKLY BASH 3</div>
+                <div class="bash-story-text">
+                    <p style="color: #ffaa00; font-weight: bold; font-size: 13px; letter-spacing: 2px;">LOG: GAME DEVELOPMENT SYSTEMS</p>
+                    <p>This was the third weekly bash, conducted by the Sadaski Adapti clan. They provided a deep dive into the architecture of game building.</p>
+                    <p>The morning session explained the complex systems and logic required to build immersive games from the ground up.</p>
+                    <p>After the technical deep dive, the evening was spent in a massive gaming session with the whole clan. It was pure high-energy fun.</p>
+                    <p style="margin-top: 20px; color: #00ff88; font-style: italic;">"From building games to playing them—a legendary bash."</p>
+                    
+                    <button class="next-btn cinematic-btn" onclick="goToWeeklyBash4()" style="margin-top: 30px;">Aura7f Session // NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY BASH 4 SCREEN -->
+    <div id="weekly-bash-4-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a050f 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 220; opacity: 0; transition: opacity 1s ease; overflow-y: auto; padding: 20px;">
+        <div class="bash-container">
+            <div class="bash-gallery">
+                <img src="https://i.postimg.cc/K82jbB4k/Screenshot-2026-03-18-184850.png" alt="Aura7f Gaming Session">
+                <img src="https://i.postimg.cc/zBs5jYg6/Screenshot-2026-03-18-184819.png" alt="Aura7f Clan Activity">
+                <img src="https://i.postimg.cc/CLVSnYY5/Screenshot-2026-03-18-184706.png" alt="Rookie Inspiration">
+            </div>
+            <div class="bash-story">
+                <div class="bash-story-title">WEEKLY BASH 4</div>
+                <div class="bash-story-text">
+                    <p style="color: #00a2ff; font-weight: bold; font-size: 13px; letter-spacing: 2px;">LOG: AURA7F GAMING THEORY</p>
+                    <p>This was the fourth weekly bash, conducted by the Aura7f clan. The day was centered around the theory and thrill of gaming.</p>
+                    <p>The morning session delved into the intricacies of gaming, while the evening was pure action with intense clan matches.</p>
+                    <p>This experience was incredibly motivating; it was the spark that gave me the interest and drive to continue my journey as a rookie.</p>
+                    <p style="margin-top: 20px; color: #ffaa00; font-style: italic;">"The energy of the game—the reason to keep pushing forward."</p>
+                    
+                    <button class="next-btn cinematic-btn" onclick="goToWeeklyBash5()" style="margin-top: 30px;">Automation Class // NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY BASH 5 SCREEN -->
+    <div id="weekly-bash-5-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a050f 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 220; opacity: 0; transition: opacity 1s ease; overflow-y: auto; padding: 20px;">
+        <div class="bash-container">
+            <div class="bash-gallery">
+                <img src="https://i.postimg.cc/Y96GYR4Y/Screenshot-2026-03-18-190541.png" alt="n8n Automation Class">
+                <img src="https://i.postimg.cc/Jn50GhgT/Screenshot-2026-03-18-190329.png" alt="API Lesson">
+                <img src="https://i.postimg.cc/wTvMjgkJ/Screenshot-2026-03-18-185959.png" alt="Quiz and Gaming Session">
+            </div>
+            <div class="bash-story">
+                <div class="bash-story-title">WEEKLY BASH 5</div>
+                <div class="bash-story-text">
+                    <p style="color: #00ff88; font-weight: bold; font-size: 13px; letter-spacing: 2px;">LOG: AUTOMATION & API MASTERY</p>
+                    <p>This was the fifth weekly bash with the Belmonts clan. The morning was packed with high-level technical training.</p>
+                    <p>Ancy sister and I led a session on n8n automation, while Samuel Morris and Shane Hicks delivered an insightful lesson on APIs.</p>
+                    <p>The evening was pure excitement with a wonderful scanner quiz and a gaming session conducted by Jashwin and Zatrif. A perfect blend of learning and play.</p>
+                    <p style="margin-top: 20px; color: #ff0088; font-style: italic;">"From n8n workflows to gaming victories—the journey continues."</p>
+                    
+                    <button class="next-btn cinematic-btn" onclick="goToCICD()" style="margin-top: 30px;">Pipeline Ops // NEXT</button>
+                </div>
             </div>
         </div>
     </div>
@@ -3133,47 +3329,38 @@
             }, 1000);
         };
 
-        window.goToSando = function () {
-            const adityaProfile = document.getElementById('aditya-profile-screen');
-            const sandoProfile = document.getElementById('sando-profile-screen');
-            if (adityaProfile.style.opacity === '0') return;
-            adityaProfile.style.opacity = '0';
-            setTimeout(() => {
-                adityaProfile.style.display = 'none';
-                sandoProfile.style.display = 'flex';
-                setTimeout(() => {
-                    sandoProfile.style.opacity = '1';
-                    scrambleText(document.getElementById('sando-header'), "Lumina Clan // Event Command");
-                    scrambleText(document.getElementById('sando-name'), "SANDO FALI");
-                }, 50);
-            }, 1000);
-        };
 
         window.goToRoadmap = function () {
-            if (sound && sound.isPlaying) sound.pause();
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            if (typeof sound !== 'undefined' && sound && sound.isPlaying) sound.pause();
 
-            const sandoProfile = document.getElementById('sando-profile-screen');
             const adityaProfile = document.getElementById('aditya-profile-screen');
             const clanProfile = document.getElementById('clan-profile-screen');
+            const dashScreen = document.getElementById('bashers-dashboard-screen');
             const profile = document.getElementById('profile-screen');
             const roadmap = document.getElementById('roadmap-screen');
             const canvas = document.getElementById('canvas-container');
 
-            // Handle transition from whichever profile is currently visible
-            let activeProfile;
-            if (sandoProfile.style.display === 'flex') activeProfile = sandoProfile;
-            else if (adityaProfile.style.display === 'flex') activeProfile = adityaProfile;
-            else if (clanProfile.style.display === 'flex') activeProfile = clanProfile;
-            else activeProfile = profile;
+            // Handle transition from whichever screen is currently visible
+            let activeScreen = null;
+            if (dashScreen && dashScreen.style.display === 'flex') activeScreen = dashScreen;
+            else if (adityaProfile && adityaProfile.style.display === 'flex') activeScreen = adityaProfile;
+            else if (clanProfile && clanProfile.style.display === 'flex') activeScreen = clanProfile;
+            else if (profile && profile.style.display === 'flex') activeScreen = profile;
 
-            if (activeProfile.style.opacity === '0') return;
-            activeProfile.style.opacity = '0';
+            if (!activeScreen || activeScreen.style.opacity === '0') return;
+            
+            activeScreen.style.opacity = '0';
             setTimeout(() => {
-                activeProfile.style.display = 'none';
-                canvas.classList.remove('fade-out');
-                canvas.style.opacity = '0.5';
-                roadmap.style.display = 'flex';
-                setTimeout(() => roadmap.style.opacity = '1', 50);
+                activeScreen.style.display = 'none';
+                if (canvas) {
+                    canvas.classList.remove('fade-out');
+                    canvas.style.opacity = '0.5';
+                }
+                if (roadmap) {
+                    roadmap.style.display = 'flex';
+                    setTimeout(() => roadmap.style.opacity = '1', 50);
+                }
             }, 1000);
         };
 
@@ -3426,17 +3613,33 @@
     <script>
         // ========== CI/CD Pipeline Navigation ==========
         window.goToCICD = function () {
-            const profile = document.getElementById('profile-screen');
-            const cicd    = document.getElementById('cicd-pipeline-screen');
-            if (profile.style.opacity === '0') return;
-            profile.style.opacity = '0';
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            const bash1 = document.getElementById('weekly-bash-1-screen');
+            const bash2 = document.getElementById('weekly-bash-2-screen');
+            const bash3 = document.getElementById('weekly-bash-3-screen');
+            const bash4 = document.getElementById('weekly-bash-4-screen');
+            const bash5 = document.getElementById('weekly-bash-5-screen');
+            const cicd  = document.getElementById('cicd-pipeline-screen');
+            
+            let activeScreen = null;
+            if (bash1 && bash1.style.display === 'flex') activeScreen = bash1;
+            else if (bash2 && bash2.style.display === 'flex') activeScreen = bash2;
+            else if (bash3 && bash3.style.display === 'flex') activeScreen = bash3;
+            else if (bash4 && bash4.style.display === 'flex') activeScreen = bash4;
+            else if (bash5 && bash5.style.display === 'flex') activeScreen = bash5;
+            
+            if (activeScreen && activeScreen.style.opacity === '0') return;
+            if (activeScreen) activeScreen.style.opacity = '0';
+            
             setTimeout(function () {
-                profile.style.display = 'none';
-                cicd.style.display = 'flex';
-                setTimeout(function () {
-                    cicd.style.opacity = '1';
-                    startCICDAnimation();
-                }, 80);
+                if (activeScreen) activeScreen.style.display = 'none';
+                if (cicd) {
+                    cicd.style.display = 'flex';
+                    setTimeout(function () {
+                        cicd.style.opacity = '1';
+                        startCICDAnimation();
+                    }, 80);
+                }
             }, 1000);
         };
 
@@ -3454,6 +3657,11 @@
 
         // ========== Map Transition & Bashers Dashboard ==========
         window.goToMapTransition = function () {
+            // Stop all music and SFX immediately
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            if (typeof sound !== 'undefined' && sound && sound.isPlaying) sound.pause();
+            if (typeof zoomSfx !== 'undefined' && zoomSfx && zoomSfx.isPlaying) zoomSfx.pause();
+
             const bashersScreen = document.getElementById('core-bashers-screen');
             const mapScreen = document.getElementById('map-transition-screen');
             
@@ -3495,7 +3703,6 @@
                                     setTimeout(() => flash.remove(), 200);
                                 }, 50);
                             }, 200);
-                            
                         }, 3500); // 3.5s zoom duration
                         
                     }, 500);
@@ -3503,7 +3710,157 @@
             }, 1000);
         };
 
+        window.goToWeeklyBash = function() {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            
+            const roadmap = document.getElementById('roadmap-screen');
+            const bashScreen = document.getElementById('weekly-bash-1-screen');
+            
+            if (roadmap) {
+                roadmap.style.opacity = '0';
+                setTimeout(() => roadmap.style.display = 'none', 1000);
+            }
+            
+            if (bashScreen) {
+                setTimeout(() => {
+                    bashScreen.style.display = 'flex';
+                    void bashScreen.offsetWidth;
+                    bashScreen.style.opacity = '1';
+
+                    // Voice for Bash 1
+                    const text = "This was the first weekly bash where I chose the Belmonts clan and officially started my journey. It was an incredible first experience. Our founder, Roshan Lal sir, joined us via video call to talk with everyone and share his vision. After the presentation, we all ate lunch together as a clan. It was more than just a meeting; it was a brotherhood. We spent the rest of the afternoon playing games and bonding. This is one of the most wonderful sessions I've ever had.";
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.95;
+                    const voices = window.speechSynthesis.getVoices();
+                    utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) || 
+                                     voices.find(v => v.name.includes('Google UK English Male')) || voices[0];
+                    window.speechSynthesis.speak(utterance);
+                }, 1000);
+            }
+        };
+
+        window.goToWeeklyBash2 = function() {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            
+            const bash1 = document.getElementById('weekly-bash-1-screen');
+            const bash2 = document.getElementById('weekly-bash-2-screen');
+            
+            if (bash1) {
+                bash1.style.opacity = '0';
+                setTimeout(() => bash1.style.display = 'none', 1000);
+            }
+            
+            if (bash2) {
+                setTimeout(() => {
+                    bash2.style.display = 'flex';
+                    void bash2.offsetWidth;
+                    bash2.style.opacity = '1';
+
+                    // Voice for Bash 2
+                    const text = "This was the second weekly bash, hosted by the Lumina clan. The morning was dedicated to a deep dive into Git and GitHub. It was an incredibly clear session that resolved all my doubts about GitHub and version control. In the evening, the clan conducted an amazing series of fun games. It was the perfect balance of intense learning and genuine clan bonding. Morning mastery, evening games—a perfectly balanced bash.";
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.95;
+                    const voices = window.speechSynthesis.getVoices();
+                    utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Female')) || 
+                                     voices.find(v => v.name.includes('Google UK English Female')) || voices[0];
+                    window.speechSynthesis.speak(utterance);
+                }, 1000);
+            }
+        };
+
+        window.goToWeeklyBash3 = function() {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            
+            const bash2 = document.getElementById('weekly-bash-2-screen');
+            const bash3 = document.getElementById('weekly-bash-3-screen');
+            
+            if (bash2) {
+                bash2.style.opacity = '0';
+                setTimeout(() => bash2.style.display = 'none', 1000);
+            }
+            
+            if (bash3) {
+                setTimeout(() => {
+                    bash3.style.display = 'flex';
+                    void bash3.offsetWidth;
+                    bash3.style.opacity = '1';
+
+                    // Voice for Bash 3
+                    const text = "This was the third weekly bash, conducted by the Sadaski Adapti clan. They provided a deep dive into the architecture of game building. The morning session explained the complex systems and logic required to build immersive games from the ground up. After the technical deep dive, the evening was spent in a massive gaming session with the whole clan. It was pure high-energy fun. From building games to playing them—a legendary bash.";
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.95;
+                    const voices = window.speechSynthesis.getVoices();
+                    utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) || 
+                                     voices.find(v => v.name.includes('Google UK English Male')) || voices[0];
+                    window.speechSynthesis.speak(utterance);
+                }, 1000);
+            }
+        };
+
+        window.goToWeeklyBash4 = function() {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            
+            const bash3 = document.getElementById('weekly-bash-3-screen');
+            const bash4 = document.getElementById('weekly-bash-4-screen');
+            
+            if (bash3) {
+                bash3.style.opacity = '0';
+                setTimeout(() => bash3.style.display = 'none', 1000);
+            }
+            
+            if (bash4) {
+                setTimeout(() => {
+                    bash4.style.display = 'flex';
+                    void bash4.offsetWidth;
+                    bash4.style.opacity = '1';
+
+                    // Voice for Bash 4
+                    const text = "This was the fourth weekly bash, conducted by the Aura 7 f clan. The day was centered around the theory and thrill of gaming. The morning session delved into the intricacies of gaming, while the evening was pure action with intense clan matches. This experience was incredibly motivating; it was the spark that gave me the interest and drive to continue my journey as a rookie. The energy of the game—the reason to keep pushing forward.";
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.95;
+                    const voices = window.speechSynthesis.getVoices();
+                    utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Female')) || 
+                                     voices.find(v => v.name.includes('Google UK English Female')) || voices[0];
+                    window.speechSynthesis.speak(utterance);
+                }, 1000);
+            }
+        };
+
+        window.goToWeeklyBash5 = function() {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            
+            const bash4 = document.getElementById('weekly-bash-4-screen');
+            const bash5 = document.getElementById('weekly-bash-5-screen');
+            
+            if (bash4) {
+                bash4.style.opacity = '0';
+                setTimeout(() => bash4.style.display = 'none', 1000);
+            }
+            
+            if (bash5) {
+                setTimeout(() => {
+                    bash5.style.display = 'flex';
+                    void bash5.offsetWidth;
+                    bash5.style.opacity = '1';
+
+                    // Voice for Bash 5
+                    const text = "This was the fifth weekly bash with the Belmonts clan. The morning was packed with high-level technical training. Ancy sister and I led a session on n8n automation, while Samuel Morris and Shane Hicks delivered an insightful lesson on APIs. The evening was pure excitement with a wonderful scanner quiz and a gaming session conducted by Jashwin and Zatrif. A perfect blend of learning and play. From n8n workflows to gaming victories—the journey continues.";
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.95;
+                    const voices = window.speechSynthesis.getVoices();
+                    utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) || 
+                                     voices.find(v => v.name.includes('Google UK English Male')) || voices[0];
+                    window.speechSynthesis.speak(utterance);
+                }, 1000);
+            }
+        };
+        
         window.goToBashersDashboard = function() {
+            // double check to ensure no music is playing
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            if (typeof sound !== 'undefined' && sound && sound.isPlaying) sound.pause();
+            if (typeof zoomSfx !== 'undefined' && zoomSfx && zoomSfx.isPlaying) zoomSfx.pause();
+
             const mapScreen = document.getElementById('map-transition-screen');
             const dashScreen = document.getElementById('bashers-dashboard-screen');
             
@@ -3517,6 +3874,79 @@
                 // Trigger reflow
                 void dashScreen.offsetWidth;
                 dashScreen.style.opacity = '1';
+
+                // --- Dashboad Sequential Voice Logic ---
+                setTimeout(() => {
+                    if (window.speechSynthesis) {
+                        window.speechSynthesis.cancel(); // Stop any currently playing audio
+                        
+                        const voicesData = [
+                            { id: 'card-geo', text: "Geo Nithin bro. He is the C B of Belmonts Clan, and a football player. He helped me learn V S Code and Google Antigravity. He is the true basement of my journey and taught me how to deploy a website to GitHub." },
+                            { id: 'card-aadhitya', text: "Aadhitya sister. Whenever I asked for help, she cleared all my doubts about the community and the clan. A true cornerstone." },
+                            { id: 'card-michael', text: "Michael Nithish. He is a powerful man because he knows so much about all domains. Even at midnight, he was awake to help me scale my abilities." },
+                            { id: 'card-maxwell', text: "Maxwell Rubert bro. He is the very one who introduced me to Bashers." },
+                            { id: 'card-harshini', text: "Harshini sister. The first sister I met in my Belmonts clan. She gave me the best introduction about what this clan stands for." },
+                            { id: 'card-ancy', text: "Ancy. She clearly explained n 8 n, which directly helped me build my chatbot." },
+                            { id: 'card-sowmiya', text: "And Sowmiya. She is my domain expert in DevOps. She helped me endlessly with my career domain." }
+                        ];
+
+                        let currentIdx = 0;
+
+                        function getPreferredVoice(isFemale) {
+                            const availableVoices = window.speechSynthesis.getVoices();
+                            if (isFemale) {
+                                return availableVoices.find(v => v.lang.includes('en-IN') && v.name.includes('Female')) ||
+                                    availableVoices.find(v => v.name.includes('Google UK English Female')) || availableVoices[0];
+                            } else {
+                                return availableVoices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) ||
+                                    availableVoices.find(v => v.name.includes('Google UK English Male')) || availableVoices[0];
+                            }
+                        }
+
+                        function playNextVoice() {
+                            if (currentIdx >= voicesData.length) return; // Done playing all
+
+                            const data = voicesData[currentIdx];
+                            const card = document.getElementById(data.id);
+                            
+                            // Highlight the active card
+                            if (card) {
+                                card.style.transform = 'scale(1.05)';
+                                card.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.3)';
+                                card.style.zIndex = '10';
+                            }
+
+                            const utterance = new SpeechSynthesisUtterance(data.text);
+                            utterance.rate = 0.95;
+                            
+                            // Determine voice gender based on text context
+                            const isFemale = data.text.toLowerCase().includes('sister') || data.id === 'card-ancy' || data.id === 'card-sowmiya';
+                            utterance.pitch = isFemale ? 1.1 : 0.9;
+                            utterance.voice = getPreferredVoice(isFemale);
+
+                            utterance.onend = function() {
+                                // Remove highlight
+                                if (card) {
+                                    card.style.transform = '';
+                                    card.style.boxShadow = '';
+                                    card.style.zIndex = '';
+                                }
+                                currentIdx++;
+                                setTimeout(playNextVoice, 400); // 400ms pause between speakers
+                            };
+
+                            window.speechSynthesis.speak(utterance);
+                        }
+
+                        // Start sequence
+                        let available = window.speechSynthesis.getVoices();
+                        if (available.length === 0) {
+                            window.speechSynthesis.onvoiceschanged = playNextVoice;
+                        } else {
+                            playNextVoice();
+                        }
+                    }
+                }, 1000); // Wait 1 second after dashboard loads to start speaking
             }
         };
 
