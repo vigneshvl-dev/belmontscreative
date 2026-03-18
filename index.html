@@ -2369,7 +2369,7 @@
         <div class="bash-container">
             <div class="bash-gallery">
                 <img src="https://i.postimg.cc/Jn50GhgT/Screenshot-2026-03-18-190329.png" alt="Project Logic">
-                <img src="weather_app_mockup_1773842374282.png" alt="Weather Web Application Mockup">
+                <img src="weather_app_mockup.png" alt="Weather Web Application Mockup">
             </div>
             <div class="bash-story">
                 <div class="bash-story-title">WEEKLY BASH 6</div>
@@ -3172,7 +3172,7 @@
                         } else if (window.goToProfileFromBashers) {
                             window.goToProfileFromBashers();
                         }
-                    }, 500);
+                    }, 3500); // Increased from 500 to 3500 (3s delay)
                     return;
                 }
 
@@ -3409,8 +3409,10 @@
 
             const listener = new THREE.AudioListener();
             camera.add(listener);
-            sound = new THREE.Audio(listener);
-            zoomSfx = new THREE.Audio(listener);
+            window.sound = new THREE.Audio(listener);
+            window.zoomSfx = new THREE.Audio(listener);
+            sound = window.sound;
+            zoomSfx = window.zoomSfx;
 
             const startBtn = document.getElementById('start-btn');
             const audioLoader = new THREE.AudioLoader();
@@ -3462,7 +3464,7 @@
             audioLoader.load(CONFIG.audioUrl, (buffer) => {
                 sound.setBuffer(buffer);
                 sound.setLoop(true);
-                sound.setVolume(0.5);
+                sound.setVolume(0.7); // Increased from 0.5 to 0.7
                 checkReady();
             }, undefined, (err) => {
                 console.warn('Audio load failed, using synthetic fallback:', err);
@@ -3704,8 +3706,8 @@
         window.goToMapTransition = function () {
             // Stop all music and SFX immediately
             if (window.speechSynthesis) window.speechSynthesis.cancel();
-            if (typeof sound !== 'undefined' && sound && sound.isPlaying) sound.pause();
-            if (typeof zoomSfx !== 'undefined' && zoomSfx && zoomSfx.isPlaying) zoomSfx.pause();
+            if (window.sound && window.sound.isPlaying) window.sound.pause();
+            if (window.zoomSfx && window.zoomSfx.isPlaying) window.zoomSfx.pause();
 
             const bashersScreen = document.getElementById('core-bashers-screen');
             const mapScreen = document.getElementById('map-transition-screen');
@@ -3932,8 +3934,8 @@
         window.goToBashersDashboard = function() {
             // double check to ensure no music is playing
             if (window.speechSynthesis) window.speechSynthesis.cancel();
-            if (typeof sound !== 'undefined' && sound && sound.isPlaying) sound.pause();
-            if (typeof zoomSfx !== 'undefined' && zoomSfx && zoomSfx.isPlaying) zoomSfx.pause();
+            if (window.sound && window.sound.isPlaying) window.sound.pause();
+            if (window.zoomSfx && window.zoomSfx.isPlaying) window.zoomSfx.pause();
 
             const mapScreen = document.getElementById('map-transition-screen');
             const dashScreen = document.getElementById('bashers-dashboard-screen');
