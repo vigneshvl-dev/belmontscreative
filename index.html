@@ -2426,7 +2426,7 @@
         const CONFIG = {
             logoUrl: 'https://i.postimg.cc/G27T3vDm/24741862-1e43-44e7-b24c-d6df79c6a071.jpg',
             // Using extremely reliable Wikimedia Commons links
-            audioUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Toreador_song_cleaned.ogg', // Classical backup to test loading
+            // audioUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Toreador_song_cleaned.ogg', // Classical backup to test loading
             zoomSfxUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/34/Sound_Effect_-_Impact.ogg',
             colors: {
                 blue: 0x00a2ff,
@@ -3454,6 +3454,7 @@
                 return buffer;
             }
 
+            /* 
             audioLoader.load(CONFIG.audioUrl, (buffer) => {
                 sound.setBuffer(buffer);
                 sound.setLoop(true);
@@ -3467,6 +3468,9 @@
                 sound.setVolume(0.3);
                 checkReady();
             });
+            */
+            // Manually trigger checkReady as if music loaded (since we only wait for 2 sounds now)
+            checkReady(); 
             audioLoader.load(CONFIG.zoomSfxUrl, (buffer) => {
                 zoomSfx.setBuffer(buffer);
                 zoomSfx.setVolume(1.0);
@@ -3512,9 +3516,11 @@
                 }
                 playSyntheticBeep(listener.context);
                 document.getElementById('start-overlay').style.opacity = '0';
+                /*
                 if (sound && sound.buffer && !sound.isPlaying) {
                     sound.play();
                 }
+                */
 
                 setTimeout(() => {
                     document.getElementById('start-overlay').style.display = 'none';
