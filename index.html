@@ -2358,7 +2358,33 @@
                     <p>The evening was pure excitement with a wonderful scanner quiz and a gaming session conducted by Jashwin and Zatrif. A perfect blend of learning and play.</p>
                     <p style="margin-top: 20px; color: #ff0088; font-style: italic;">"From n8n workflows to gaming victories—the journey continues."</p>
                     
-                    <button class="next-btn cinematic-btn" onclick="goToCICD()" style="margin-top: 30px;">Pipeline Ops // NEXT</button>
+                    <button class="next-btn cinematic-btn" onclick="goToWeeklyBash6()" style="margin-top: 30px;">Weather Project // NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY BASH 6 SCREEN -->
+    <div id="weekly-bash-6-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #050a0f 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 220; opacity: 0; transition: opacity 1s ease; overflow-y: auto; padding: 20px;">
+        <div class="bash-container">
+            <div class="bash-gallery">
+                <img src="https://i.postimg.cc/Jn50GhgT/Screenshot-2026-03-18-190329.png" alt="Project Logic">
+                <img src="weather_app_mockup_1773842374282.png" alt="Weather Web Application Mockup">
+                <img src="https://i.postimg.cc/CLVSnYY5/Screenshot-2026-03-18-184706.png" alt="Deployment Success">
+            </div>
+            <div class="bash-story">
+                <div class="bash-story-title">WEEKLY BASH 6</div>
+                <div class="bash-story-text">
+                    <p style="color: #00a2ff; font-weight: bold; font-size: 13px; letter-spacing: 2px;">LOG: PROJECT SHOWCASE // WEATHER APP</p>
+                    <p>In the sixth weekly bash, I presented my primary project: a comprehensive <b>Weather Web Application</b>.</p>
+                    <p>Using the CI/CD pipeline skills I've developed, I successfully automated the deployment of this app, ensuring a seamless delivery from code to production.</p>
+                    <p>This project represents the culmination of my weeks of learning in automation, API integration, and version control.</p>
+                    <p style="margin-top: 20px;">
+                        <a href="https://github.com/vigneshvl-dev/weatherdisplayapp" target="_blank" class="next-btn cinematic-btn" style="text-decoration: none; display: inline-block; width: auto; font-size: 12px; border-color: #00ff88;">View Repository on GitHub</a>
+                    </p>
+                    <p style="margin-top: 20px; color: #00ff88; font-style: italic;">"The roadmap is complete. The pipeline is live. The journey is just beginning."</p>
+                    
+                    <button class="next-btn cinematic-btn" onclick="goToCICD()" style="margin-top: 30px;">Launch Pipeline // FINISH</button>
                 </div>
             </div>
         </div>
@@ -3619,6 +3645,7 @@
             const bash3 = document.getElementById('weekly-bash-3-screen');
             const bash4 = document.getElementById('weekly-bash-4-screen');
             const bash5 = document.getElementById('weekly-bash-5-screen');
+            const bash6 = document.getElementById('weekly-bash-6-screen');
             const cicd  = document.getElementById('cicd-pipeline-screen');
             
             let activeScreen = null;
@@ -3627,6 +3654,7 @@
             else if (bash3 && bash3.style.display === 'flex') activeScreen = bash3;
             else if (bash4 && bash4.style.display === 'flex') activeScreen = bash4;
             else if (bash5 && bash5.style.display === 'flex') activeScreen = bash5;
+            else if (bash6 && bash6.style.display === 'flex') activeScreen = bash6;
             
             if (activeScreen && activeScreen.style.opacity === '0') return;
             if (activeScreen) activeScreen.style.opacity = '0';
@@ -3850,6 +3878,35 @@
                     const voices = window.speechSynthesis.getVoices();
                     utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Male')) || 
                                      voices.find(v => v.name.includes('Google UK English Male')) || voices[0];
+                    window.speechSynthesis.speak(utterance);
+                }, 1000);
+            }
+        };
+
+        window.goToWeeklyBash6 = function() {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            
+            const bash5 = document.getElementById('weekly-bash-5-screen');
+            const bash6 = document.getElementById('weekly-bash-6-screen');
+            
+            if (bash5) {
+                bash5.style.opacity = '0';
+                setTimeout(() => bash5.style.display = 'none', 1000);
+            }
+            
+            if (bash6) {
+                setTimeout(() => {
+                    bash6.style.display = 'flex';
+                    void bash6.offsetWidth;
+                    bash6.style.opacity = '1';
+
+                    // Voice for Bash 6
+                    const text = "In the sixth weekly bash, I presented my primary project: a comprehensive Weather Web Application. Using the CI/CD pipeline skills I've developed, I successfully automated the deployment of this app, ensuring a seamless delivery from code to production. This project represents the culmination of my weeks of learning in automation, API integration, and version control. The roadmap is complete. The pipeline is live. The journey is just beginning.";
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.rate = 0.95;
+                    const voices = window.speechSynthesis.getVoices();
+                    utterance.voice = voices.find(v => v.lang.includes('en-IN') && v.name.includes('Female')) || 
+                                     voices.find(v => v.name.includes('Google UK English Female')) || voices[0];
                     window.speechSynthesis.speak(utterance);
                 }, 1000);
             }
