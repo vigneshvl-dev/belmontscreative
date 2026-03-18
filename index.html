@@ -3541,6 +3541,15 @@
                             const journey = document.getElementById('journey-screen');
                             journey.style.display = 'flex';
                             setTimeout(() => journey.style.opacity = '1', 50);
+                            
+                            // Welcome Voice Narration
+                            if (window.speechSynthesis) {
+                                window.speechSynthesis.cancel();
+                                const welcomeText = "Hey Bashers. Welcome to creative tasks. Operation started on January twenty-second, twenty-twenty-six. Current Phase: Creative Tasks.";
+                                const utterance = new SpeechSynthesisUtterance(welcomeText);
+                                utterance.rate = 0.95;
+                                window.speechSynthesis.speak(utterance);
+                            }
 
                             // User clicks NEXT buttons to progress through pages
 
@@ -3671,6 +3680,8 @@
                     cicd.style.display = 'flex';
                     setTimeout(function () {
                         cicd.style.opacity = '1';
+                        // Narrate CI/CD project details
+                        if (window.playProjectVoice) window.playProjectVoice();
                         startCICDAnimation();
                     }, 80);
                 }
@@ -3943,6 +3954,13 @@
                     if (window.speechSynthesis) {
                         window.speechSynthesis.cancel(); // Stop any currently playing audio
                         
+                        // Dashboard Intro Voice
+                        const introText = "Welcome to the Bashers Command Dashboard. Here you can see the core members of the Belmonts clan who have guided my journey.";
+                        const introUtterance = new SpeechSynthesisUtterance(introText);
+                        introUtterance.rate = 0.95;
+                        introUtterance.onend = startCardVoices; // Start card sequence after intro
+                        window.speechSynthesis.speak(introUtterance);
+
                         const voicesData = [
                             { id: 'card-geo', text: "Geo Nithin bro. He is the C B of Belmonts Clan, and a football player. He helped me learn V S Code and Google Antigravity. He is the true basement of my journey and taught me how to deploy a website to GitHub." },
                             { id: 'card-aadhitya', text: "Aadhitya sister. Whenever I asked for help, she cleared all my doubts about the community and the clan. A true cornerstone." },
@@ -4001,12 +4019,17 @@
                             window.speechSynthesis.speak(utterance);
                         }
 
+                        function startCardVoices() {
+                            currentIdx = 0;
+                            playNextVoice();
+                        }
+                        
                         // Start sequence
                         let available = window.speechSynthesis.getVoices();
                         if (available.length === 0) {
-                            window.speechSynthesis.onvoiceschanged = playNextVoice;
+                            window.speechSynthesis.onvoiceschanged = startCardVoices;
                         } else {
-                            playNextVoice();
+                            startCardVoices();
                         }
                     }
                 }, 1000); // Wait 1 second after dashboard loads to start speaking
