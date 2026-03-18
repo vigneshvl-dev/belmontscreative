@@ -1583,7 +1583,7 @@
                     <!-- Pipeline Phase Progress Bars -->
                     <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,170,0,0.15); border-radius: 12px; padding: 18px 20px;">
                         <div style="color: #ffaa00; font-family: monospace; font-size: 10px; letter-spacing: 3px; margin-bottom: 14px;">
-                            PIPELINE PHASES // COMPLETION STATUS
+                            PIPELINE PHASES // COMPLETION
                         </div>
                         <!-- Phase bars -->
                         <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -2605,7 +2605,9 @@
 
                     // Draw image inside mask using source-in
                     offCtx.globalCompositeOperation = 'source-in';
+                    offCtx.filter = 'brightness(1.3) contrast(1.05)';
                     offCtx.drawImage(person.img, sx, sy, minDim, minDim, 0, 0, r * 2, r * 2);
+                    offCtx.filter = 'none';
 
                     // Draw the rounded result to the main canvas
                     ctx.drawImage(offCanvas, cx - r, cy - r);
@@ -2721,7 +2723,7 @@
                     // --- Text To Speech Engine ---
                     window.speechSynthesis.cancel(); // Stop anything playing
 
-                    const story = "Hi I am Vignesh from computer science and engineering department Forty-five days ago, I stepped into the unknown as a complete rookie. but today, I stand rebuilt by the discipline and brotherhood of the Bashers. My journey was set in motion by Maxwell Rubert, who first spoke the name of this tribe into my life and gave me a map to my own potential. Upon arriving at Belmonts, the very first person I met was Harshini, whose presence immediately set the standard for the dedication I would soon adopt as my own. As I began carving out my path in the DevOps domain, Sowmiya Sister became a vital guide, sharing her expertise in our shared field and helping me navigate the complexities of the tech world. Alongside her, Michael Nithish Bro poured his energy into my growth, helping me more and more until my rookie doubts were replaced by professional confidence. This trek has been about finding a true family in Geo Nithin Bro and Aditya Mahesh sister. They are not just my seniors; they are my brother and sister who have guided me with unbreakable strength and grace. I am no longer the person who started in mid-January. I have been dismantled and reconstructed by the wisdom of my mentors. To my brothers and sisters who saw the warrior in a rookie. thank you for pushing me toward the summit. My journey has only just begun. and I am ready to conquer everything that lies ahead. so next we move to about belmont bashers";
+                    const story = "Hi I am Vignesh from computer science and engineering department Forty-five days ago, I stepped into the unknown as a complete rookie. but today, I stand rebuilt by the discipline and brotherhood of the Bashers. My journey was set in motion by Maxwell Rubert, who first spoke the name of this tribe into my life and gave me a map to my own potential. Upon arriving at Belmonts, the very first person I met was Harshini, whose presence immediately set the standard for the dedication I would soon adopt as my own. As I began carving out my path in the DevOps domain, Sowmiya Sister became a vital guide, sharing her expertise in our shared field and helping me navigate the complexities of the tech world. Alongside her, Michael Nithish Bro poured his energy into my growth, helping me more and more until my rookie doubts were replaced by professional confidence. This trek has been about finding a true family in Geo Nithin Bro and Aditya Mahesh Sister. I am no longer the person who started in mid-January. I have been dismantled and reconstructed by the wisdom of my mentors. To my brothers and sisters who saw the warrior in a rookie. thank you for pushing me toward the summit. My journey has only just begun. and I am ready to conquer everything that lies ahead. so next we move to about belmont bashers";
 
                     function playStory() {
                         window.speechSynthesis.cancel();
@@ -3242,10 +3244,10 @@
                     "Upon arriving at Belmonts, the very first person I met was Harshini. " +
                     "As I carved out my path in DevOps, Sowmiya Sister became a vital guide, " +
                     "and alongside her, Michael Nithish Bro poured energy into my growth. " +
-                    "This trek has been about finding family in Geo Nithin Bro and Aditya Mahesh Sister. " +
+                    "This trek has been about finding a true family in Geo Nithin Bro and Aditya Mahesh Sister. " +
                     "I am no longer who I was in mid-January. " +
-                    "I have been rebuilt by the wisdom of my mentors. " +
-                    "My journey has only just begun. And I am ready to conquer everything ahead.";
+                    "I have been dismantled and reconstructed by the wisdom of my mentors. " +
+                    "My journey has only just begun. And I am ready to conquer everything that lies ahead.";
                 var utt = new SpeechSynthesisUtterance(text);
                 utt.rate = 0.9;
                 utt.pitch = 1.05;
