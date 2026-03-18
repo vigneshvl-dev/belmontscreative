@@ -2943,11 +2943,12 @@
                 }
                 ctx.restore();
 
-                // Check if done
                 if (elapsed >= TOTAL_DURATION) {
                     cancelAnimationFrame(animId);
                     setTimeout(function () {
-                        if (window.goToProfileFromBashers) {
+                        if (window.goToMapTransition) {
+                            window.goToMapTransition();
+                        } else if (window.goToProfileFromBashers) {
                             window.goToProfileFromBashers();
                         }
                     }, 500);
@@ -3449,6 +3450,74 @@
                 experience.style.display = 'flex';
                 setTimeout(function () { experience.style.opacity = '1'; }, 80);
             }, 1000);
+        };
+
+        // ========== Map Transition & Bashers Dashboard ==========
+        window.goToMapTransition = function () {
+            const bashersScreen = document.getElementById('core-bashers-screen');
+            const mapScreen = document.getElementById('map-transition-screen');
+            
+            // Hide bashers screen
+            if (bashersScreen) bashersScreen.style.opacity = '0';
+            
+            setTimeout(function () {
+                if (bashersScreen) bashersScreen.style.display = 'none';
+                if (mapScreen) {
+                    mapScreen.style.display = 'flex';
+                    // Trigger reflow
+                    void mapScreen.offsetWidth;
+                    mapScreen.style.opacity = '1';
+                    
+                    // Add zoom class after a tiny delay
+                    setTimeout(function() {
+                        mapScreen.classList.add('map-zoom-active');
+                        
+                        // After zoom animation completes, flash and go to dashboard
+                        setTimeout(function() {
+                            const flash = document.createElement('div');
+                            flash.style.position = 'fixed';
+                            flash.style.top = '0'; flash.style.left = '0';
+                            flash.style.width = '100%'; flash.style.height = '100%';
+                            flash.style.background = '#fff';
+                            flash.style.zIndex = '9999';
+                            flash.style.opacity = '0';
+                            flash.style.transition = 'opacity 0.2s ease';
+                            document.body.appendChild(flash);
+                            
+                            // reflow
+                            void flash.offsetWidth;
+                            flash.style.opacity = '1';
+                            
+                            setTimeout(function() {
+                                window.goToBashersDashboard();
+                                setTimeout(function() {
+                                    flash.style.opacity = '0';
+                                    setTimeout(() => flash.remove(), 200);
+                                }, 50);
+                            }, 200);
+                            
+                        }, 3500); // 3.5s zoom duration
+                        
+                    }, 500);
+                }
+            }, 1000);
+        };
+
+        window.goToBashersDashboard = function() {
+            const mapScreen = document.getElementById('map-transition-screen');
+            const dashScreen = document.getElementById('bashers-dashboard-screen');
+            
+            if (mapScreen) {
+                mapScreen.style.opacity = '0';
+                setTimeout(() => mapScreen.style.display = 'none', 500);
+            }
+            
+            if (dashScreen) {
+                dashScreen.style.display = 'flex';
+                // Trigger reflow
+                void dashScreen.offsetWidth;
+                dashScreen.style.opacity = '1';
+            }
         };
 
         function startCICDAnimation() {
