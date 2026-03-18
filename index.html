@@ -1843,6 +1843,108 @@
         </div>
     </div>
 
+    <!-- MAP ZOOM TRANSITION SCREEN -->
+    <div id="map-transition-screen">
+        <div class="world-map-bg"></div>
+        <div class="notice-board-container" id="notice-board">
+            <div class="notice-logo">BELMONTS</div>
+            <div class="notice-sub">CORE BASHERS // CLASSIFIED</div>
+        </div>
+    </div>
+
+    <!-- BASHERS HD DASHBOARD SCREEN -->
+    <div id="bashers-dashboard-screen">
+        <div class="dashboard-title">
+            <div class="live-indicator"></div>
+            BASHERS COMMAND DASHBOARD
+        </div>
+        <div class="dashboard-grid">
+            <!-- Geo Nithin Card -->
+            <div class="hd-card">
+                <div class="card-header">
+                    <img src="https://i.postimg.cc/7Z3pF988/Screenshot-2026-03-11-212952.png" class="card-avatar" alt="Geo">
+                    <div class="card-title-group">
+                        <div class="card-name">Geo Nithin</div>
+                        <div class="card-role">CB OF BELMONTS</div>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">System Architecture</span><span class="stat-value">98%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 98%;"></div></div>
+                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">Debugging Efficiency</span><span class="stat-value">95%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%;"></div></div>
+                </div>
+                <div class="card-feedback">
+                    "Precision and a calm, analytical mindset. A dependable pillar for complex missions and open-source excellence."
+                </div>
+            </div>
+            
+            <!-- Aadhitya Mahesh Card -->
+            <div class="hd-card">
+                <div class="card-header">
+                    <img src="https://i.postimg.cc/R0wzmMcp/IMG-6567.jpg" class="card-avatar" alt="Aadhitya" style="border-color: #ff0088;">
+                    <div class="card-title-group">
+                        <div class="card-name" style="color: #ff0088;">Aadhitya Mahesh</div>
+                        <div class="card-role" style="color: #ff0088; background: rgba(255,0,136,0.1);">GAME DEVELOPER</div>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Game Logic</span><span class="stat-value">100%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill danger" style="width: 100%;"></div></div>
+                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">Hardwork & Focus</span><span class="stat-value">100%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill danger" style="width: 100%;"></div></div>
+                </div>
+                <div class="card-feedback" style="border-left-color: #ff0088;">
+                    "A cornerstone of the clan. Master developer and the primary point of contact for complex technical doubts."
+                </div>
+            </div>
+
+            <!-- Michael Nithish Card -->
+            <div class="hd-card">
+                <div class="card-header">
+                    <img src="https://i.postimg.cc/N0FrCzmf/IMG-6671.jpg" class="card-avatar" alt="Michael" style="border-color: #ffaa00;">
+                    <div class="card-title-group">
+                        <div class="card-name" style="color: #ffaa00;">Michael Nithish</div>
+                        <div class="card-role" style="color: #ffaa00; background: rgba(255,170,0,0.1);">IT ORGANISER</div>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Network Infra</span><span class="stat-value">92%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 92%; background:#ffaa00; box-shadow:0 0 10px #ffaa00;"></div></div>
+                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">System Stability</span><span class="stat-value">88%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 88%; background:#ffaa00; box-shadow:0 0 10px #ffaa00;"></div></div>
+                </div>
+                <div class="card-feedback" style="border-left-color: #ffaa00;">
+                    "Architects the core IT infrastructure. Ensures flawless digital connectivity for all clan operations."
+                </div>
+            </div>
+
+            <!-- Harshini Card -->
+            <div class="hd-card">
+                <div class="card-header">
+                    <img src="https://i.postimg.cc/2SMzmcg8/IMG-6660.jpg" class="card-avatar" alt="Harshini" style="border-color: #00ff88;">
+                    <div class="card-title-group">
+                        <div class="card-name" style="color: #00ff88;">Harshini</div>
+                        <div class="card-role">EX CB</div>
+                    </div>
+                </div>
+                <div class="card-stats">
+                    <div class="stat-row"><span class="stat-label">Strategic Planning</span><span class="stat-value">96%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill accent" style="width: 96%;"></div></div>
+                    <div class="stat-row" style="margin-top: 5px;"><span class="stat-label">Legacy Impact</span><span class="stat-value">99%</span></div>
+                    <div class="stat-bar-bg"><div class="stat-bar-fill accent" style="width: 99%;"></div></div>
+                </div>
+                <div class="card-feedback" style="border-left-color: #00ff88;">
+                    "Former CB whose visionary strategies laid the groundwork for the modern Belmonts dominion."
+                </div>
+            </div>
+        </div>
+        
+        <div style="position: absolute; bottom: 30px; display: flex; gap: 20px; z-index: 220;">
+            <button class="next-btn cinematic-btn" onclick="goToSando()" style="margin: 0; padding: 10px 20px; font-size: 14px;">Event Command // NEXT</button>
+        </div>
+    </div>
+
     <div id="clan-profile-screen"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #0a111a 0%, #000 100%); display: none; justify-content: center; align-items: center; z-index: 100; opacity: 0; transition: opacity 1.5s ease;">
         <div class="profile-card split-layout"
